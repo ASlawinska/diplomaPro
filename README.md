@@ -7,7 +7,7 @@ Repository contains example booking fly webpage which is diploma thesis. This co
 ## Use technology
 * HTML5
 * SCSS compiling for CSS3 by webpack 
-* Bootstrap v. 
+* Bootstrap v. 4.6.0
 * JS ES6 
 
 ## Use packages
@@ -36,3 +36,5 @@ Repository contains example booking fly webpage which is diploma thesis. This co
 * postcss-loader@3.0.0
 * copy-webpack-plugin@5.1.1
 
+## Status:
+IN PROGRESS
