@@ -51,65 +51,75 @@ header{
             background-color: $grey;
             color: $white;
         }}
+    .mobile{
+        .nav {
+            position: absolute;
+            height: 100vh;
+            width: 350px;
+            right: -350px;
+            background-color: $white;
+            transition: transform .3s;
+            ul {
+                margin-top: 50px;
+                list-style: none;    
+            }
+            a {
+                display: block;
+                padding: 10px 30px;
+                color: $grey;
+                &:hover{
+                    font-weight: bold;
+                } 
+            }}
+            @include breakpoint(laptop){
+                display: none;
+            }
+        }
+    .burger {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px 20px;
+        font-size: 36px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $pink;t 
+        transition: transform .3s;
+    }
+    .active {
+        transform: translateX(-350px)
+    }
+    .hide {
+        display: none;
+    }
     .desktop{
+        display: none;
         @include breakpoint(laptop) {
+            display: flex;
             margin-right: 3%;
             ul{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+g                justify-content: space-between;
                 align-items: center;
                 li{
-                    margin: auto 10px;
-                }
+                    text-transform: uppercase;
+                    padding: 5px;
+                    background-color: $white;
+                    border-radius: 5px;
+                    transition: background-color 0.5s ease;
+                    transition: color 0.5s ease;
+                    i{
+                        color: $pink;
+                        margin: auto 5px;}
+                    &:hover{
+                        background-color: $grey;
+                        color: $white;
+                    }}
             }
 
         }}
 }
-// nav-mobile
-// nav {
-//     position: absolute;
-//     height: 100vh;
-//     width: 350px;
-//     left: -350px;
-//     background-color: $white;
-//     transition: transform .3s;
-// }
 
-// nav ul {
-//     margin-top: 50px;
-//     list-style: none;    
-// }
-
-// nav a {
-//     display: block;
-//     padding: 10px 30px;
-//     color: #333;
-//     text-decoration: none;    
-// }
-
-// nav a:hover {
-//     font-weight: bold;
-// }
-// .burger {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     padding: 10px 20px;
-//     font-size: 36px;
-//     background: none;
-//     border: none;
-//     cursor: pointer;
-//     color: #fff;
-//     transition: transform .3s;
-// }
-
-// .active {
-//     transform: translateX(350px)
-// }
-// .hide {
-//     display: none;
-// }
 // main
 main{
     @include width(96vw, 5px auto, $whiteTrasp);
