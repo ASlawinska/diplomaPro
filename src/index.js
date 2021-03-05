@@ -7,8 +7,7 @@ const nav = document.querySelector('.nav')
 
 const addActive = () => {
     nav.classList.toggle('active');
-    burgerBtn.classList.toggle('active');
-    if (burgerBtn.classList.contains('active')) {
+    if (nav.classList.contains('active')) {
         open.classList.add('hide');
         close.classList.remove('hide');
     } else {
