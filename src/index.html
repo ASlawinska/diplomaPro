@@ -45,10 +45,30 @@
             </div>
         </header>
         <main>
-            <section class="chooseDirection">sfsa</section>
-            <section class="chooseLauage">sa</section>
+            <section class="chooseDirection">
+                <form action="">
+                    <label for="departure">Miejsce wylotu</label>
+                    <input type="text" name="departure" placeholder="Miejsce wyloty"><br>
+                    <label for="departureDate">Wybierz datę wylotu</label>
+                    <input type="date" name="departureDate" id="today" min=""><br>
+                    <label for="arrival">Miejsce przylotu</label>
+                    <input type="text" name="arrival" placeholder="Miejsce przylotu"><br>
+                    <label for="arrivalDate">Wybierz datę powrotu</label>
+                    <input type="date" name="arrivalDate" id="tommorow" min="">
+                </form>
+                <section class="weather">
+                    
+                </section>
+            </section>
+            <section class="chooseLaugage">
+                <form action="" method="post">
+                    <input type="radio" name="radio" value="bagaż podręczny" />bagaż podręczny<br>
+                    <input type="radio" name="radio" value="Bagaż do 10kg" />Bagaż do 10kg<br>
+                    <input type="radio" name="radio" value="Duży bagaż do 25kg" />Duży bagaż do 25kg<br>
+                    <input type="radio" name="radio" value="Bagaż niewymiarowy" />Bagaż niewymiarowy<br>
+                </form>
+            </section>
             <section class="chooseSit">saf</section>
-            <section class="weather">ass</section>
         </main>
         <footer>
             <div class="footer"></div>
