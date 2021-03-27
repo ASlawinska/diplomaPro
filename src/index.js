@@ -28,12 +28,12 @@ let month = (today.getMonth()+1) <10 ? `0${(today.getMonth()+1)}`: `${(today.get
 let year = today.getFullYear();
 
 
-let dateFormat = `${day}-${month}-${year}`;
-let dateFormat2 = `${dayTommorow}-${month}-${year}`;
+let dateFormat = `${year}-${month}-${day}`;
+let dateFormat2 = `${year}-${month}-${dayTommorow}`;
 let todayMin = thisDay.setAttribute('min', dateFormat);
 let tommorowMin = tommorow.setAttribute('min', dateFormat2);
-thisDay.setAttribute('value', dateFormat2);
-
+thisDay.setAttribute('value', dateFormat);
+tommorow.setAttribute('value', dateFormat2);
 
 console.log(day);
 console.log(month);
