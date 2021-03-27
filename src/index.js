@@ -35,13 +35,6 @@ let tommorowMin = tommorow.setAttribute('min', dateFormat2);
 thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 
-console.log(day);
-console.log(month);
-console.log(year);
-console.log(dateFormat);
-console.log(dateFormat2);
-
-
 // Year footer
 // let year = today.getFullYear();
 let footer = document.querySelector('.footer');
