@@ -116,10 +116,21 @@ main{
     @include width(96vw, 5px auto, $whiteTrasp);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    #carouselMain{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
     @include breakpoint(laptop) {
         @include width(80vw, 10px auto, $whiteTrasp);
+        #carouselMain{
+            width: 80%;
+        }
     }
 }
 // footer 

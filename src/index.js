@@ -35,7 +35,9 @@ let tommorowMin = tommorow.setAttribute('min', dateFormat2);
 thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 
+//Weather APP
+
+
 // Year footer
-// let year = today.getFullYear();
 let footer = document.querySelector('.footer');
 footer.innerHTML = `Copyright &copy; ${year} <br>AFM diploma thesis Adrianna Sławińska`
