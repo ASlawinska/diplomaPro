@@ -45,7 +45,7 @@
             </div>
         </header>
         <main>
-            <div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselMain" class="carousel slide" data-bs-ride="carousel" data-interval="false">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <section class="chooseDirection">
@@ -60,7 +60,29 @@
                                 <input type="date" name="arrivalDate" id="tommorow" min="">
                             </form>
                             <section class="weather">
-                                
+                                    <div class="top">
+                                        <h1>POGODA</h1>
+                                        <div class="main-info">
+                                            <div>
+                                                <h3 class="city-name"></h3>
+                                                <input type="text" placeholder="Wpisz nazwę miasta..."><button>Wyślij</button>
+                                                <p class="warning"></p>
+                                            </div>
+                                            <img src="" alt="Obrazek przedstawiający pogodę" class="photo">
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <div class="headings">
+                                            <p>Weather:</p>
+                                            <p>Temperature:</p>
+                                            <p>Humidity:</p>
+                                        </div>
+                                        <div class="weather-info">
+                                            <p class="weather"></p>
+                                            <p class="temp"></p>
+                                            <p class="humidity"></p>
+                                        </div>
+                                    </div>
                             </section>
                         </section>
                     </div>
@@ -76,20 +98,26 @@
                     </div>
                     <div class="carousel-item">
                         <section class="chooseSit">
-                            saf
-
-
+                            <div class="country">
+safsf
+                            </div>
+                            <div class="international">
+dfsdf
+                            </div>
+                            <div class="intercontinental">
+dfsf
+                            </div>
                         </section>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" href="#carouselMain" data-bs-slide="prev">
+                <a class="carousel-control-prev" href="#carouselMain" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Wróć</span>
-                </button>
-                <button class="carousel-control-next" type="button" href="#carouselMain" data-bs-slide="next">
+                    <span>Wstecz</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselMain" role="button" data-slide="next">
+                    <span >Dalej</span>
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Dalej</span>
-                </button>
+                </a>
                 </div>
         </main>
         <footer>
