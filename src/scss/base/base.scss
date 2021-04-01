@@ -141,11 +141,9 @@ main{
                     border: none;
                     color: #fff;
                     border-bottom: 2px solid #ddd;
-                }
-                
-                input::placeholder {
-                    color: #ddd;
-                    font-family: 'Montserrat', sans-serif;
+                    // &::placeholder {
+                    //     color: #ddd;
+                    //     font-family: 'Montserrat', sans-serif;}
                 }
                 
                 button {

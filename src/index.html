@@ -59,32 +59,32 @@
                                 <label for="arrivalDate">Wybierz datę powrotu</label>
                                 <input type="date" name="arrivalDate" id="tommorow" min="">
                             </form>
+                        </section>
                             <section class="weather">
                                     <div class="top">
                                         <h1>POGODA</h1>
                                         <div class="main-info">
                                             <div>
                                                 <h3 class="city-name"></h3>
-                                                <input type="text" placeholder="Wpisz nazwę miasta..."><button>Wyślij</button>
+                                                <input type="text" id="cityNameInput" placeholder="Wpisz nazwę miasta..."><button>Sprawdź</button>
                                                 <p class="warning"></p>
                                             </div>
-                                            <img src="" alt="Obrazek przedstawiający pogodę" class="photo">
+                                            <img src="../src/assets/img/unknown.png" alt="Obrazek przedstawiający pogodę" class="photo"/>
                                         </div>
                                     </div>
                                     <div class="bottom">
                                         <div class="headings">
-                                            <p>Weather:</p>
-                                            <p>Temperature:</p>
-                                            <p>Humidity:</p>
+                                            <p>Ciśnienie:</p>
+                                            <p>Temperatura:</p>
+                                            <p>Wilgotność:</p>
                                         </div>
                                         <div class="weather-info">
-                                            <p class="weather"></p>
+                                            <p class="pressure"></p>
                                             <p class="temp"></p>
                                             <p class="humidity"></p>
                                         </div>
                                     </div>
                             </section>
-                        </section>
                     </div>
                     <div class="carousel-item">
                         <section class="chooseLaugage">
@@ -99,7 +99,9 @@
                     <div class="carousel-item">
                         <section class="chooseSit">
                             <div class="country">
-safsf
+                                <object type="image/svg+xml" data="../src/assets/img/LOT_Polish_Airlines_Boeing_737-400.svg">
+                                    Twoja przeglądarka nie obsługuje SVG
+                                </object>safsf
                             </div>
                             <div class="international">
 dfsdf
@@ -127,7 +129,5 @@ dfsf
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-<!--AXIOUS library-->
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 </html>
