@@ -65,11 +65,8 @@ const getWeather = () => {
     fetch(url)
         .then((res)=> res.json())
         .then(data => {
-            console.log(data);
             const temp = data.main.temp;
-            console.log(temp);
             const hum = data.main.humidity;
-            console.log(hum);
             const pres = data.main.pressure;
             const status = Object.assign({}, ...data.weather);
             
@@ -82,21 +79,21 @@ const getWeather = () => {
             input.value = '';
 
             if (status.id >= 200 && status.id < 300) {
-                photo.setAttribute('src', "../src/assets/img/thunderstorm.png")
+                photo.setAttribute('src', "./assets/img/thunderstorm.png")
             } else if (status.id >= 300 && status.id < 400) {
-                photo.setAttribute('src', "../src/assets/img/drizzle.png")
+                photo.setAttribute('src', "./assets/img/drizzle.png")
             } else if (status.id >= 500 && status.id < 600) {
-                photo.setAttribute('src', "../src/assets/img/rain.png")
+                photo.setAttribute('src', "./assets/img/rain.png")
             } else if  (status.id >= 600 && status.id < 700) {
-                photo.setAttribute('src', "../src/assets/img/ice.png")
+                photo.setAttribute('src', "./assets/img/ice.png")
             } else if (status.id >= 700 && status.id < 799) {
-                photo.setAttribute('src', "../src/assets/img/fog.png")
+                photo.setAttribute('src', "./assets/img/fog.png")
             } else if (status.id==800) {
-                photo.setAttribute('src', "../src/assets/img/sun.png")
+                photo.setAttribute('src', "./assets/img/sun.png")
             } else if (status.id > 800 && status.id < 900) {
-                photo.setAttribute('src', "../src/assets/img/cloud.png")
+                photo.setAttribute('src', "./assets/img/cloud.png")
             } else {
-                photo.setAttribute('src', "../src/assets/img/unknown.png")
+                photo.setAttribute('src', "./assets/img/unknown.png")
             }
         })
         .catch(()=>{warning.textContent ='Wpisz poprawną nazwę miasta'})
