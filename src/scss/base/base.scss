@@ -141,9 +141,6 @@ main{
                     border: none;
                     color: #fff;
                     border-bottom: 2px solid #ddd;
-                    // &::placeholder {
-                    //     color: #ddd;
-                    //     font-family: 'Montserrat', sans-serif;}
                 }
                 
                 button {
@@ -219,12 +216,7 @@ main{
                     width: 140px;
                     height: 140px;
                 }
-                
-                .warning {
-                    margin-top: 10px;
-                    font-size: 14px;
-                    color: tomato;
-                }
+
             }
             .chooseSit{
                 height: 5%;

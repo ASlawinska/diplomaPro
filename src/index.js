@@ -58,21 +58,23 @@ const lang = '&lang=pl'
 
 let city;
 let url;
-let lat;
-let lon;
 
-if ('geolocation' in navigator) {
-    navigator.geolocation.getCurrentPosition(position => {
-        lat = Math.floor(position.coords.latitude);
-        lon = Math.floor(position.coords.longitude);
-    })
-} else {
-    console.log('not avaliable');
-}
-console.log(lat);
+if('geolocation' in navigator){  
+    navigator.geolocation.getCurrentPosition(setPosition);  
+}else{  
+    console.log(error);
+}  
 
-const getWeather = () => {
-    city = (!input.value) ? `lat=${lat}&lon=${lon}`: `$q=${input.value}`; 
+function setPosition(position){  
+    let lat = position.coords.latitude;  
+    let lon = position.coords.longitude;  
+
+    getWeather(lat, lon);  
+}  
+
+const getWeather = (lat, lon) => {
+    
+    city = (!input.value) ? `lat=${lat}&lon=${lon}`: `q=${input.value}`; 
     url = apilink + city + apiKey + lang + units;
 
     fetch(url)
