@@ -68,8 +68,8 @@ if('geolocation' in navigator){
 function setPosition(position){  
     let lat = position.coords.latitude;  
     let lon = position.coords.longitude;  
+    getWeather(lat, lon); 
 
-    getWeather(lat, lon);  
 }  
 
 const getWeather = (lat, lon) => {
@@ -120,7 +120,6 @@ const enterCheck = () => {
         getWeather();
     }
 }
-getWeather();
 input.addEventListener('keyup', enterCheck)
 btn.addEventListener('click', getWeather);
 
