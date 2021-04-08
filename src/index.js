@@ -40,15 +40,17 @@ thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 
 //Seletet list form
-let req = new XMLHttpRequest();
+let listOfCities = document.getElementById('listOfCities');
+
 
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
-    .then((resp) => resp.json()) // Transform the data into json
-    .then(function (data) {
+    .then((resp) => resp.json()) 
+    .then((data) => {
         data.forEach(function (element) {
-        console.log(element.city);
-        });
-    });
+            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"> ${element.city} </option>`;
+        })
+    })
+    .catch((err) => console.log(err))
 
 // Weather APP
 const input = document.querySelector('#cityNameInput');
