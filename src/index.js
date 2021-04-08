@@ -39,6 +39,17 @@ let tommorowMin = tommorow.setAttribute('min', dateFormat2);
 thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 
+//Seletet list form
+let req = new XMLHttpRequest();
+
+fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
+    .then((resp) => resp.json()) // Transform the data into json
+    .then(function (data) {
+        data.forEach(function (element) {
+        console.log(element.city);
+        });
+    });
+
 // Weather APP
 const input = document.querySelector('#cityNameInput');
 const btn = document.querySelector('button');

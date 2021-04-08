@@ -51,11 +51,19 @@
                         <section class="chooseDirection">
                             <form action="">
                                 <label for="departure">Miejsce wylotu</label>
-                                <input type="text" name="departure" id="cityNameInput" placeholder="Miejsce wyloty"><br>
+                                <input type="text" list="listOfCities" name="departure" id="cityNameInput" placeholder="Miejsce wyloty" value="">
+                                <datalist id="listOfCities">
+                                    <option value="">
+                                </datalist>
+                                <br>
                                 <label for="departureDate">Wybierz datę wylotu</label>
                                 <input type="date" name="departureDate" id="today" min=""><br>
                                 <label for="arrival">Miejsce przylotu</label>
-                                <input type="text" name="arrival" placeholder="Miejsce przylotu"><br>
+                                <input type="text" list="listOfCities" name="arrival" placeholder="Miejsce przylotu">
+                                <datalist id="listOfCities">
+                                    <option value="">
+                                </datalist>
+                                <br>
                                 <label for="arrivalDate">Wybierz datę powrotu</label>
                                 <input type="date" name="arrivalDate" id="tommorow" min="">
                             </form>
