@@ -40,14 +40,12 @@ thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 
 //Seletet list form
-let listOfCities = document.getElementById('listOfCities');
-
-
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
     .then((resp) => resp.json()) 
     .then((data) => {
         data.forEach(function (element) {
-            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"> ${element.city} </option>`;
+            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"> ${element.city} </option>`;//lista dla odlotu
+            document.getElementById("listOfCities2").innerHTML += `<option value="${element.city}"> ${element.city} </option>`;// lista dla przylotu z wyłączeniem miasta odlotu 
         })
     })
     .catch((err) => console.log(err))

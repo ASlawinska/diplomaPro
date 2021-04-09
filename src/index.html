@@ -56,14 +56,16 @@
                                 </datalist>
                                 <br>
                                 <label for="arrival">Miejsce przylotu(do):</label>
-                                <input type="text" list="listOfCities" name="arrival" placeholder="Miejsce przylotu">
-                                <datalist id="listOfCities">
+                                <input type="text" list="listOfCities2" name="arrival" placeholder="Miejsce przylotu">
+                                <datalist id="listOfCities2">
                                 </datalist>
                                 <br>
                                 <label for="departureDate">Wybierz datę wylotu</label>
                                 <input type="date" name="departureDate" id="today" min=""><br>
                                 <label for="arrivalDate">Wybierz datę powrotu</label>
                                 <input type="date" name="arrivalDate" id="tommorow" min="">
+                                <label for="numbPas">Liczba pasażerów</label>
+                                <input type="number" name="numbPas" id="numbPas" min="1" step="1"><br>
                             </form>
                         </section>
                             <section class="weather">
@@ -103,23 +105,49 @@
                     </div>
                     <div class="carousel-item">
                         <section class="chooseSit">
+                            <div class="plane">
                             <div class="country">
-                                <object type="image/svg+xml" data="./assets/img/LOGO.svg">
-                                    Kiwi Logo <!-- fallback image in CSS -->
+                                <object type="image/svg+xml" data="Embarer.svg" width="150px" height="150px">
+                                    <img src="./assets/Embarer.svg" alt="">
                                 </object>
                             </div>
                             <div class="international">
-                                <object type="image/svg+xml" data="./assets/img/737.svg" width="50vw">
+                                <object type="image/svg+xml" data="737.svg" width="150px" height="150px">
                                     Twoja przeglądarka nie obsługuje SVG
+                                    <img src="./assets/737.svg" alt="">
                                 </object>safsf
                                 dfsdf
                             </div>
                             <div class="intercontinental">
-                                <object type="image/svg+xml" data="./assets/img/878.svg" width="50%vw">
-                                    Twoja przeglądarka nie obsługuje SVG
-                                </object>safsf
-dfsf
+                                <object type="image/svg+xml" data="878.svg" width="150px" height="150px">
+                                    <img src="./assets/878.svg" alt="">
+                                </object>
                             </div>
+                        </div>
+                        <div class="infoPlane">
+                            Wybrane miejsce: 
+                            <span class="sit" ></span>
+                            Legend:
+                            <p class="legend-title" id="seatMapKeyLegend"><strong>Seat map key</strong></p>
+                            <ul class="legend">
+                                <li id="key_gut">Good seat</li>
+                                <li id="key_bwr">Be Aware - See comments</li>
+                                <li id="key_bad">Bad seat</li>
+                                <li id="key_mix">Mixed Review</li>
+                                <li id="key_std">Standard seat</li>
+                                <li id="key_blk">Blocked seat</li>
+                                <li id="key_pre">Premium seat</li>
+                            </ul>
+                            <ul class="legend">
+                                <li id="key_crw">Crew seat</li>
+                                <li id="key_pwr">Power port</li>
+                                <li id="key_emg">Emergency exit</li>
+                                <li id="key_gal">Galley</li>
+                                <li id="key_lav">Lavatory</li>
+                                <li id="key_clo">Closet</li>
+                                <li id="key_bas">Bassinet</li>
+                            </ul>
+                        </div>
                         </section>
                     </div>
                 </div>
