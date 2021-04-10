@@ -43,17 +43,15 @@ tommorow.setAttribute('value', dateFormat2);
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
     .then((resp) => resp.json()) 
     .then((data) => {
+        console.log(data);
         data.forEach(function (element) {
             document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"> ${element.city} </option>`;//lista dla odlotu
-            document.getElementById("listOfCities2").innerHTML += `<option value="${element.city}"> ${element.city} </option>`;// lista dla przylotu z wyłączeniem miasta odlotu 
         })
     })
     .catch((err) => console.log(err))
 
 // Weather APP
 const input = document.querySelector('#cityNameInput');
-const btn = document.querySelector('button');
-
 const cityName = document.querySelector('.city-name');
 const warning = document.querySelector('.warning');
 const photo = document.querySelector('.photo');
@@ -80,7 +78,6 @@ function setPosition(position){
     let lat = position.coords.latitude;  
     let lon = position.coords.longitude;  
     getWeather(lat, lon); 
-
 }  
 
 const getWeather = (lat, lon) => {
@@ -102,7 +99,6 @@ const getWeather = (lat, lon) => {
             humidity.textContent = hum + '%';
 
             warning.textContent = '';
-            input.value = '';
 
             if (status.id >= 200 && status.id < 300) {
                 photo.setAttribute('src', "https://freesvg.org/img/weather-storm.png")
@@ -132,7 +128,7 @@ const enterCheck = () => {
     }
 }
 input.addEventListener('keyup', enterCheck)
-btn.addEventListener('click', getWeather);
+
 
 // Year footer
 let footer = document.querySelector('.footer');
