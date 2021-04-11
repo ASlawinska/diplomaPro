@@ -9,7 +9,9 @@ const webpack = require("webpack");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: `./src/index.js`,
+    entry: {
+        "index":`./src/index.js`,
+    },
     output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[contenthash].bundle.js"
@@ -21,7 +23,16 @@ devServer:{
     },
 plugins: [
         new HtmlWebpackPlugin({
-        template: "./src/index.html"
+        template: "./src/index.html",
+        inject: true,
+        chunks: ['index'],
+        filename: 'index.html'
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/summary.html',
+            inject: true,
+            chunks: ['index'],
+            filename: 'summary.html'
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({

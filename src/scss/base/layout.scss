@@ -1,12 +1,64 @@
 //chooseDirection
 // .chooseDirection{
 
+.weather{
+    @include width(95%, 5px auto, $whiteTrasp);
+    height: 50%;
+    h1 {
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px;
+        }
 
-// //weather
-//     .weather{
-    
-//     }
-// }
+    .top {
+        height: 25%;
+    }
+        
+    .bottom {
+        height: 25%;
+    }
+        
+    .main-info {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 20%;
+    }
+        
+    .city-name {
+        font-size: 1.5rem;
+    }
+        
+    .headings,
+    .weather-info {
+        display: flex;
+        align-items: center;
+        p{ 
+            width: 33.3%;
+            text-align: center;
+            font-size: 0.7rem;
+            padding-top: 5% ;
+            padding-bottom: 5% ;
+        }
+    }
+    .headings {
+        height: 35%;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-top: 1px solid $grey;
+        border-bottom: 1px solid $grey ;
+    }
+        
+    .weather-info {
+        height: 65%;
+        font-size: 26px;
+    }
+        
+    .photo {
+        width: 30%;
+        height: auto;
+    }}
+
 // //chooseLauage
 // .chooseLaugage{
 
