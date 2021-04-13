@@ -1,63 +1,65 @@
 //chooseDirection
 // .chooseDirection{
 
-.weather{
-    @include width(95%, 5px auto, $whiteTrasp);
-    height: 50%;
-    h1 {
-        text-transform: uppercase;
-        text-align: center;
-        padding: 10px;
-        }
-
-    .top {
-        height: 25%;
-    }
-        
-    .bottom {
-        height: 25%;
-    }
-        
-    .main-info {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        height: 20%;
-    }
-        
-    .city-name {
-        font-size: 1.5rem;
-    }
-        
-    .headings,
-    .weather-info {
-        display: flex;
-        align-items: center;
-        p{ 
-            width: 33.3%;
+    .weather{
+        @include width(95%, 5px auto, $whiteTrasp);
+        height: 40%;
+        h1 {
+            text-transform: uppercase;
             text-align: center;
-            font-size: 0.7rem;
-            padding-top: 5% ;
-            padding-bottom: 5% ;
+            padding: 10px;
+        }
+        .top {
+            height: 25%;
+        }
+        .bottom {
+            height: 25%;
+        }
+        .main-info {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 10%;
+        }
+        .city-name {
+            font-size: 1.5rem;
+        }
+        .headings,
+        .weather-info {
+            display: flex;
+            align-items: center;
+            p{ 
+                width: 33.3%;
+                text-align: center;
+                font-size: 0.7rem;
+                padding-top: 5% ;
+                padding-bottom: 5% ;
+            }
+        }
+        .headings {
+            height: 25%;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-top: 1px solid $grey;
+            border-bottom: 1px solid $grey ;
+        }
+        .weather-info {
+            height: 25%;
+            font-size: 26px;
+        }
+        .photo {
+            width: 15%;
+            height: auto;
+        }
+        @include breakpoint(laptop){
+            @include width(75%, 5px auto, $whiteTrasp);
+            .headings p,
+            .weather-info 
+                p { 
+                    font-size: 1.2rem
+                }
         }
     }
-    .headings {
-        height: 35%;
-        text-transform: uppercase;
-        font-weight: bold;
-        border-top: 1px solid $grey;
-        border-bottom: 1px solid $grey ;
-    }
-        
-    .weather-info {
-        height: 65%;
-        font-size: 26px;
-    }
-        
-    .photo {
-        width: 30%;
-        height: auto;
-    }}
 
 // //chooseLauage
 // .chooseLaugage{
@@ -67,3 +69,113 @@
 // .chooseSit{
 
 // }
+//popup
+.popup {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 200;
+    @include width(95%, 5px auto, $whiteTrasp);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    @include breakpoint(laptop){
+        @include width(100%, 5px auto, $whiteTrasp)
+    }
+    .popularWay, .rule, .singInUp {
+        display: none;
+        justify-content: center;
+        flex-wrap: wrap;
+        z-index: 300;
+        @include width(95%, 5px auto, $white);
+    }
+    .rule{
+        font-size: 0.8rem;
+        overflow: auto;
+        line-height: 1.4;
+        padding: 20px;
+        h1{
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        ol{
+            list-style-type: upper-roman;
+            li{
+                font-weight: bold;
+            }
+        }
+        ul{
+            list-style-type: circle;
+            li{
+                font-weight: normal;
+            }
+        }
+        span{
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        @include breakpoint(laptop){
+            @include width(75%, 20px auto, $white);
+            padding: 40px;
+            font-size: 1.2rem;
+            h1{
+                font-size: 1.6rem;
+            }
+            span{
+                font-size: 1.4rem;
+            }
+        }}
+    .popupPW{
+    margin:0;
+    overflow:hidden;
+    height:100%;
+    .popularWay{
+        perspective:1000px;
+        transform-style: preserve-3d;
+    }
+    #imgs{  
+        position:absolute;
+        top:50%; 
+        left:50%;
+        transform-style: preserve-3d;
+        transform-origin:0 0 -50vw;
+        .card{
+            position:absolute;
+            top:0;
+            left:0;
+            width:20vw;
+            transform-origin:50% 50% -50vw;
+            transform:translate3d(-50%,-50%,0);
+            transform-style: preserve-3d;
+            img{
+                object-fit: cover;
+            }
+            h2, h3{
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+    }
+
+@for $i from 0 through $img {
+  $rotate : $rotateStep * $i;
+    #imgs .card:nth-child(#{$i + 1}) {
+        transform: translate3d(-50%,-50%,0) rotate3d(0,1,0,$rotate+deg);
+    }
+}
+        @include breakpoint(laptop){
+            @include width(75%, 20px auto, $white)
+        }
+    }
+    .popularWay, .rule, .singInUp {
+        @include breakpoint(laptop){
+            @include width(45%, 5px auto, $white)
+        }
+    }
+    }

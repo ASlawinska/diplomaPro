@@ -27,9 +27,9 @@
                 </button>
                 <nav class="nav">
                     <ul>
-                        <li><i class="fas fa-info"></i><a href="#">Regulamin</a></li>
-                        <li><i class="far fa-compass"></i><a href="#">Popularne kierunki</a></li>
-                        <li><i class="fas fa-sign-out-alt"></i><a href="#">Zaloguj się</a></li>
+                        <li class="popupRulesBTN"><i class="fas fa-info"></i><a href="#">Regulamin</a></li>
+                        <li class="popupPopularDirectionBTN"><i class="far fa-compass"></i><a href="#">Popularne kierunki</a></li>
+                        <li class="popupSingBTN"><i class="fas fa-sign-out-alt"></i><a href="#">Zaloguj się</a></li>
                     </ul>
                 </nav>
             </div>
@@ -37,9 +37,9 @@
             <div class="desktop">
                 <nav>
                     <ul>
-                        <li><i class="fas fa-info"></i><a href="#">Regulamin</a></li>
-                        <li><i class="far fa-compass"></i><a href="summary.html">Popularne kierunki</a></li>
-                        <li><i class="fas fa-sign-out-alt"></i><a href="#">Zaloguj się</a></li>
+                        <li class="popupRulesBTNDesktop"><i class="fas fa-info"></i><a href="#">Regulamin</a></li>
+                        <li class="popupPopularDirectionBTNDesktop"><i class="far fa-compass"></i><a href="#">Popularne kierunki</a></li>
+                        <li  class="popupSingBTNDesktop"><i class="fas fa-sign-out-alt"></i><a href="#">Zaloguj się</a></li>
                     </ul>
                 </nav>
             </div>
@@ -49,6 +49,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <section class="chooseDirection">
+                            
                             <form action="">
                                 <label for="departure">Miejsce wylotu(z):</label>
                                 <input type="text" list="listOfCities" name="departure" id="cityNameInput" placeholder="Miejsce wyloty" value="">
@@ -161,24 +162,81 @@
                 </a>
                 </div>
         </main>
-        <div class="popopRule">
+        <div class="popup">
+            <div class="rule">
             <h1>Założenia projektu:</h1>
             <ol>
                 <li>Ramowy opis projektu</li>
                 <p>Celem projektu jest napisanie aplikacji polegającej na zarezerwowaniu biletu lotniczego.</p>
                 <li>Szczegółowy opis projektu</li>
-                <p>Na stronie głównej użytkownik powinien mieć następujące widoki/możliwości:
-                    aktualną datę, godzinę i pogodę (dla miejsca odlotu lub też poprzez pobranie lokalizacji
-                    użytkownika)
-                    miejsce wylotu (przynajmniej jedno miasto)
-                    miejsce docelowe (przynajmniej 3 różne miasta na dwóch kontynentach, np. loty
-                    Katowice - Warszawa, Katowice - Paryż, Katowice - Nowy Jork)
-                    po wybraniu lotu, daty, liczby pasażerów i kliknięciu przycisku potwierdzajacego
-                    wybrane opcje powinno pojawić się okno logowania (np. jako popup)
-                    Lista użytkowników:
-                    pobranie użytkowników z gotowego pliku typu json
-                    możliwość rejestracji/logowania z użyciem node'a i mongoDB (lub innego backendu)</p>
+                <p>Na stronie głównej użytkownik powinien mieć następujące widoki/możliwości:</p>
+                    <ul>
+                        <li>aktualną datę, godzinę i pogodę (dla miejsca odlotu lub też poprzez pobranie lokalizacji użytkownika)</li>
+                        <li>miejsce wylotu (przynajmniej jedno miasto)</li>
+                        <li>miejsce docelowe (przynajmniej 3 różne miasta na dwóch kontynentach, np. loty</li>
+                        <li>po wybraniu lotu, daty, liczby pasażerów i kliknięciu przycisku potwierdzajacego wybrane opcje powinno pojawić się okno logowania (np. jako popup)</li>
+                    </ul>
+                    <span>Lista użytkowników:</span>
+                    <ul>
+                        <li>pobranie użytkowników z gotowego pliku typu json</li>
+                        <li>możliwość rejestracji/logowania z użyciem node'a i mongoDB (lub innego backendu)</li>
+                    </ul>
             </ol>
+            </div>
+            <button class="popupCloseRule">Zamknij</button>
+        </div>
+        <div class="popup popupPW">
+            <div class="popularWay ">
+                <div id="img">
+                <div class="card">
+                    <img src="https://cdn.pixabay.com/photo/2017/12/15/19/13/rome-3021586_960_720.jpg" alt="Rzym-panorama">
+                    <h2>Rzym</h2>
+                    <h3>już od 357zł</h3>
+                </div>
+                <div class="card">
+                    <img src="https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg" alt="Wieża Eilffla">
+                    <h2>Paryż</h2>
+                    <h3>już od 459zł</h3>
+                </div>
+                <div class="card">
+                    <img src="https://cdn.pixabay.com/photo/2017/10/27/10/14/krakow-2893783_960_720.jpg" alt="Kraków- Wawel">
+                    <h2>Kraków</h2>
+                    <h3>już od 99zł</h3>
+                </div>
+                <div class="card">
+                    <img src="https://cdn.pixabay.com/photo/2014/12/14/17/03/day-of-the-dead-568012_960_720.jpg" alt="Meksyk-ludzie obchądzący dzień śmierci">
+                    <h2>Meksyk</h2>
+                    <h3>już od 1356zł</h3>
+                </div>
+                <div class="card">
+                    <img src="https://cdn.pixabay.com/photo/2020/05/01/15/18/brand-front-of-the-brandenburg-gate-5117579_960_720.jpg" alt="Berlin- Brama Brandendurska">
+                    <h2>Berlin</h2>
+                    <h3>juz od 499zł</h3>
+                </div>
+                <div class="card">
+                    <img src="https://cdn.pixabay.com/photo/2017/04/13/21/54/denver-2228783_960_720.jpg" alt="Denver panorama na miasto">
+                    <h2>Denver</h2>
+                    <h3>już od 2689zł</h3>
+                </div>
+                <div class="card">
+                    <img src="https://cdn.pixabay.com/photo/2018/01/21/12/49/poland-3096512_960_720.jpg" alt="Wrocław - katedra św. Jana">
+                    <h2>Wrocław</h2>
+                    <h3>już od 154zł</h3>
+                </div>
+                <div class="card">
+                    <img src="https://cdn.pixabay.com/photo/2019/07/07/10/56/johannesburg-4322256_960_720.jpg" alt="Johannesburg - panorama">
+                    <h2>Johannesburg</h2>
+                    <h3>już od 1899zł</h3>
+                </div>
+            </div>
+            </div>
+            <button class="popupClosePW">Zamknij</button>
+        </div>
+        <div class="popup">
+            <div class="singInUp">
+cfsdfs
+<button class="popupCloseSingInUp">Zamknij</button>
+            </div>
         </div>
         <footer>
             <div class="footer"></div>

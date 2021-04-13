@@ -49,7 +49,23 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
         })
     })
     .catch((err) => console.log(err))
-
+// API flight
+fetch("https://airport-info.p.rapidapi.com/airport", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "43222e6fd9mshecccdaf26da8c49p1a989ejsn801ecacbd70d",
+		"x-rapidapi-host": "airport-info.p.rapidapi.com"
+	}
+})
+.then((response) => {
+	response.json
+})
+.then((data) => {
+	console.log(data);
+})
+.catch(err => {
+	console.error(err);
+});
 // Weather APP
 const input = document.querySelector('#cityNameInput');
 const cityName = document.querySelector('.city-name');
@@ -128,7 +144,84 @@ const enterCheck = () => {
     }
 }
 input.addEventListener('keyup', enterCheck)
+//POPUP
+let popup = document.querySelector('.popup');
+let popupPW = document.querySelector('.popupPW');
+let rule = document.querySelector('.rule');
+let popularWay = document.querySelector('.popularWay');
+let singInUp = document.querySelector('.singInUp');
+let popupRule = document.querySelector('.popupRulesBTN');
+let popupRuleDesktop = document.querySelector('.popupRulesBTNDesktop');
+let popupPopularDirection = document.querySelector('.popupPopularDirectionBTN');
+let popupPopularDirectionDesktop = document.querySelector('.popupPopularDirectionBTNDesktop');
+let popupSing = document.querySelector('.popupSingBTN');
+let popupSingDesktop = document.querySelector('.popupSingBTNDesktop');
+let popupCloseRule = document.querySelector('.popupCloseRule');
+let popupClosePopularWay = document.querySelector('.popupClosePW');
+let popupCloseSingInUp= document.querySelector('.popupCloseSingInUp');
+//Otwieranie popupa rules
+const openPopupRule = () => {
+    popup.style.display = 'flex';
+    rule.style.display = 'flex';
+};
+//Otwieranie popupa popularDiriction
+const openPopupPopularWay = () => {
+    popupPW.style.display = 'flex';
+    popularWay.style.display = 'flex';
+};
+//Otwieranie popupa singUpIN
+const openPopupsingInUp = () => {
+    popup.style.display = 'flex';
+    singInUp.style.display = 'flex';
+};
+//Zamykanie popupa rule
+const closePopupRule = () => {
+    popup.style.display = 'none';
+    rule.style.display = 'none';
 
+};
+//Zamykanie popupaPopularWay
+const closePopupPopularWay = () => {
+    popupPW.style.display = 'none';
+    popularWay.style.display = 'none';
+};
+//Zamykanie popupa  singUpIN
+const closePopupsingInUp = () => {
+    popup.style.display = 'none';
+    singInUp.style.display = 'none';
+
+};
+popupRule.addEventListener('click', openPopupRule);
+popupRuleDesktop.addEventListener('click', openPopupRule);
+popupPopularDirection.addEventListener('click', openPopupPopularWay);
+popupPopularDirectionDesktop.addEventListener('click', openPopupPopularWay);
+popupSing.addEventListener('click', openPopupsingInUp);
+popupSingDesktop.addEventListener('click', openPopupsingInUp);
+popupCloseRule.addEventListener('click', closePopupRule);
+popupClosePopularWay.addEventListener('click', closePopupPopularWay);
+popupCloseSingInUp.addEventListener('click', closePopupsingInUp);
+// PopularWay Carousel
+$(document).ready(function(){
+    let docWidth = $('.popularWay').width(),
+        imgNb = 10,
+        $images = $('#imgs');
+    
+    
+$(window).on('resize', function(){
+    docWidth = $('.popularWay').width();
+    slidesWidth = $('#imgs').width();
+    });
+    
+$(document).mousemove(function(e) {
+    let mouseX = e.pageX,        
+        rotate = mouseX*360/docWidth;
+    
+    $images.css({
+        '-webkit-transform': 'rotate3d(0,1,0,' + -rotate + 'deg)',
+                'transform': 'rotate3d(0,1,0,' + -rotate + 'deg)',
+    });
+    });
+})
 
 // Year footer
 let footer = document.querySelector('.footer');
