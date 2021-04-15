@@ -167,7 +167,6 @@ const openPopupRule = () => {
 //Otwieranie popupa popularDiriction
 const openPopupPopularWay = () => {
     popupPW.style.display = 'flex';
-    popularWay.style.display = 'flex';
 };
 //Otwieranie popupa singUpIN
 const openPopupsingInUp = () => {
@@ -183,7 +182,6 @@ const closePopupRule = () => {
 //Zamykanie popupaPopularWay
 const closePopupPopularWay = () => {
     popupPW.style.display = 'none';
-    popularWay.style.display = 'none';
 };
 //Zamykanie popupa  singUpIN
 const closePopupsingInUp = () => {
@@ -200,28 +198,75 @@ popupSingDesktop.addEventListener('click', openPopupsingInUp);
 popupCloseRule.addEventListener('click', closePopupRule);
 popupClosePopularWay.addEventListener('click', closePopupPopularWay);
 popupCloseSingInUp.addEventListener('click', closePopupsingInUp);
+
 // PopularWay Carousel
-$(document).ready(function(){
-    let docWidth = $('.popularWay').width(),
-        imgNb = 10,
-        $images = $('#imgs');
-    
-    
-$(window).on('resize', function(){
-    docWidth = $('.popularWay').width();
-    slidesWidth = $('#imgs').width();
-    });
-    
-$(document).mousemove(function(e) {
-    let mouseX = e.pageX,        
-        rotate = mouseX*360/docWidth;
-    
-    $images.css({
-        '-webkit-transform': 'rotate3d(0,1,0,' + -rotate + 'deg)',
-                'transform': 'rotate3d(0,1,0,' + -rotate + 'deg)',
-    });
-    });
-})
+let carousel = document.querySelector('.carouselPW');
+let cells = carousel.querySelectorAll('.carousel__cell');
+//let cellCount= 9; // cellCount set from cells-range input value
+let selectedIndex = 0;
+let cellWidth = carousel.offsetWidth;
+let cellHeight = carousel.offsetHeight;
+let isHorizontal = true;
+let rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+let radius;
+let theta;
+
+function rotateCarousel() {
+  let angle = theta * selectedIndex * -1;
+    carousel.style.transform = 'translateZ(' + -radius + 'px) ' + 
+    rotateFn + '(' + angle + 'deg)';
+}
+
+let prevButtonPW = document.querySelector('.previous-button-PW');
+prevButtonPW.addEventListener( 'click', function() {
+    selectedIndex--;
+    rotateCarousel();
+});
+
+let nextButtonPW = document.querySelector('.next-button-PW');
+nextButtonPW.addEventListener( 'click', function() {
+    selectedIndex++;
+    rotateCarousel();
+});
+
+function changeCarousel() {
+    let cellCount = 9//cellsRange.value;
+    theta = 40//360 / cellCount;
+    let cellSize = isHorizontal ? cellWidth : cellHeight;
+    radius = 288// Math.round( ( cellSize / 2) / Math.tan( Math.PI / cellCount ) );
+    for ( let i=0; i < cells.length; i++ ) {
+    let cell = cells[i];
+    if ( i < cellCount ) {
+      // visible cell
+        cell.style.opacity = 1;
+        let cellAngle = theta * i;
+        cell.style.transform = rotateFn + '(' + cellAngle + 'deg) translateZ(' + radius + 'px)';
+    } else {
+      // hidden cell
+        cell.style.opacity = 0;
+        cell.style.transform = 'none';
+    }
+    }
+
+    rotateCarousel();
+}
+
+function onOrientationChange() {
+    let widthScreen = window.screen.width;
+console.log(widthScreen);
+if (widthScreen < 500) {
+    isHorizontal = false;
+    rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+    changeCarousel();
+} else {
+    isHorizontal = true;
+    rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+    changeCarousel();
+}
+}
+
+// set initials
+onOrientationChange();
 
 // Year footer
 let footer = document.querySelector('.footer');
