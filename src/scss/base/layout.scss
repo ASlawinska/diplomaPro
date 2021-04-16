@@ -1,74 +1,81 @@
 //chooseDirection
-// .chooseDirection{
+.chooseDirection{
 
-    .weather{
-        @include width(95%, 5px auto, $whiteTrasp);
-        height: 40%;
-        h1 {
-            text-transform: uppercase;
+}
+// weather section
+.weather{
+    @include width(95%, 5px auto, $whiteTrasp);
+    height: 40%;
+    h1 {
+        text-transform: uppercase;
+        text-align: center;
+        padding: 10px;
+    }
+    .top {
+        height: 25%;
+    }
+    .bottom {
+        height: 25%;
+    }
+    .main-info {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 10%;
+    }
+    .city-name {
+        font-size: 1.5rem;
+    }
+    .headings,
+    .weather-info {
+        display: flex;
+        align-items: center;
+        p{ 
+            width: 33.3%;
             text-align: center;
-            padding: 10px;
-        }
-        .top {
-            height: 25%;
-        }
-        .bottom {
-            height: 25%;
-        }
-        .main-info {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            height: 10%;
-        }
-        .city-name {
-            font-size: 1.5rem;
-        }
-        .headings,
-        .weather-info {
-            display: flex;
-            align-items: center;
-            p{ 
-                width: 33.3%;
-                text-align: center;
-                font-size: 0.7rem;
-                padding-top: 5% ;
-                padding-bottom: 5% ;
-            }
-        }
-        .headings {
-            height: 25%;
-            text-transform: uppercase;
-            font-weight: bold;
-            border-top: 1px solid $grey;
-            border-bottom: 1px solid $grey ;
-        }
-        .weather-info {
-            height: 25%;
-            font-size: 26px;
-        }
-        .photo {
-            width: 15%;
-            height: auto;
-        }
-        @include breakpoint(laptop){
-            @include width(75%, 5px auto, $whiteTrasp);
-            .headings p,
-            .weather-info 
-                p { 
-                    font-size: 1.2rem
-                }
+            font-size: 0.7rem;
+            padding-top: 5% ;
+            padding-bottom: 5% ;
         }
     }
-
-// //chooseLauage
-// .chooseLaugage{
-
-// }
-// //chooseSit
-// .chooseSit{
-
-// }
+    .headings {
+        height: 25%;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-top: 1px solid $grey;
+        border-bottom: 1px solid $grey ;
+    }
+    .weather-info {
+        height: 25%;
+        font-size: 26px;
+    }
+    .photo {
+        width: 15%;
+        height: auto;
+    }
+    @include breakpoint(laptop){
+        @include width(75%, 5px auto, $whiteTrasp);
+        .headings p,
+        .weather-info 
+            p { 
+                font-size: 1.2rem
+            }
+    }
+}
+//chooseLauage
+.chooseLaugage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+//chooseSit
+.chooseSit{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
 //popup
 .popup {
     display: none;

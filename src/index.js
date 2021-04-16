@@ -230,10 +230,10 @@ nextButtonPW.addEventListener( 'click', function() {
 });
 
 function changeCarousel() {
-    let cellCount = 9//cellsRange.value;
-    theta = 40//360 / cellCount;
+    let cellCount = 9 //cellsRange.value;
+    theta = 40 //360 / cellCount;
     let cellSize = isHorizontal ? cellWidth : cellHeight;
-    radius = 288// Math.round( ( cellSize / 2) / Math.tan( Math.PI / cellCount ) );
+    radius = 288 // Math.round( ( cellSize / 2) / Math.tan( Math.PI / cellCount ) );
     for ( let i=0; i < cells.length; i++ ) {
     let cell = cells[i];
     if ( i < cellCount ) {
