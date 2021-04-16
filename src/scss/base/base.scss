@@ -120,38 +120,25 @@ main{
     justify-content: center;
     align-items: center;
     #carouselMain{
-        height: 100%;
+        height: 70vh;
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        .carousel-item{
-            .chooseDirection{
-                @include width(95%, 5px auto, $whiteTrasp);
-                height: 50%;
-                font-size: 0.8rem;
-                form label{
-                    padding: 5px;
-                }
-                form input{
-                    margin-top: 5px;
-                }
-                @include breakpoint(laptop){
-                    @include width(75%, 5px auto, $whiteTrasp)
-                }
-            }
-            .chooseSit{
-                height: 5%;
-                overflow: hidden;
-            }
-        }
+        overflow: auto;
+
         a{
             background-color: $whiteTrasp;
             top: auto;
             bottom: 5%;
             padding: 2%;
             color: $grey;
+            &:hover{
+                text-decoration: none;
+                color: $pink;
+                transition: transform 1s,;
+            }
             .carousel-control-next-icon {
                 color: $grey;
             }

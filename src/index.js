@@ -148,7 +148,7 @@ input.addEventListener('keyup', enterCheck)
 let popup = document.querySelector('.popup');
 let popupPW = document.querySelector('.popupPW');
 let rule = document.querySelector('.rule');
-let popularWay = document.querySelector('.popularWay');
+//let popularWay = document.querySelector('.popularWay');
 let singInUp = document.querySelector('.singInUp');
 let popupRule = document.querySelector('.popupRulesBTN');
 let popupRuleDesktop = document.querySelector('.popupRulesBTNDesktop');

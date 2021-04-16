@@ -49,24 +49,33 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <section class="chooseDirection">
-                            
-                            <form action="" method="post">
-                                <label for="departure">Miejsce wylotu(z):</label>
-                                <input type="text" list="listOfCities" name="departure" id="cityNameInput" placeholder="Miejsce wyloty" value="">
-                                <datalist id="listOfCities">
-                                </datalist>
+                            <form class="row" action="" method="">
+                                <div class="form-group col-sm-12 col-md-6 col-lg-4">
+                                    <label for="departure">Miejsce wylotu(z):</label>
+                                    <input type="text" list="listOfCities" name="departure" id="cityNameInput"  placeholder="Miejsce wyloty" value="">
+                                    <datalist id="listOfCities">
+                                    </datalist>
+                                </div>
                                 <br>
-                                <label for="arrival">Miejsce przylotu(do):</label>
-                                <input type="text" list="listOfCities" name="arrival" placeholder="Miejsce przylotu">
-                                <datalist id="listOfCities">
-                                </datalist>
-                                <br>
-                                <label for="departureDate">Wybierz datę wylotu</label>
-                                <input type="date" name="departureDate" id="today" min=""><br>
-                                <label for="arrivalDate">Wybierz datę powrotu</label>
-                                <input type="date" name="arrivalDate" id="tommorow" min=""><br>
-                                <label for="numbPas">Liczba pasażerów</label>
-                                <input type="number" name="numbPas" id="numbPas" min="1" step="1"><br>
+                                <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                                    <label for="arrival">Miejsce przylotu(do):</label>
+                                    <input type="text" list="listOfCities" name="arrival" placeholder="Miejsce przylotu">
+                                    <datalist id="listOfCities">
+                                    </datalist>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                                    <label for="departureDate">Wybierz datę wylotu</label>
+                                    <input type="date" name="departureDate" id="today" min="">
+                                </div>
+                                <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                                    <label for="arrivalDate">Wybierz datę powrotu</label>
+                                    <input type="date" name="arrivalDate" id="tommorow" min="">
+                                </div>
+                                <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                                    <label for="numbPas">Liczba pasażerów</label>
+                                    <input type="number" name="numbPas" id="numbPas" min="1" step="1">
+                                </div>
+                                <button type="submit" class="singInUp col-sm-12 col-md-6 col-xl-4"> zaloguj się aby potwierdzić </button>
                             </form>
                         </section>
                             <section class="weather">
@@ -95,16 +104,6 @@
                             </section>
                     </div>
                     <div class="carousel-item">
-                        <section class="chooseLaugage">
-                            <form action="" method="post">
-                                <input type="radio" name="radio" value="bagaż podręczny" /> <i class="fas fa-suitcase"></i>Bagaż podręczny<br>
-                                <input type="radio" name="radio" value="Bagaż do 10kg" /> <i class="fas fa-suitcase-rolling"></i> Bagaż do 10kg<br>
-                                <input type="radio" name="radio" value="Duży bagaż do 25kg" /> <i class="fas fa-luggage-cart"></i>Duży bagaż do 25kg<br>
-                                <input type="radio" name="radio" value="Bagaż niewymiarowy" /><i class="fas fa-couch"></i>Bagaż niewymiarowy<br>
-                            </form>
-                        </section>
-                    </div>
-                    <div class="carousel-item">
                         <section class="chooseSit">
                             <div class="plane">
                                 <div class="country">
@@ -125,6 +124,14 @@
                                 </object>
                                 </div>
                             </div>
+                            <section class="chooseLaugage">
+                                <form action="" method="post">
+                                    <input type="radio" name="radio" value="bagaż podręczny" /> <i class="fas fa-suitcase"></i>Bagaż podręczny<br>
+                                    <input type="radio" name="radio" value="Bagaż do 10kg" /> <i class="fas fa-suitcase-rolling"></i> Bagaż do 10kg<br>
+                                    <input type="radio" name="radio" value="Duży bagaż do 25kg" /> <i class="fas fa-luggage-cart"></i>Duży bagaż do 25kg<br>
+                                    <input type="radio" name="radio" value="Bagaż niewymiarowy" /><i class="fas fa-couch"></i>Bagaż niewymiarowy<br>
+                                </form>
+                            </section>
                             <div class="infoPlane">
                             Wybrane miejsce: 
                             <span class="sit" ></span>

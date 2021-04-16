@@ -1,65 +1,70 @@
 //chooseDirection
 .chooseDirection{
-
+    height: auto;
 }
 // weather section
 .weather{
+    height: auto;
     @include width(95%, 5px auto, $whiteTrasp);
-    height: 40%;
-    h1 {
-        text-transform: uppercase;
-        text-align: center;
-        padding: 10px;
-    }
     .top {
         height: 25%;
-    }
-    .bottom {
-        height: 25%;
+        h1 {
+            text-transform: uppercase;
+            text-align: center;
+            padding: 10px;
+        }
     }
     .main-info {
         display: flex;
         justify-content: space-around;
         align-items: center;
         height: 10%;
-    }
-    .city-name {
-        font-size: 1.5rem;
-    }
-    .headings,
-    .weather-info {
-        display: flex;
-        align-items: center;
-        p{ 
-            width: 33.3%;
-            text-align: center;
-            font-size: 0.7rem;
-            padding-top: 5% ;
-            padding-bottom: 5% ;
+        .city-name {
+            font-size: 1.5rem;
+        }
+        .photo {
+            width: 10%;
+            height: auto;
         }
     }
-    .headings {
+    .bottom {
         height: 25%;
-        text-transform: uppercase;
-        font-weight: bold;
-        border-top: 1px solid $grey;
-        border-bottom: 1px solid $grey ;
+        .headings,
+        .weather-info {
+            display: flex;
+            align-items: center;
+            p{ 
+                width: 33.3%;
+                text-align: center;
+                font-size: 0.7rem;
+                padding-top: 5% ;
+                padding-bottom: 5% ;
+            }
+        }
+        .headings {
+            height: 25%;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-top: 1px solid $grey;
+            border-bottom: 1px solid $grey ;
+        }
+        .weather-info {
+            height: 25%;
+            font-size: 26px;
+        }
     }
-    .weather-info {
-        height: 25%;
-        font-size: 26px;
-    }
-    .photo {
-        width: 15%;
-        height: auto;
-    }
+
+    // to nie działa!
     @include breakpoint(laptop){
-        @include width(75%, 5px auto, $whiteTrasp);
-        .headings p,
-        .weather-info 
+        @include width(85%, 5px auto, $whiteTrasp);
+        .headings
             p { 
                 font-size: 1.2rem
             }
+        .weather-info 
+                p { 
+                    font-size: 1.2rem
+                }
     }
 }
 //chooseLauage
@@ -152,6 +157,10 @@
     align-items: center;
     position: fixed;
     z-index: 300;
+    @include width(95%, 5px auto, $whiteTrasp);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     .scene {
         border: 1px solid #CCC;
         margin: 40px 0;
@@ -210,8 +219,9 @@
                 justify-content: center;
                 text-align: center;
                 position: relative;
-                z-index: 300;
+                z-index: 500;
                 background: hsla(0, 0%, 100%, 0.8);
+                
                 }
             }
         }
@@ -220,6 +230,6 @@
 
 
     @include breakpoint(laptop){
-        @include width(75%, 20px auto, $whiteTrasp)
+        @include width(80%, 20px auto, $whiteTrasp)
     }
 }
