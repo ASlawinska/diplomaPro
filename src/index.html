@@ -49,7 +49,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <section class="chooseDirection">
-                            <form class="row" action="" method="">
+                            <form class="row" action="" method="" onSubmit="return false">
                                 <div class="form-group col-sm-12 col-md-6 col-lg-4">
                                     <label for="departure">Miejsce wylotu(z):</label>
                                     <input type="text" list="listOfCities" name="departure" id="cityNameInput"  placeholder="Miejsce wyloty" value="">
@@ -59,7 +59,7 @@
                                 <br>
                                 <div class="form-group col-sm-12 col-md-6 col-xl-4">
                                     <label for="arrival">Miejsce przylotu(do):</label>
-                                    <input type="text" list="listOfCities" name="arrival" placeholder="Miejsce przylotu">
+                                    <input type="text" list="listOfCities" name="arrival" placeholder="Miejsce przylotu" data-country="" data-continent="">
                                     <datalist id="listOfCities">
                                     </datalist>
                                 </div>
@@ -75,7 +75,7 @@
                                     <label for="numbPas">Liczba pasażerów</label>
                                     <input type="number" name="numbPas" id="numbPas" min="1" step="1">
                                 </div>
-                                <button type="submit" class="singInUp col-sm-12 col-md-6 col-xl-4"> zaloguj się aby potwierdzić </button>
+                                <button class="singInUp col-sm-12 col-md-6 col-xl-4"> zaloguj się aby potwierdzić </button>
                             </form>
                         </section>
                             <section class="weather">
@@ -124,8 +124,9 @@
                                 </object>
                                 </div>
                             </div>
+                            <div class="legend">
                             <section class="chooseLaugage">
-                                <form action="" method="post">
+                                <form action="" method="">
                                     <input type="radio" name="radio" value="bagaż podręczny" /> <i class="fas fa-suitcase"></i>Bagaż podręczny<br>
                                     <input type="radio" name="radio" value="Bagaż do 10kg" /> <i class="fas fa-suitcase-rolling"></i> Bagaż do 10kg<br>
                                     <input type="radio" name="radio" value="Duży bagaż do 25kg" /> <i class="fas fa-luggage-cart"></i>Duży bagaż do 25kg<br>
@@ -157,6 +158,7 @@
                             </ul>
                             </div>
                         </section>
+                    </div>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselMain" role="button" data-slide="prev">

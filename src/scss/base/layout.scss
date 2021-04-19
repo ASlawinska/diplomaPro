@@ -55,11 +55,20 @@
             height: 25%;
         }
     }
-
-    // to nie działa!
     @include breakpoint(laptop){
         @include width(85%, 5px auto, $whiteTrasp);
     }
+}
+//
+
+//plane
+
+
+.legend{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 //chooseLauage
 .chooseLaugage{

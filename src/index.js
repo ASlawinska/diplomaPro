@@ -45,27 +45,11 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
     .then((data) => {
         console.log(data);
         data.forEach(function (element) {
-            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"> ${element.city} </option>`;//lista dla odlotu
+            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;//lista dla odlotu
         })
     })
     .catch((err) => console.log(err))
-// API flight
-// fetch("https://airport-info.p.rapidapi.com/airport", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-key": "43222e6fd9mshecccdaf26da8c49p1a989ejsn801ecacbd70d",
-// 		"x-rapidapi-host": "airport-info.p.rapidapi.com"
-// 	}
-// })
-// .then((response) => {
-// 	response.json
-// })
-// .then((data) => {
-// 	console.log(data);
-// })
-// .catch(err => {
-// 	console.error(err);
-// });
+
 // Weather APP
 const input = document.querySelector('#cityNameInput');
 const cityName = document.querySelector('.city-name');
@@ -143,13 +127,13 @@ const enterCheck = () => {
         getWeather();
     }
 }
-input.addEventListener('keyup', enterCheck)
+input.addEventListener('keyup', enterCheck);
+// input.addEventListener('click', getWeather());
 
 //POPUP
 let popup = document.querySelector('.popup');
 let popupPW = document.querySelector('.popupPW');
 let rule = document.querySelector('.rule');
-//let popularWay = document.querySelector('.popularWay');
 let singInUp = document.querySelector('.singInUp');
 let popupRule = document.querySelector('.popupRulesBTN');
 let popupRuleDesktop = document.querySelector('.popupRulesBTNDesktop');
