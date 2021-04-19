@@ -12,11 +12,13 @@ body{
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    width: 100vw;
     font-family: 'Montserrat', sans-serif;
 }
-.container{
+.containerPage{
     display: grid;
     grid-template-rows: 15vh 75vh 10vh;
+    justify-self: center;
 }
 
 //header 
@@ -92,7 +94,7 @@ header{
                 display: none;
             }
         .active {
-            transform: translateX(-98vw)
+            transform: translateX(-100vw)
         }
         .hide {
             display: none;
@@ -119,14 +121,16 @@ main{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    min-height: 0px;
+    overflow: auto;
     #carouselMain{
-        height: 70vh;
+        height: 95%;
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        overflow: auto;
+        //overflow: auto;
 
         a{
             background-color: $whiteTrasp;

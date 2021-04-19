@@ -1,10 +1,10 @@
 //chooseDirection
 .chooseDirection{
-    height: auto;
+    height: 40%;
 }
 // weather section
 .weather{
-    height: auto;
+    height: 40%;
     @include width(95%, 5px auto, $whiteTrasp);
     .top {
         height: 25%;
@@ -39,6 +39,9 @@
                 font-size: 0.7rem;
                 padding-top: 5% ;
                 padding-bottom: 5% ;
+                @include breakpoint(laptop){
+                    font-size: 1.2rem
+                }
             }
         }
         .headings {
@@ -46,25 +49,16 @@
             text-transform: uppercase;
             font-weight: bold;
             border-top: 1px solid $grey;
-            border-bottom: 1px solid $grey ;
+            border-bottom: 1px solid $grey;
         }
         .weather-info {
             height: 25%;
-            font-size: 26px;
         }
     }
 
     // to nie działa!
     @include breakpoint(laptop){
         @include width(85%, 5px auto, $whiteTrasp);
-        .headings
-            p { 
-                font-size: 1.2rem
-            }
-        .weather-info 
-                p { 
-                    font-size: 1.2rem
-                }
     }
 }
 //chooseLauage
@@ -152,7 +146,7 @@
     display: none;
     height: 100vh;
     margin-top: 0px;
-    flex-direction: column;
+    //flex-direction: row;
     justify-content: center;
     align-items: center;
     position: fixed;

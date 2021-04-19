@@ -50,22 +50,22 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
     })
     .catch((err) => console.log(err))
 // API flight
-fetch("https://airport-info.p.rapidapi.com/airport", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-key": "43222e6fd9mshecccdaf26da8c49p1a989ejsn801ecacbd70d",
-		"x-rapidapi-host": "airport-info.p.rapidapi.com"
-	}
-})
-.then((response) => {
-	response.json
-})
-.then((data) => {
-	console.log(data);
-})
-.catch(err => {
-	console.error(err);
-});
+// fetch("https://airport-info.p.rapidapi.com/airport", {
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-key": "43222e6fd9mshecccdaf26da8c49p1a989ejsn801ecacbd70d",
+// 		"x-rapidapi-host": "airport-info.p.rapidapi.com"
+// 	}
+// })
+// .then((response) => {
+// 	response.json
+// })
+// .then((data) => {
+// 	console.log(data);
+// })
+// .catch(err => {
+// 	console.error(err);
+// });
 // Weather APP
 const input = document.querySelector('#cityNameInput');
 const cityName = document.querySelector('.city-name');
@@ -144,6 +144,7 @@ const enterCheck = () => {
     }
 }
 input.addEventListener('keyup', enterCheck)
+
 //POPUP
 let popup = document.querySelector('.popup');
 let popupPW = document.querySelector('.popupPW');
@@ -202,6 +203,7 @@ popupCloseSingInUp.addEventListener('click', closePopupsingInUp);
 // PopularWay Carousel
 let carousel = document.querySelector('.carouselPW');
 let cells = carousel.querySelectorAll('.carousel__cell');
+let carouselOption = document.querySelector('.carousel-options')
 //let cellCount= 9; // cellCount set from cells-range input value
 let selectedIndex = 0;
 let cellWidth = carousel.offsetWidth;
@@ -256,10 +258,14 @@ function onOrientationChange() {
 console.log(widthScreen);
 if (widthScreen < 500) {
     isHorizontal = false;
+    popupPW.style.flexDirection = 'row'
+    carouselOption.style.flexDirection = 'column'
     rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
     changeCarousel();
 } else {
     isHorizontal = true;
+    popupPW.style.flexDirection = 'column'
+    carouselOption.style.flexDirection = 'row'
     rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
     changeCarousel();
 }
