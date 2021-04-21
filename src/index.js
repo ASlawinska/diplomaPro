@@ -45,10 +45,55 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
     .then((data) => {
         console.log(data);
         data.forEach(function (element) {
-            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;//lista dla odlotu
-        })
+            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" ${element.city} </option>`;
+        })//skąd
+        // pobranie wartości wybranej
+        let inputDeparture = document.getElementById('cityNameInput');
+
+        data.forEach(function (element) {
+            document.getElementById("listOfCitiesArrival").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;//do
+        });
+        let inputArrival = document.getElementById('cityNameInputArrival');
+        //ukazanie wpisanej wartości
+        function showValue() {
+            console.log(inputDeparture.value);
+        }
+        inputDeparture.addEventListener('input', showValue);
+
+        inputDeparture.addEventListener('input', showAtributeDeparture);
+        inputArrival.addEventListener('input', showAtributeArrival);
+
+        // Funkcja ukazująca atrybuty
+        function showAtributeDeparture(inputDeparture) {
+            // Get the value from the input
+            let valueDeparture = inputDeparture.value;
+            // Get the matching `option` element from the `datalist` (which is
+            // available via `inputDeparture.list`)
+            let optionDepature = Array.prototype.find.call(data, function(optionDepature) {
+                return optionDepature.value === valueDeparture;
+            });
+            // Get its `data-` attribute value
+            console.log(optionDepature.continent);
+            console.log(optionDepature.country);
+        }
+        function showAtributeArrival(inputArrival ) {
+            // Get the value from the input
+            let valueArrival = inputArrival.value;
+            // Get the matching `option` element from the `datalist` (which is
+            // available via `inputArrival.list`)
+            let optionArrival = Array.prototype.find.call(data, function(optionArrival) {
+                return optionArrival.value === valueArrival;
+            });
+            // Get its `data-` attribute value
+            console.log(optionArrival.country);
+            console.log(optionArrival.continent);
+
+        }
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err));
+
+
+
 
 // Weather APP
 const input = document.querySelector('#cityNameInput');
@@ -128,7 +173,8 @@ const enterCheck = () => {
     }
 }
 input.addEventListener('keyup', enterCheck);
-// input.addEventListener('click', getWeather());
+// pobieranie wartości input zdef. przez uzytkownika
+
 
 //POPUP
 let popup = document.querySelector('.popup');

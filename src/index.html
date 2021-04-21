@@ -52,15 +52,15 @@
                             <form class="row" action="" method="" onSubmit="return false">
                                 <div class="form-group col-sm-12 col-md-6 col-lg-4">
                                     <label for="departure">Miejsce wylotu(z):</label>
-                                    <input type="text" list="listOfCities" name="departure" id="cityNameInput"  placeholder="Miejsce wyloty" value="">
+                                    <input type="text" list="listOfCities" name="departure" id="cityNameInput"  placeholder="Miejsce wyloty" >
                                     <datalist id="listOfCities">
                                     </datalist>
                                 </div>
                                 <br>
                                 <div class="form-group col-sm-12 col-md-6 col-xl-4">
                                     <label for="arrival">Miejsce przylotu(do):</label>
-                                    <input type="text" list="listOfCities" name="arrival" placeholder="Miejsce przylotu" data-country="" data-continent="">
-                                    <datalist id="listOfCities">
+                                    <input type="text" list="listOfCitiesArrival" name="arrival" id="cityNameInputArrival" placeholder="Miejsce przylotu" data-country="" data-continent="">
+                                    <datalist id="listOfCitiesArrival">
                                     </datalist>
                                 </div>
                                 <div class="form-group col-sm-12 col-md-6 col-xl-4">
@@ -104,6 +104,7 @@
                             </section>
                     </div>
                     <div class="carousel-item">
+                        <div class="slide2">
                         <section class="chooseSit">
                             <div class="plane">
                                 <div class="country">
@@ -124,6 +125,7 @@
                                 </object>
                                 </div>
                             </div>
+                        </section>
                             <div class="legend">
                             <section class="chooseLaugage">
                                 <form action="" method="">
@@ -132,7 +134,7 @@
                                     <input type="radio" name="radio" value="Duży bagaż do 25kg" /> <i class="fas fa-luggage-cart"></i>Duży bagaż do 25kg<br>
                                     <input type="radio" name="radio" value="Bagaż niewymiarowy" /><i class="fas fa-couch"></i>Bagaż niewymiarowy<br>
                                 </form>
-                            </section>
+
                             <div class="infoPlane">
                             Wybrane miejsce: 
                             <span class="sit" ></span>
@@ -159,6 +161,7 @@
                             </div>
                         </section>
                     </div>
+                </div>
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselMain" role="button" data-slide="prev">
