@@ -45,7 +45,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
     .then((data) => {
         console.log(data);
         data.forEach(function (element) {
-            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" ${element.city} </option>`;
+            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;
         })//skąd
         // pobranie wartości wybranej
         let inputDeparture = document.getElementById('cityNameInput');
@@ -55,41 +55,41 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
         });
         let inputArrival = document.getElementById('cityNameInputArrival');
         //ukazanie wpisanej wartości
-        function showValue() {
-            console.log(inputDeparture.value);
-        }
-        inputDeparture.addEventListener('input', showValue);
+        // function showValue() {
+        //     console.log(inputDeparture.value);
+        // }
+        // inputDeparture.addEventListener('input', showValue);
 
         inputDeparture.addEventListener('input', showAtributeDeparture);
         inputArrival.addEventListener('input', showAtributeArrival);
 
         // Funkcja ukazująca atrybuty
-        function showAtributeDeparture(inputDeparture) {
+        function showAtributeDeparture() {
             // Get the value from the input
             let valueDeparture = inputDeparture.value;
-            // Get the matching `option` element from the `datalist` (which is
-            // available via `inputDeparture.list`)
-            let optionDepature = Array.prototype.find.call(data, function(optionDepature) {
-                return optionDepature.value === valueDeparture;
-            });
-            // Get its `data-` attribute value
-            console.log(optionDepature.continent);
-            console.log(optionDepature.country);
-        }
-        function showAtributeArrival(inputArrival ) {
-            // Get the value from the input
-            let valueArrival = inputArrival.value;
-            // Get the matching `option` element from the `datalist` (which is
-            // available via `inputArrival.list`)
-            let optionArrival = Array.prototype.find.call(data, function(optionArrival) {
-                return optionArrival.value === valueArrival;
-            });
-            // Get its `data-` attribute value
-            console.log(optionArrival.country);
-            console.log(optionArrival.continent);
+            // looking for index of element correct with choosing value
+            for (let i = 0; i < inputDeparture.list.options.length; i++) {
+                if (valueDeparture===inputDeparture.list.options[i].text) {
+                    console.log(data[i].continent);
+                    console.log(data[i].country);
+                    return i
+                }
 
         }
-    })
+        }
+        function showAtributeArrival() {
+            // Get the value from the input
+            let valueArrival = inputArrival.value;
+            // looking for index of element correct with choosing value
+            for (let i = 0; i < inputArrival.list.options.length; i++) {
+                if (valueArrival===inputArrival.list.options[i].text) {
+                    console.log(data[i].continent);
+                    console.log(data[i].country);
+                    return i
+                }
+        }
+    }
+})
     .catch((err) => console.log(err));
 
 
