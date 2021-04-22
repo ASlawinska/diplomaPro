@@ -86,6 +86,9 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                 }
             }return arrivalAtribute;//tutaj zwraca oczewikwane wartości
         };console.log(arrivalAtribute);//undefined
+        //nasłuchiwanie
+        inputDeparture.addEventListener('input', showAtributeDeparture);
+        inputArrival.addEventListener('input', showAtributeArrival);
         
         // Wyświetlanie Obrazka samolotu
         const planePicture = function() {
@@ -109,12 +112,9 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                 console.log('międzykontynetalny');
             };
     }
-planePicture();
+    setTimeout(planePicture(), 3000);
 })
     .catch((err) => console.log(err));
-
-
-
 
 // Weather APP
 const input = document.querySelector('#cityNameInput');

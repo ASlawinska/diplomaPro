@@ -67,7 +67,20 @@
     justify-content: center;
     //chooseSit
     .chooseSit{
-        display: block
+        .plane{
+            .unknown{
+                display: flex;
+            };
+            .country{
+                display: none;
+            };
+            .international{
+                display: none;
+            };
+            .intercontinental{
+                display: none;
+            };
+        }
     }
 }
 
