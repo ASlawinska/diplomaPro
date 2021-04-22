@@ -1,13 +1,19 @@
 //chooseDirection
 .chooseDirection{
-    height: 40%;
+    height: 30%;
+    max-height: 40%;
 }
 // weather section
 .weather{
-    height: 40%;
+    height: 30%;
+    max-height:40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     @include width(95%, 5px auto, $whiteTrasp);
     .top {
-        height: 25%;
         h1 {
             text-transform: uppercase;
             text-align: center;
@@ -28,10 +34,11 @@
         }
     }
     .bottom {
-        height: 25%;
-        .headings,
-        .weather-info {
+        width: 80%;
+        .headings,.weather-info {
             display: flex;
+            flex-direction: row;
+            justify-content: center;
             align-items: center;
             p{ 
                 width: 33.3%;
@@ -39,20 +46,14 @@
                 font-size: 0.7rem;
                 padding-top: 5% ;
                 padding-bottom: 5% ;
+                text-transform: uppercase;
+                font-weight: bold;
+                border-top: 1px solid $grey;
+                border-bottom: 1px solid $grey;
                 @include breakpoint(laptop){
-                    font-size: 1.2rem
+                    font-size: 0.9rem
                 }
             }
-        }
-        .headings {
-            height: 25%;
-            text-transform: uppercase;
-            font-weight: bold;
-            border-top: 1px solid $grey;
-            border-bottom: 1px solid $grey;
-        }
-        .weather-info {
-            height: 25%;
         }
     }
     @include breakpoint(laptop){
@@ -62,14 +63,23 @@
 //slide2
 .slide2{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    @include breakpoint(laptop){
+        flex-direction: row;
+    }
     //chooseSit
     .chooseSit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
         .plane{
             .unknown{
                 display: flex;
+                justify-content: center;
+                align-items: center;
             };
             .country{
                 display: none;
@@ -81,24 +91,20 @@
                 display: none;
             };
         }
+    };
+    .legend{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        .chooseLaugage, .infoPlane, .infoLegend{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     }
-}
-
-//plane
-
-
-.legend{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-//chooseLauage
-.chooseLaugage{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 //popup
