@@ -43,7 +43,6 @@ tommorow.setAttribute('value', dateFormat2);
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
     .then((resp) => resp.json()) 
     .then((data) => {
-        console.log(data);
         data.forEach(function (element) {
             document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;
         })//skąd
@@ -54,41 +53,63 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
             document.getElementById("listOfCitiesArrival").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;//do
         });
         let inputArrival = document.getElementById('cityNameInputArrival');
-        //ukazanie wpisanej wartości
-        // function showValue() {
-        //     console.log(inputDeparture.value);
-        // }
-        // inputDeparture.addEventListener('input', showValue);
-
-        inputDeparture.addEventListener('input', showAtributeDeparture);
-        inputArrival.addEventListener('input', showAtributeArrival);
-
+        
         // Funkcja ukazująca atrybuty
+        let departureAtribute
         function showAtributeDeparture() {
             // Get the value from the input
             let valueDeparture = inputDeparture.value;
             // looking for index of element correct with choosing value
             for (let i = 0; i < inputDeparture.list.options.length; i++) {
                 if (valueDeparture===inputDeparture.list.options[i].text) {
-                    console.log(data[i].continent);
-                    console.log(data[i].country);
-                    return i
+                    let continentDeparture = data[i].continent;
+                    let countryDeparture = data[i].country;
+                    departureAtribute = [continentDeparture, countryDeparture];
+                    console.log(departureAtribute);
+                    return departureAtribute
                 }
-
-        }
-        }
-        function showAtributeArrival() {
+            }
+        };
+        let arrivalAtribute;
+        function showAtributeArrival(arrivalAtribute) {
             // Get the value from the input
             let valueArrival = inputArrival.value;
             // looking for index of element correct with choosing value
             for (let i = 0; i < inputArrival.list.options.length; i++) {
-                if (valueArrival===inputArrival.list.options[i].text) {
-                    console.log(data[i].continent);
-                    console.log(data[i].country);
-                    return i
+                if (valueArrival!=inputArrival.list.options[i].text) {
+                    
+                } else {
+                    let continentArrival = data[i].continent;
+                    let countryArrival = data[i].country;
+                    arrivalAtribute = [continentArrival, countryArrival];
+                    console.log(arrivalAtribute);//tutaj zwraca oczewikwane wartości
                 }
-        }
+            }return arrivalAtribute;//tutaj zwraca oczewikwane wartości
+        };console.log(arrivalAtribute);//undefined
+        
+        // Wyświetlanie Obrazka samolotu
+        const planePicture = function() {
+            // pobranie elementów 
+            let planeUnknow = document.querySelector('.unknown');
+            let planeCountry = document.querySelector('.country');
+            let planeInternational = document.querySelector('.international');
+            let planeIntercontinental = document.querySelector('.intercontinental');
+            // wywołanie właściwego obrazu
+            if (departureAtribute[1]===arrivalAtribute[1]) {
+                planeUnknow.style.display = 'none';
+                planeCountry.style.display = 'flex';
+                console.log("krajowy");
+            } else if (departureAtribute[0]===arrivalAtribute[0]) {
+                planeUnknow.style.display = 'none';
+                planeInternational.style.display = 'flex';
+                console.log("miedzynarodowy");
+            } else {
+                planeUnknow.style.display = 'none';
+                planeIntercontinental.style.display = 'flex';
+                console.log('międzykontynetalny');
+            };
     }
+planePicture();
 })
     .catch((err) => console.log(err));
 
@@ -285,20 +306,19 @@ function changeCarousel() {
 
 function onOrientationChange() {
     let widthScreen = window.screen.width;
-console.log(widthScreen);
-if (widthScreen < 500) {
-    isHorizontal = false;
-    popupPW.style.flexDirection = 'row'
-    carouselOption.style.flexDirection = 'column'
-    rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
-    changeCarousel();
-} else {
-    isHorizontal = true;
-    popupPW.style.flexDirection = 'column'
-    carouselOption.style.flexDirection = 'row'
-    rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
-    changeCarousel();
-}
+    if (widthScreen < 500) {
+        isHorizontal = false;
+        popupPW.style.flexDirection = 'row'
+        carouselOption.style.flexDirection = 'column'
+        rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+        changeCarousel();
+    } else {
+        isHorizontal = true;
+        popupPW.style.flexDirection = 'column'
+        carouselOption.style.flexDirection = 'row'
+        rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+        changeCarousel();
+    }
 }
 
 // set initials

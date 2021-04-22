@@ -52,28 +52,28 @@
                             <form class="row" action="" method="" onSubmit="return false">
                                 <div class="form-group col-sm-12 col-md-6 col-lg-4">
                                     <label for="departure">Miejsce wylotu(z):</label>
-                                    <input type="text" list="listOfCities" name="departure" id="cityNameInput"  placeholder="Miejsce wyloty" >
+                                    <input type="text" list="listOfCities" name="departure" id="cityNameInput"  placeholder="Miejsce wyloty" required>
                                     <datalist id="listOfCities">
                                     </datalist>
                                 </div>
                                 <br>
                                 <div class="form-group col-sm-12 col-md-6 col-xl-4">
                                     <label for="arrival">Miejsce przylotu(do):</label>
-                                    <input type="text" list="listOfCitiesArrival" name="arrival" id="cityNameInputArrival" placeholder="Miejsce przylotu" data-country="" data-continent="">
+                                    <input type="text" list="listOfCitiesArrival" name="arrival" id="cityNameInputArrival" placeholder="Miejsce przylotu" required >
                                     <datalist id="listOfCitiesArrival">
                                     </datalist>
                                 </div>
                                 <div class="form-group col-sm-12 col-md-6 col-xl-4">
                                     <label for="departureDate">Wybierz datę wylotu</label>
-                                    <input type="date" name="departureDate" id="today" min="">
+                                    <input type="date" name="departureDate" id="today" min="" required>
                                 </div>
                                 <div class="form-group col-sm-12 col-md-6 col-xl-4">
                                     <label for="arrivalDate">Wybierz datę powrotu</label>
-                                    <input type="date" name="arrivalDate" id="tommorow" min="">
+                                    <input type="date" name="arrivalDate" id="tommorow" min="" required>
                                 </div>
                                 <div class="form-group col-sm-12 col-md-6 col-xl-4">
                                     <label for="numbPas">Liczba pasażerów</label>
-                                    <input type="number" name="numbPas" id="numbPas" min="1" step="1">
+                                    <input type="number" name="numbPas" id="numbPas" min="1" step="1" required>
                                 </div>
                                 <button class="singInUp col-sm-12 col-md-6 col-xl-4"> zaloguj się aby potwierdzić </button>
                             </form>
@@ -107,6 +107,9 @@
                         <div class="slide2">
                         <section class="chooseSit">
                             <div class="plane">
+                                <div class="unknown">
+                                    <p>Wybierz lot</p>
+                                </div>
                                 <div class="country">
                                 <object type="image/svg+xml" data="Embarer.svg" width="150px" height="150px">
                                     <img src="./assets/Embarer.svg" alt="">
