@@ -66,12 +66,11 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                     let countryDeparture = data[i].country;
                     departureAtribute = [continentDeparture, countryDeparture];
                     console.log(departureAtribute);
-                    return departureAtribute
                 }
             }
         };
         let arrivalAtribute;
-        function showAtributeArrival(arrivalAtribute) {
+        function showAtributeArrival() {
             // Get the value from the input
             let valueArrival = inputArrival.value;
             // looking for index of element correct with choosing value
@@ -84,40 +83,41 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                     arrivalAtribute = [continentArrival, countryArrival];
                     console.log(arrivalAtribute);//tutaj zwraca oczewikwane wartości
                 }
-            }return arrivalAtribute;//tutaj zwraca oczewikwane wartości
+            } arrivalAtribute;//tutaj zwraca oczewikwane wartości
         };console.log(arrivalAtribute);//undefined
         //nasłuchiwanie
-        inputDeparture.addEventListener('input', showAtributeDeparture);
+        inputDeparture.addEventListener('input', ()=>{showAtributeDeparture();
+            getWeather()});
         inputArrival.addEventListener('input', showAtributeArrival);
         
-        // Wyświetlanie Obrazka samolotu
-        const planePicture = function() {
-            // pobranie elementów 
-            let planeUnknow = document.querySelector('.unknown');
-            let planeCountry = document.querySelector('.country');
-            let planeInternational = document.querySelector('.international');
-            let planeIntercontinental = document.querySelector('.intercontinental');
-            // wywołanie właściwego obrazu
-            if (departureAtribute[1]===arrivalAtribute[1]) {
-                planeUnknow.style.display = 'none';
-                planeCountry.style.display = 'flex';
-                console.log("krajowy");
-            } else if (departureAtribute[0]===arrivalAtribute[0]) {
-                planeUnknow.style.display = 'none';
-                planeInternational.style.display = 'flex';
-                console.log("miedzynarodowy");
-            } else {
-                planeUnknow.style.display = 'none';
-                planeIntercontinental.style.display = 'flex';
-                console.log('międzykontynetalny');
-            };
-    }
-    setTimeout(planePicture(), 3000);
+    //     // Wyświetlanie Obrazka samolotu
+    //     const planePicture = function() {
+    //         // pobranie elementów 
+    //         let planeUnknow = document.querySelector('.unknown');
+    //         let planeCountry = document.querySelector('.country');
+    //         let planeInternational = document.querySelector('.international');
+    //         let planeIntercontinental = document.querySelector('.intercontinental');
+    //         // wywołanie właściwego obrazu
+    //         if (departureAtribute[1]===arrivalAtribute[1]) {
+    //             planeUnknow.style.display = 'none';
+    //             planeCountry.style.display = 'flex';
+    //             console.log("krajowy");
+    //         } else if (departureAtribute[0]===arrivalAtribute[0]) {
+    //             planeUnknow.style.display = 'none';
+    //             planeInternational.style.display = 'flex';
+    //             console.log("miedzynarodowy");
+    //         } else {
+    //             planeUnknow.style.display = 'none';
+    //             planeIntercontinental.style.display = 'flex';
+    //             console.log('międzykontynetalny');
+    //         };
+    // }
+    // setTimeout(planePicture(), 3000);
 })
     .catch((err) => console.log(err));
 
 // Weather APP
-const input = document.querySelector('#cityNameInput');
+const inputDeparture = document.querySelector('#cityNameInput');
 const cityName = document.querySelector('.city-name');
 const warning = document.querySelector('.warning');
 const photo = document.querySelector('.photo');
@@ -148,7 +148,7 @@ function setPosition(position){
 
 const getWeather = (lat, lon) => {
     
-    city = (!input.value) ? `lat=${lat}&lon=${lon}`: `q=${input.value}`; 
+    city = (!inputDeparture.value) ? `lat=${lat}&lon=${lon}`: `q=${inputDeparture.value}`; 
     url = apilink + city + apiKey + lang + units;
 
     fetch(url)
@@ -188,12 +188,6 @@ const getWeather = (lat, lon) => {
         .catch(()=>{warning.textContent ='Nie mogę pobrać lokalizacji.'})
     };
 
-const enterCheck = () => {
-    if (event.keyCode===13) {
-        getWeather();
-    }
-}
-input.addEventListener('keyup', enterCheck);
 // pobieranie wartości input zdef. przez uzytkownika
 
 
