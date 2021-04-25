@@ -87,8 +87,10 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
         };
         //nasłuchiwanie
         inputDeparture.addEventListener('input', ()=>{showAtributeDeparture();
-            getWeather()});
-        inputArrival.addEventListener('input', showAtributeArrival);
+            getWeather();
+            checkIfBothIsFillAndShowPlane();});
+        inputArrival.addEventListener('input', ()=>{showAtributeArrival();checkIfBothIsFillAndShowPlane();});
+
 
     // Wyświetlanie Obrazka samolotu
         const planePicture = function() {
@@ -121,22 +123,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
             console.log('nie');
         }
     };
-    checkIfBothIsFillAndShowPlane();
-    //promesa aby pobrać inputDeparture.value i inputArrival.value
-    //NIE DZIAŁA! 
-    // const promise = new Promise( function (resolve, reject) {
-
-    //     if (inputDeparture.addEventListener('input', ()=>{showAtributeDeparture();
-    //         getWeather()})) {
-    //         resolve('mam wartości')
-    //     } else {
-    //         reject('bład')
-    //     }
-    // });
-    //     promise
-    //         .then(info=>console.log(info))
-    //         .catch(err=>console.log(err))
-    //setTimeout(planePicture(), 3000);
 })
     .catch((err) => console.log(err));
 
