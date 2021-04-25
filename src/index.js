@@ -83,36 +83,60 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                     arrivalAtribute = [continentArrival, countryArrival];
                     console.log(arrivalAtribute);//tutaj zwraca oczewikwane wartości
                 }
-            } arrivalAtribute;//tutaj zwraca oczewikwane wartości
-        };console.log(arrivalAtribute);//undefined
+            }
+        };
         //nasłuchiwanie
         inputDeparture.addEventListener('input', ()=>{showAtributeDeparture();
             getWeather()});
         inputArrival.addEventListener('input', showAtributeArrival);
-        
-    //     // Wyświetlanie Obrazka samolotu
-    //     const planePicture = function() {
-    //         // pobranie elementów 
-    //         let planeUnknow = document.querySelector('.unknown');
-    //         let planeCountry = document.querySelector('.country');
-    //         let planeInternational = document.querySelector('.international');
-    //         let planeIntercontinental = document.querySelector('.intercontinental');
-    //         // wywołanie właściwego obrazu
-    //         if (departureAtribute[1]===arrivalAtribute[1]) {
-    //             planeUnknow.style.display = 'none';
-    //             planeCountry.style.display = 'flex';
-    //             console.log("krajowy");
-    //         } else if (departureAtribute[0]===arrivalAtribute[0]) {
-    //             planeUnknow.style.display = 'none';
-    //             planeInternational.style.display = 'flex';
-    //             console.log("miedzynarodowy");
-    //         } else {
-    //             planeUnknow.style.display = 'none';
-    //             planeIntercontinental.style.display = 'flex';
-    //             console.log('międzykontynetalny');
-    //         };
-    // }
-    // setTimeout(planePicture(), 3000);
+
+    // Wyświetlanie Obrazka samolotu
+        const planePicture = function() {
+            // pobranie elementów 
+            let planeUnknow = document.querySelector('.unknown');
+            let planeCountry = document.querySelector('.country');
+            let planeInternational = document.querySelector('.international');
+            let planeIntercontinental = document.querySelector('.intercontinental');
+
+            //wywołanie właściwego obrazu
+            if (departureAtribute[1]===arrivalAtribute[1]) {
+                planeUnknow.style.display = 'none';
+                planeCountry.style.display = 'flex';
+                console.log("krajowy");
+            } else if (departureAtribute[0]===arrivalAtribute[0]) {
+                planeUnknow.style.display = 'none';
+                planeInternational.style.display = 'flex';
+                console.log("miedzynarodowy");
+            } else {
+                planeUnknow.style.display = 'none';
+                planeIntercontinental.style.display = 'flex';
+                console.log('międzykontynetalny');
+            };
+    };
+    const checkIfBothIsFillAndShowPlane=()=>{
+        if(inputDeparture.value && inputArrival.value){
+            planePicture();
+            console.log('ok');
+        } else {
+            console.log('nie');
+        }
+    };
+    checkIfBothIsFillAndShowPlane();
+    //promesa aby pobrać inputDeparture.value i inputArrival.value
+    //NIE DZIAŁA! 
+    // const promise = new Promise( function (resolve, reject) {
+
+    //     if (inputDeparture.addEventListener('input', ()=>{showAtributeDeparture();
+    //         getWeather()})) {
+    //         resolve('mam wartości')
+    //     } else {
+    //         reject('bład')
+    //     }
+    // });
+    //     promise
+    //         .then(info=>console.log(info))
+    //         .catch(err=>console.log(err))
+    //setTimeout(planePicture(), 3000);
 })
     .catch((err) => console.log(err));
 
