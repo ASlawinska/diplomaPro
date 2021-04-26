@@ -11,6 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         "index":`./src/index.js`,
+        //"summary":`./src/summary.js`,
     },
     output: {
     path: path.resolve(__dirname, "dist"),

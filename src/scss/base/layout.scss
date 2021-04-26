@@ -72,10 +72,14 @@
     //chooseSit
     .chooseSit{
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 50%;
+        height: 100%;
+        background-color: #fff;
         .plane{
+            height: 80%;
             .unknown{
                 display: flex;
                 justify-content: center;
@@ -105,7 +109,8 @@
             align-items: center;
         }
     }
-}
+};
+
 
 //popup
 .popup {
