@@ -1,8 +1,8 @@
 .chooseDirection{
     form{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
         padding: 20px;
         .form-group{
             display: flex;
@@ -13,9 +13,9 @@
             }
         }
 
-        @include breakpoint(tablet){
-            flex-direction: row;
-        }
+        // @include breakpoint(tablet){
+        //     flex-direction: row;
+        // }
         @include breakpoint(desktop){
             @include width(85%, 5px auto, $whiteTrasp);
         }

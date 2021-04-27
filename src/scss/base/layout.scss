@@ -1,12 +1,12 @@
 //chooseDirection
 .chooseDirection{
-    height: 30%;
-    max-height: 30%;
+    //height: 30%;
+    //max-height: 30%;
 }
 // weather section
 .weather{
-    height: 30%;
-    max-height:30%;
+    //height: 20%;
+    //max-height:20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +24,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        height: 10%;
+        //height: 10%;
         .city-name {
             font-size: 1.5rem;
         }
@@ -87,6 +87,7 @@
             };
             .country{
                 display: none;
+                height: 100%;
             };
             .international{
                 display: none;
@@ -110,9 +111,28 @@
         }
     }
 };
+//summary page
+.mainSummary{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include width(95%, 5px auto, $whiteTrasp);
+    .upSectionSummary{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        @include width(90%, 5px auto, $whiteTrasp);
+        @include breakpoint(tablet){
+            flex-direction: row;
+            @include width(40%, 5px auto, $whiteTrasp);
+        }
+    }
+}
 
 
-//popup
+//popup common section for both html file
 .popup {
     display: none;
     justify-content: center;
