@@ -17,7 +17,8 @@
     <div class="containerPage">
         <header>
             <div class="logo">
-                <img src="./assets/img/LOGO.svg" alt="LOGO-Samolot">
+                <a href="index.html"><img src="./assets/img/LOGO.svg" alt="LOGO-Samolot"></a>
+                
             </div>
             <!--MENU MOBILE-->
             <div class="mobile">
@@ -27,9 +28,9 @@
                 </button>
                 <nav class="nav">
                     <ul>
-                        <li><i class="fas fa-info"></i><a href="#">Regulamin</a></li>
-                        <li><i class="far fa-compass"></i><a href="#">Popularne kierunki</a></li>
-                        <li><i class="fas fa-sign-out-alt"></i><a href="#">Zaloguj się</a></li>
+                        <li class="popupRulesBTN"><i class="fas fa-info"></i>Regulamin</li>
+                        <li class="popupPopularDirectionBTN"><i class="far fa-compass"></i>Popularne kierunki</li>
+                        <li class="popupSingBTN"><i class="fas fa-sign-out-alt"></i>Zaloguj się</li>
                     </ul>
                 </nav>
             </div>
@@ -37,9 +38,9 @@
             <div class="desktop">
                 <nav>
                     <ul>
-                        <li><i class="fas fa-info"></i><a href="#">Regulamin</a></li>
-                        <li><i class="far fa-compass"></i><a href="#">Popularne kierunki</a></li>
-                        <li><i class="fas fa-sign-out-alt"></i><a href="#">Zaloguj się</a></li>
+                        <li class="popupRulesBTNDesktop"><i class="fas fa-info"></i>Regulamin</li>
+                        <li class="popupPopularDirectionBTNDesktop"><i class="far fa-compass"></i>Popularne kierunki</li>
+                        <li  class="popupSingBTNDesktop"><i class="fas fa-sign-out-alt"></i>Zaloguj się</li>
                     </ul>
                 </nav>
             </div>
@@ -89,6 +90,7 @@ Twoje miejsce
                                         <div class="main-info">
                                             <div>
                                                 <h3 src="" class="city-name"></h3>
+                                                <p class="warning"></p>
                                             </div>
                                             <img class="photo" src="../src/assets/img/unknown.png" alt="Obrazek przedstawiający pogodę" />
                                         </div>
@@ -190,11 +192,9 @@ Twoje miejsce
                 </p>
             </div>
         </div>
-        <div class="popup">
-            <div class="singInUp">
-cfsdfs
+        <div class="popupsingInUp">
             <button class="popupCloseSingInUp">Zamknij</button>
-            </div>
+        </div>
         </div>
         <footer>
             <div class="footer"></div>

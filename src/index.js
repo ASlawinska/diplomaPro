@@ -205,8 +205,9 @@ const getWeather = (lat, lon) => {
 let popup = document.querySelector('.popup');
 let popupPW = document.querySelector('.popupPW');
 let rule = document.querySelector('.rule');
-let singInUp = document.querySelector('.singInUp');
+let singInUp = document.querySelector('.popupsingInUp');
 let popupRule = document.querySelector('.popupRulesBTN');
+console.log(popupRule);
 let popupRuleDesktop = document.querySelector('.popupRulesBTNDesktop');
 let popupPopularDirection = document.querySelector('.popupPopularDirectionBTN');
 let popupPopularDirectionDesktop = document.querySelector('.popupPopularDirectionBTNDesktop');
@@ -226,7 +227,6 @@ const openPopupPopularWay = () => {
 };
 //Otwieranie popupa singUpIN
 const openPopupsingInUp = () => {
-    popup.style.display = 'flex';
     singInUp.style.display = 'flex';
 };
 //Zamykanie popupa rule
@@ -241,7 +241,6 @@ const closePopupPopularWay = () => {
 };
 //Zamykanie popupa  singUpIN
 const closePopupsingInUp = () => {
-    popup.style.display = 'none';
     singInUp.style.display = 'none';
 
 };

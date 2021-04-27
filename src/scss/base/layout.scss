@@ -1,12 +1,12 @@
 //chooseDirection
 .chooseDirection{
     height: 30%;
-    max-height: 40%;
+    max-height: 30%;
 }
 // weather section
 .weather{
     height: 30%;
-    max-height:40%;
+    max-height:30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -128,7 +128,7 @@
     @include breakpoint(laptop){
         @include width(100%, 5px auto, $whiteTrasp)
     }
-    .rule, .singInUp {
+    .rule {
         display: none;
         justify-content: center;
         flex-wrap: wrap;
@@ -173,7 +173,7 @@
                 font-size: 1.4rem;
             }
         }}
-        .rule, .singInUp {
+        .rule {
             @include breakpoint(laptop){
                 @include width(45%, 5px auto, $white)
             }
@@ -256,11 +256,17 @@
                 }
             }
         }
-
-
-
-
     @include breakpoint(laptop){
         @include width(80%, 20px auto, $whiteTrasp)
+    }
+}
+.popupsingInUp {
+    display: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 300;
+    @include width(95%, 5px auto, $white);
+    @include breakpoint(laptop){
+        @include width(45%, 5px auto, $white)
     }
 }

@@ -11,7 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         "index":`./src/index.js`,
-        //"summary":`./src/summary.js`,
+        "summary":`./src/summary.js`,
     },
     output: {
     path: path.resolve(__dirname, "dist"),
@@ -32,7 +32,7 @@ plugins: [
         new HtmlWebpackPlugin({
             template: './src/summary.html',
             inject: true,
-            chunks: ['index'],
+            chunks: ['summary'],
             filename: 'summary.html'
         }),
         new CleanWebpackPlugin(),
