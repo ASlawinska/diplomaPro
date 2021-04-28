@@ -1,12 +1,10 @@
 //chooseDirection
 .chooseDirection{
-    //height: 30%;
-    //max-height: 30%;
+    max-height: 30%;
 }
 // weather section
 .weather{
-    //height: 20%;
-    //max-height:20%;
+    max-height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,9 +22,8 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        //height: 10%;
         .city-name {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
         .photo {
             width: 10%;
@@ -43,15 +40,15 @@
             p{ 
                 width: 33.3%;
                 text-align: center;
-                font-size: 0.7rem;
-                padding-top: 5% ;
-                padding-bottom: 5% ;
+                font-size: 0.6rem;
+                padding-top: 3% ;
+                padding-bottom: 3% ;
                 text-transform: uppercase;
                 font-weight: bold;
                 border-top: 1px solid $grey;
                 border-bottom: 1px solid $grey;
                 @include breakpoint(laptop){
-                    font-size: 0.9rem
+                    font-size: 0.8rem
                 }
             }
         }
@@ -75,9 +72,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 50%;
+        //width: 50%;
         height: 100%;
-        background-color: #fff;
+        @include breakpoint(laptop){
+            @include width(45%, 5px auto, $whiteTrasp);
+        }
         .plane{
             height: 80%;
             .unknown{
@@ -87,7 +86,6 @@
             };
             .country{
                 display: none;
-                height: 100%;
             };
             .international{
                 display: none;
@@ -102,12 +100,17 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 50%;
+        @include breakpoint(laptop){
+            @include width(45%, 5px auto, $whiteTrasp);
+        }
         .chooseLaugage, .infoPlane, .infoLegend{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            @include breakpoint(laptop){
+                @include width(85%, 15px auto, $whiteTrasp);
+            }
         }
     }
 };
@@ -126,8 +129,13 @@
         @include width(90%, 5px auto, $whiteTrasp);
         @include breakpoint(tablet){
             flex-direction: row;
-            @include width(40%, 5px auto, $whiteTrasp);
+            @include width(85%, 30px auto, $whiteTrasp);
         }
+    }
+    .detailedFlight, .costsCalculate{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
     }
 }
 

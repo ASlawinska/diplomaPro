@@ -1,21 +1,13 @@
 .chooseDirection{
     form{
-        // display: flex;
-        // flex-direction: column;
-        // justify-content: center;
-        padding: 20px;
+        padding: 5px 15px;
         .form-group{
             display: flex;
             flex-direction: column;
             label, input{
-                
                 margin: 5px;
             }
         }
-
-        // @include breakpoint(tablet){
-        //     flex-direction: row;
-        // }
         @include breakpoint(desktop){
             @include width(85%, 5px auto, $whiteTrasp);
         }

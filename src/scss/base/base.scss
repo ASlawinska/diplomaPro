@@ -25,13 +25,13 @@ body{
 
 //header 
 header{
-    @include width(96vw, 5px auto, $white);
+    @include width(96vw, 5px auto, $whiteTrasp);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     @include breakpoint(laptop) {
         align-items: center;
-        @include width(80vw, 10px auto, $white);
+        @include width(80vw, 10px auto, $whiteTrasp);
     }
     .logo{
         height: 10vh;
@@ -162,8 +162,8 @@ footer{
     justify-content: center;
     text-align: center;
     padding: 10px;
-    @include width(96vw, 5px auto, $white);
+    @include width(96vw, 5px auto, $whiteTrasp);
     @include breakpoint(laptop) {
-        @include width(80vw, 10px auto, $white);
+        @include width(80vw, 10px auto, $whiteTrasp);
     }
 }
