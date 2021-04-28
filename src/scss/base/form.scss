@@ -9,8 +9,12 @@
             };
             input{
                 @include styleInput;
-            }
-        }
+                cursor: pointer;
+            };
+            input:focus {
+                color: $pink;
+                border: none;
+            };}
         @include breakpoint(desktop){
             @include width(85%, 5px auto, $whiteTrasp);
         }
