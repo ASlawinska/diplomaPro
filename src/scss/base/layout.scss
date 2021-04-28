@@ -72,13 +72,17 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        //width: 50%;
         height: 100%;
+        @include width(95%, 5px auto, $whiteTrasp);
         @include breakpoint(laptop){
             @include width(45%, 5px auto, $whiteTrasp);
         }
         .plane{
             height: 80%;
+            object{
+                height: 60vh;
+                object-fit: scale-down;
+            }
             .unknown{
                 display: flex;
                 justify-content: center;
@@ -86,12 +90,15 @@
             };
             .country{
                 display: none;
+                justify-content: center;
             };
             .international{
                 display: none;
+                justify-content: center;
             };
             .intercontinental{
                 display: none;
+                justify-content: center;
             };
         }
     };
@@ -100,6 +107,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        @include width(95%, 5px auto, $whiteTrasp);
         @include breakpoint(laptop){
             @include width(45%, 5px auto, $whiteTrasp);
         }
@@ -108,10 +116,21 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 15px;
+            @include width(90%, 15px auto, $whiteTrasp);
             @include breakpoint(laptop){
                 @include width(85%, 15px auto, $whiteTrasp);
             }
         }
+        .infoLegend
+            .legendInfoDetailed{
+                display: flex;
+                flex-direction: row;
+                ul{
+                    display: flex;
+                    flex-direction: column;
+
+                }}
     }
 };
 //summary page

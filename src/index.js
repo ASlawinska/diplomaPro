@@ -104,13 +104,19 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
             if (departureAtribute[1]===arrivalAtribute[1]) {
                 planeUnknow.style.display = 'none';
                 planeCountry.style.display = 'flex';
+                planeInternational.style.display = 'none';
+                planeIntercontinental.style.display = 'none';
                 console.log("krajowy");
             } else if (departureAtribute[0]===arrivalAtribute[0]) {
                 planeUnknow.style.display = 'none';
+                planeCountry.style.display = 'none';
                 planeInternational.style.display = 'flex';
+                planeIntercontinental.style.display = 'none';
                 console.log("miedzynarodowy");
             } else {
                 planeUnknow.style.display = 'none';
+                planeCountry.style.display = 'none';
+                planeInternational.style.display = 'none';
                 planeIntercontinental.style.display = 'flex';
                 console.log('międzykontynetalny');
             };
