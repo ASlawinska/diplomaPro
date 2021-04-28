@@ -18,3 +18,11 @@
         border-radius: 5px;
         background-color: $color;
     }
+@mixin styleInput {
+    background: $whiteTrasp;
+    border-top: none;
+    border-left: none;
+    border-bottom: 2px solid $grey;
+    border-right: 3px solid $pink;
+    border-bottom-right-radius: 15px;
+}
