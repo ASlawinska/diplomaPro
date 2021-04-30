@@ -57,20 +57,6 @@ header{
         }}
     .mobile{
         position: relative;
-        button{
-            position: absolute;
-            top: 3vh;
-            right: 5vw;
-            height: 8vh;
-            background-color: transparent;
-            border: none;
-            font-size: 1.5rem;
-            padding: 5px 20px;
-            cursor: pointer;
-            color: $pink; 
-            transition: transform .3s;
-            z-index: 100;
-        }
         .nav {
             position: absolute;
             display: flex;
@@ -132,22 +118,7 @@ main{
         flex-direction: row;
         justify-content: center;
         align-items: center;
-
-        a{
-            background-color: $whiteTrasp;
-            top: auto;
-            bottom: 5%;
-            padding: 2%;
-            color: $grey;
-            &:hover{
-                text-decoration: none;
-                color: $pink;
-                transition: transform 1s,;
-            }
-            .carousel-control-next-icon {
-                color: $grey;
-            }
-        }
+        
     }
     @include breakpoint(laptop) {
         @include width(80vw, 10px auto, $whiteTrasp);

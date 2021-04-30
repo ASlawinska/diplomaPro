@@ -23,6 +23,35 @@ let today = new Date();
 let dayMaxWeather16 = today+16;
 
 let year = today.getFullYear();
+//CostCalculate
+const currencyOne = document.querySelector('#currency-one');
+const amountOne = document.querySelector('.amount-one');
+const currencyTwo = document.querySelector('#currency-two');
+const amountTwo = document.querySelector('.amount-two');
+const swapBtn = document.querySelector('.swap');
+const rateInfo = document.querySelector('.rate-info');
+
+const calculate = () => {
+    fetch(`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+        .then(res=>res.json())
+        .then(data=>{
+            const currency1 = currencyOne.value;
+            const currency2 = currencyTwo.value;
+
+            //rateInfo
+            const rate = data.rates.[currency2];
+            rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
+
+            //culculating
+            amountTwo.value = (amountOne.value * rate).toFixed(2);
+        })
+};
+//addeventListener
+currencyOne.addEventListener('change', calculate);
+currencyTwo.addEventListener('change', calculate);
+amountOne.addEventListener('input', calculate);
+calculate();
+
 
 
 // Weather APP
