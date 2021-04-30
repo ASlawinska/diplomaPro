@@ -46,13 +46,18 @@ const calculate = () => {
             amountTwo.value = (amountOne.value * rate).toFixed(2);
         })
 };
+//rechanging currency
+const swap = () => {
+    const oldCurrenncy = currencyOne.value;
+    currencyOne.value = currencyTwo.value;
+    currencyTwo.value = oldCurrenncy;
+}
 //addeventListener
 currencyOne.addEventListener('change', calculate);
 currencyTwo.addEventListener('change', calculate);
 amountOne.addEventListener('input', calculate);
+swapBtn.addEventListener('click', swap);
 calculate();
-
-
 
 // Weather APP
 //const inputDeparture = // pobranie z bazy //document.querySelector('#cityNameInput');
