@@ -107,18 +107,39 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                 planeInternational.style.display = 'none';
                 planeIntercontinental.style.display = 'none';
                 console.log("krajowy");
+                fetch('https://api.jsonbin.io/b/609140f9d64cd16802a9beb7')
+                .then((resp)=>resp.json())
+                .then((data)=>{
+                    document.getElementById("listOfSeats").innerHTML='';
+                    data.forEach(function (element) {
+                        document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
+                })})
             } else if (departureAtribute[0]===arrivalAtribute[0]) {
                 planeUnknow.style.display = 'none';
                 planeCountry.style.display = 'none';
                 planeInternational.style.display = 'flex';
                 planeIntercontinental.style.display = 'none';
                 console.log("miedzynarodowy");
+                fetch('https://api.jsonbin.io/b/609132cd8a409667ca05b861')
+                    .then((resp)=>resp.json())
+                    .then((data)=>{
+                        document.getElementById("listOfSeats").innerHTML='';
+                        data.forEach(function (element) {
+                            document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
+                    })})//skąd
             } else {
                 planeUnknow.style.display = 'none';
                 planeCountry.style.display = 'none';
                 planeInternational.style.display = 'none';
                 planeIntercontinental.style.display = 'flex';
                 console.log('międzykontynetalny');
+                fetch('https://api.jsonbin.io/b/60913eb28a409667ca05cedc')
+                .then((resp)=>resp.json())
+                .then((data)=>{
+                    document.getElementById("listOfSeats").innerHTML='';
+                    data.forEach(function (element) {
+                        document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
+                })})
             };
     };
     const checkIfBothIsFillAndShowPlane=()=>{

@@ -139,30 +139,23 @@
                                 </form>
                                 </section>
                                 <div class="infoPlane">
-                            Wybrane miejsce: 
-                            <span class="sit" ></span>
+                                        <label for="seats">Miejsce:</label>
+                                        <input type="text" list="listOfSeats" name="seat" id="inputSeat" placeholder="Wybierz miejsce" required >
+                                        <datalist id="listOfSeats">
+                                        </datalist>
                                 </div>
                                 <div class="infoLegend">
-                            Legend:
-                            <p class="legend-title" id="seatMapKeyLegend"><strong>Seat map key</strong></p>
+                            <p class="legend-title" id="seatMapKeyLegend"><strong>Legenda:</strong></p>
                             <div class="legendInfoDetailed">
-                            <ul class="legend">
-                                <li id="key_gut">Good seat</li>
-                                <li id="key_bwr">Be Aware - See comments</li>
-                                <li id="key_bad">Bad seat</li>
-                                <li id="key_mix">Mixed Review</li>
-                                <li id="key_std">Standard seat</li>
-                                <li id="key_blk">Blocked seat</li>
-                                <li id="key_pre">Premium seat</li>
+                            <ul class="legend-key">
+                                <li id="key_gut"><i class="fas fa-play"></i>OK</li>
+                                <li id="key_bwr"><i class="fas fa-play"></i>Nie polecam</li>
+                                <li id="key_bad"><i class="fas fa-play"></i>Złe</li>
                             </ul>
-                            <ul class="legend">
-                                <li id="key_crw">Crew seat</li>
-                                <li id="key_pwr">Power port</li>
-                                <li id="key_emg">Emergency exit</li>
-                                <li id="key_gal">Galley</li>
-                                <li id="key_lav">Lavatory</li>
-                                <li id="key_clo">Closet</li>
-                                <li id="key_bas">Bassinet</li>
+                            <ul class="legend-key">
+                                <li id="key_std"><i class="fas fa-play"></i>Standard</li>
+                                <li id="key_blk"><i class="fas fa-play"></i>Niedostępne</li>
+                                <li id="key_pre"><i class="fas fa-play"></i>Premium</li>
                             </ul>
                             </div>
                                 </div>

@@ -16,11 +16,14 @@
 	.st11{display:none;}
 	.st12{fill:#333333;}
 	.st13{fill:#BDBDBD;}
+	.st13:hover{fill:#e65ce6;stroke-width:5px;stroke:#e65ce6;}
 	.st14{fill:#FFCC00;}
+	.st14:hover{fill:#e65ce6;stroke-width:5px;stroke:#e65ce6;}
 	.st15{fill:#E2A62A;}
 	.st16{fill:#E26154;}
 	.st17{fill:#C14437;}
 	.st18{fill:#FFFFFF;}
+	.st18:hover{fill:#e65ce6;}
 	.st19{clip-path:url(#SVGID_25_);}
 	.st20{clip-path:url(#SVGID_26_);fill:#FFFFFF;}
 	.st21{clip-path:url(#SVGID_29_);}

@@ -23,6 +23,7 @@
 	.st18{fill:#CFCFCF;}
 	.st19{fill:none;stroke:#BDBDBD;stroke-width:0.3092;stroke-miterlimit:10;}
 	.st20{fill:#FFCC00;}
+	.st20:hover{fill::#e65ce6}
 	.st21{fill:#E2A62A;}
 	.st22{fill:#E26154;}
 	.st23{fill:#C14437;}

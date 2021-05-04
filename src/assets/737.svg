@@ -21,8 +21,10 @@
 	.st16{fill:#2DD086;}
 	.st17{opacity:0.5;fill:#BDBDBD;}
 	.st18{fill:#BDBDBD;}
+	.st18:hover{fill:#e65ce6;stroke-width:5px;stroke:#e65ce6;}
 	.st19{fill:#C14437;}
 	.st20{fill:#E2A62A;}
+	.st20:hover{fill:#e65ce6;stroke-width:5px;stroke:#e65ce6;}
 	.st21{fill:#29AB70;}
 	.st22{fill:#2DB4D0;}
 	.st23{clip-path:url(#SVGID_43_);}

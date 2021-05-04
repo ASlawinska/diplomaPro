@@ -107,6 +107,11 @@
         flex-direction: column;
         justify-content: center;
         @include width(95%, 5px auto, $whiteTrasp);
+        .color{
+            height: 10px;
+            width: 10px;
+            border: 2px solid $black;
+        }
         @include breakpoint(laptop){
             @include width(45%, 5px auto, $whiteTrasp);
         }
@@ -125,13 +130,25 @@
             .legendInfoDetailed{
                 display: flex;
                 flex-direction: row;
+                justify-content: space-around;
                 ul{
                     display: flex;
                     flex-direction: column;
+                    justify-content: space-around;
                     text-align: left;
+                    font-size: 0.8rem;
+                    li{
+                        display: flex;
+                        flex-direction: row;
+                        i{
+                            padding: 1%;
+                            font-size: 1rem;
+                        }
+                    }
                 }}
     }
 };
+
 //summary page
 .mainSummary{
     display: flex;

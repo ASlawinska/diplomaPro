@@ -150,30 +150,30 @@ let popupSingDesktop = document.querySelector('.popupSingBTNDesktop');
 let popupCloseRule = document.querySelector('.popupCloseRule');
 let popupClosePopularWay = document.querySelector('.popupClosePW');
 let popupCloseSingInUp= document.querySelector('.popupCloseSingInUp');
-//Otwieranie popupa rules
+//Opening popupa rules
 const openPopupRule = () => {
     popup.style.display = 'flex';
     rule.style.display = 'flex';
 };
-//Otwieranie popupa popularDiriction
+//Opening popupa popularDiriction
 const openPopupPopularWay = () => {
     popupPW.style.display = 'flex';
 };
-//Otwieranie popupa singUpIN
+//Opening popupa singUpIN
 const openPopupsingInUp = () => {
     singInUp.style.display = 'flex';
 };
-//Zamykanie popupa rule
+//Closing popupa rule
 const closePopupRule = () => {
     popup.style.display = 'none';
     rule.style.display = 'none';
 
 };
-//Zamykanie popupaPopularWay
+//Closing popupaPopularWay
 const closePopupPopularWay = () => {
     popupPW.style.display = 'none';
 };
-//Zamykanie popupa  singUpIN
+//Closing popupa  singUpIN
 const closePopupsingInUp = () => {
     singInUp.style.display = 'none';
 
