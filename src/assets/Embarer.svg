@@ -6,7 +6,7 @@
 	.st1{clip-path:url(#SVGID_7_);}
 	.st2{clip-path:url(#SVGID_12_);}
 	.st3{clip-path:url(#SVGID_13_);}
-	.st4{clip-path:url(#SVGID_14_);fill:#F3F3F3;}
+	.st4{clip-path:url(#SVGID_14_);fill:#9c9a9a;}
 	.st5{clip-path:url(#SVGID_17_);}
 	.st6{clip-path:url(#SVGID_18_);fill:#FFFFFF;}
 	.st7{fill:#424242;}
@@ -14,11 +14,10 @@
 	.st9{fill:#F3F3F3;}
 	.st10{fill:#9c9a9a;}
 	.st11{display:none;}
-	.st12{fill:#333333;}
+	.st12{fill:#333333;stroke-width:1px;stroke:#333333}
+	.st12:hover{fill:#e65ce6;stroke-width:1px;stroke:#e65ce6;}
 	.st13{fill:#BDBDBD;}
-	.st13:hover{fill:#e65ce6;stroke-width:5px;stroke:#e65ce6;}
 	.st14{fill:#FFCC00;}
-	.st14:hover{fill:#e65ce6;stroke-width:5px;stroke:#e65ce6;}
 	.st15{fill:#E2A62A;}
 	.st16{fill:#E26154;}
 	.st17{fill:#C14437;}

@@ -11,7 +11,9 @@ button{
     border-bottom: 2px solid $grey;
     border-right: 3px solid $pink;
     border-bottom-right-radius: 15px;
+    border-top-left-radius: 5px;
     margin: 0 auto;
+    box-shadow: 5px 5px 15px 5px $grey;
     a:hover{
         text-decoration: none;
         color: inherit;

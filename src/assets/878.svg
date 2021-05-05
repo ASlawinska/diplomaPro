@@ -6,15 +6,17 @@
 	.st1{clip-path:url(#SVGID_40_);fill-rule:evenodd;clip-rule:evenodd;fill:#F3F3F3;}
 	.st2{clip-path:url(#SVGID_44_);}
 	.st3{clip-path:url(#SVGID_45_);}
-	.st4{clip-path:url(#SVGID_46_);fill:#F3F3F3;}
+	.st4{clip-path:url(#SVGID_46_);fill:#9c9a9a;}
 	.st5{clip-path:url(#SVGID_49_);}
 	.st6{clip-path:url(#SVGID_50_);fill:#FFFFFF;}
 	.st7{fill:#FFFFFF;}
+	.st7:hover{fill:#e65ce6;stroke-width:1px;stroke:#e65ce6;}
 	.st8{fill:#424242;}
 	.st9{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
 	.st10{fill:#9c9a9a;}
 	.st11{opacity:0.36;}
-	.st12{fill:#333333;}
+	.st12{fill:#333333;stroke-width:1px;stroke:#333333}
+	.st12:hover{fill:#e65ce6;stroke-width:1px;stroke:#e65ce6;}
 	.st13{fill:#BDBDBD;}
 	.st14{fill:#F3F3F3;}
 	.st15{fill:none;stroke:#F3F3F3;stroke-width:0.6126;stroke-linecap:round;stroke-miterlimit:10;}

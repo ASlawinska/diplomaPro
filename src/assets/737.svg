@@ -5,7 +5,7 @@
 	.st0{clip-path:url(#SVGID_21_);}
 	.st1{clip-path:url(#SVGID_26_);}
 	.st2{clip-path:url(#SVGID_27_);}
-	.st3{clip-path:url(#SVGID_28_);fill:#F3F3F3;}
+	.st3{clip-path:url(#SVGID_28_);fill:#9c9a9a;}
 	.st4{clip-path:url(#SVGID_37_);}
 	.st5{clip-path:url(#SVGID_38_);fill:#FFFFFF;}
 	.st6{enable-background:new    ;}
@@ -13,7 +13,8 @@
 	.st8{fill:#F3F3F3;}
 	.st9{fill:#424242;}
 	.st10{fill:#9c9a9a;}
-	.st11{fill:#333333;}
+	.st11{fill:#333333;stroke-width:1px;stroke:#333333}
+	.st11:hover{fill:#e65ce6;stroke-width:1px;stroke:#e65ce6}
 	.st12{display:none;opacity:0.36;}
 	.st13{display:inline;opacity:0.36;fill:#2DB4D0;}
 	.st14{fill:#FFCC00;}
@@ -21,7 +22,6 @@
 	.st16{fill:#2DD086;}
 	.st17{opacity:0.5;fill:#BDBDBD;}
 	.st18{fill:#BDBDBD;}
-	.st18:hover{fill:#e65ce6;stroke-width:5px;stroke:#e65ce6;}
 	.st19{fill:#C14437;}
 	.st20{fill:#E2A62A;}
 	.st20:hover{fill:#e65ce6;stroke-width:5px;stroke:#e65ce6;}
