@@ -1,6 +1,11 @@
 //chooseDirection
 .chooseDirection{
     max-height: 30%;
+    @include width(95%, 5px auto, $whiteTrasp);
+    @include breakpoint(laptop){
+        @include width(85%, 15px auto, $whiteTrasp);
+        padding: 15px ;
+    }
 }
 // weather section
 .weather{
@@ -9,7 +14,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     @include width(95%, 5px auto, $whiteTrasp);
     .top {
         h1 {
@@ -46,7 +50,6 @@
                 text-transform: uppercase;
                 font-weight: bold;
                 border-top: 1px solid $grey;
-                border-bottom: 1px solid $grey;
                 @include breakpoint(laptop){
                     font-size: 0.8rem
                 }
@@ -54,7 +57,7 @@
         }
     }
     @include breakpoint(laptop){
-        @include width(85%, 5px auto, $whiteTrasp);
+        @include width(85%, 15px auto, $whiteTrasp);
     }
 }
 //slide2
@@ -63,6 +66,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 10px;
+    padding: 5px;
     line-height: 1.4;
     @include breakpoint(laptop){
         flex-direction: row;
@@ -76,7 +81,7 @@
         height: 100%;
         @include width(95%, 5px auto, $whiteTrasp);
         @include breakpoint(laptop){
-            @include width(45%, 5px auto, $whiteTrasp);
+            @include width(50%, 5px auto, $whiteTrasp);
         }
         .plane{
             overflow-y: auto;
@@ -91,7 +96,6 @@
             object:hover{
                 transform: scale(4) translate(0, 40%);
                 width:100%;
-
             }
             .unknown{
                 display: flex;
@@ -101,17 +105,14 @@
             .country{
                 display: none;
                 justify-content: center;
-                //overflow-y: auto;
             };
             .international{
                 display: none;
                 justify-content: center;
-                //overflow-y: auto;
             };
             .intercontinental{
                 display: none;
                 justify-content: center;
-                //overflow-y: auto;
             };
         }
     };
@@ -205,7 +206,7 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        @include width(90%, 5px auto, $whiteTrasp);
+        @include width(90%, 10px auto, $whiteTrasp);
         @include breakpoint(tablet){
             flex-direction: row;
             @include width(85%, 30px auto, $whiteTrasp);
@@ -316,7 +317,6 @@
     display: none;
     height: 100vh;
     margin-top: 0px;
-    //flex-direction: row;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -394,12 +394,18 @@
     }
 }
 .popupsingInUp {
-    display: none;
-    justify-content: center;
-    flex-wrap: wrap;
-    z-index: 300;
-    @include width(95%, 5px auto, $white);
-    @include breakpoint(laptop){
-        @include width(45%, 5px auto, $white)
-    }
+display: none;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+position: fixed;
+height: 100vh;
+z-index: 200;
+@include width(95%, 5px auto, $whiteTrasp);
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+@include breakpoint(laptop){
+    @include width(100%, 5px auto, $whiteTrasp)
+}
 }
