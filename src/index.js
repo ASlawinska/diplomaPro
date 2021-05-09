@@ -243,6 +243,7 @@ let popupSingDesktop = document.querySelector('.popupSingBTNDesktop');
 let popupCloseRule = document.querySelector('.popupCloseRule');
 let popupClosePopularWay = document.querySelector('.popupClosePW');
 let popupCloseSingInUp= document.querySelector('.popupCloseSingInUp');
+let singInUpBut =document.querySelector('.singInUp')
 //Otwieranie popupa rules
 const openPopupRule = () => {
     popup.style.display = 'flex';
@@ -280,6 +281,7 @@ popupSingDesktop.addEventListener('click', openPopupsingInUp);
 popupCloseRule.addEventListener('click', closePopupRule);
 popupClosePopularWay.addEventListener('click', closePopupPopularWay);
 popupCloseSingInUp.addEventListener('click', closePopupsingInUp);
+singInUpBut.addEventListener('click', openPopupsingInUp);
 
 // PopularWay Carousel
 let carousel = document.querySelector('.carouselPW');

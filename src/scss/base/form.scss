@@ -25,3 +25,22 @@
         line-height: 1.5;
     }
 }
+.popupsingInUp
+    form {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        @include width(96vw, 5px auto, $whiteTrasp);
+        @include breakpoint(laptop) {
+            @include width(30vw, 10px auto, $whiteTrasp);
+    }
+        input{
+            margin: 5px;
+        }
+        h1{
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 15px auto;
+        }
+}

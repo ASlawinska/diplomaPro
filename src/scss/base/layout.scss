@@ -307,11 +307,6 @@
                 font-size: 1.4rem;
             }
         }}
-        .rule {
-            @include breakpoint(laptop){
-                @include width(45%, 5px auto, $white)
-            }
-        }
         }
 .popupPW{
     display: none;

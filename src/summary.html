@@ -196,7 +196,17 @@
             </div>
         </div>
         <div class="popupsingInUp">
-            <button class="popupCloseSingInUp">Zamknij</button>
+            <form action="/sign_up" method="post">
+                <h1> Zaloguj się </h1>
+                <input class="box" type="text" name="name" id="name" placeholder="Imię"  required /><br>
+                <input class="box" type="text" surname="surname" id="surname" placeholder="Nazwisko"  required /><br>
+                <input class="box" type="email" name="email" id="email" placeholder="E-Mail " required /><br>
+                <input class="box" type="password" name="password" id="password" placeholder="Hasło" required/><br>
+                <input class="box" type="text" name="phone" id="phone" placeholder="numer telefonu" required/><br>
+                <br>
+                </form>
+            <button class="popupCloseSingInUp" type="submit" id="submitDetails"  
+            name="submitDetails" value="Submit">Potwierdź</button>
         </div>
         </main>
         <footer>
