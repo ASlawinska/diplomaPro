@@ -31,6 +31,10 @@ header{
     justify-content: space-between;
     @include breakpoint(laptop) {
         align-items: center;
+        @include width(90vw, 10px auto, $whiteTrasp);
+    }
+    @include breakpoint(desktop) {
+        align-items: center;
         @include width(80vw, 10px auto, $whiteTrasp);
     }
     .logo{
@@ -120,6 +124,12 @@ main{
         
     }
     @include breakpoint(laptop) {
+        @include width(90vw, 10px auto, $whiteTrasp);
+        #carouselMain{
+            width: 95%;
+        }
+    }
+    @include breakpoint(desktop) {
         @include width(80vw, 10px auto, $whiteTrasp);
         #carouselMain{
             width: 95%;
@@ -130,10 +140,14 @@ main{
 footer{
     display: flex;
     justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 10px;
     @include width(96vw, 5px auto, $whiteTrasp);
     @include breakpoint(laptop) {
+        @include width(90vw, 10px auto, $whiteTrasp);
+    }
+    @include breakpoint(desktop) {
         @include width(80vw, 10px auto, $whiteTrasp);
     }
 }

@@ -355,6 +355,68 @@ function onOrientationChange() {
 
 // set initials
 onOrientationChange();
+//SingInUP
+const pass = document.querySelector('#password');
+const name = document.querySelector('#name');
+const surname = document.querySelector('#surname');
+const email = document.querySelector('#email');
+const p = document.querySelector('.passinfo');
+const nameinfo = document.querySelector('.nameinfo');
+const surnameinfo = document.querySelector('.surnameinfo');
+const emailinfo = document.querySelector('.emailinfo');
+const letters = /[a-z]/i;
+const numbers = /[0-9]/;
+const special = /[!@#$%^&*()]/;
+const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const minValue = 8;
+
+const checkName = () => {
+    if (name.value.match(letters)){
+        //name.value.trim();
+        return true;
+    } else {
+        nameinfo.innerHTML = 'Twoje imię jest niepoprawne.'
+        return false;
+    }
+}
+const checkSurname = () => {
+    if (surname.value.match(letters)){
+        //surname.value.trim();
+        return true;
+    } else {
+        surnameinfo.innerHTML = 'Twoje nazwisko jest niepoprawne.'
+        return false;
+    }
+}
+const checkEmail = () => {
+    if (email.value.match(validRegex)){
+        return true;
+    } else {
+        emailinfo.innerHTML = 'Wpisz poprawny e-mail.'
+        return false;
+    }
+}
+name.addEventListener('input', checkName);
+surname.addEventListener('input', checkSurname);
+email.addEventListener('input', checkEmail);
+
+const checkPassword = () => {
+
+    if (pass.value.length > minValue && pass.value.match(letters) && pass.value.match(numbers) && pass.value.match(special)) {
+    p.innerHTML = 'Masz bardzo dobre hasło';
+    } else if (pass.value.length > minValue && pass.value.match(letters) && pass.value.match(numbers)) {
+        p.innerHTML = 'Masz dobre hasło';
+    } else {
+        p.innerHTML = 'Masz słabe hasło';
+    }
+};
+pass.addEventListener('keyup', function () {
+    if (pass.value !== '') {
+        checkPassword();
+    } else {
+        p.innerHTML = 'Nie podałes hasła...'
+    };
+})
 
 // Year footer
 let footer = document.querySelector('.footer');

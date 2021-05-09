@@ -1,6 +1,6 @@
 .chooseDirection{
     form{
-        padding: 5px 15px;
+        padding: 5px 10px;
         .form-group{
             display: flex;
             flex-direction: column;
@@ -22,8 +22,12 @@
 }
 .chooseLaugage{
     form{
-        line-height: 1.5;
+        line-height: 1.2;
+        font-size: 0.8rem;
     }
+}
+.infoPlane{
+    font-size: 0.8rem;
 }
 .popupsingInUp
     form {
@@ -31,9 +35,9 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        @include width(96vw, 5px auto, $whiteTrasp);
+        @include width(96vw, 5px auto, $white);
         @include breakpoint(laptop) {
-            @include width(30vw, 10px auto, $whiteTrasp);
+            @include width(30vw, 10px auto, $white);
     }
         input{
             margin: 5px;
@@ -42,5 +46,13 @@
             font-size: 1.2rem;
             font-weight: bold;
             margin: 15px auto;
+        }
+        .passinfo, .nameinfo, .surnameinfo, .emailinfo{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            width: 80%;
+            margin-bottom: 5px;
         }
 }

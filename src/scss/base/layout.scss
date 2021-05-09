@@ -1,15 +1,16 @@
 //chooseDirection
 .chooseDirection{
-    max-height: 30%;
+    font-size: 0.8rem;
     @include width(95%, 5px auto, $whiteTrasp);
     @include breakpoint(laptop){
-        @include width(85%, 15px auto, $whiteTrasp);
+        max-height: 40vh;
+        @include width(85%, 10px auto, $whiteTrasp);
         padding: 15px ;
     }
 }
 // weather section
 .weather{
-    max-height: 30%;
+    max-height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,7 +28,7 @@
         justify-content: space-around;
         align-items: center;
         .city-name {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
         }
         .photo {
             width: 10%;
@@ -45,13 +46,13 @@
                 width: 33.3%;
                 text-align: center;
                 font-size: 0.6rem;
-                padding-top: 3% ;
-                padding-bottom: 3% ;
+                padding-top: 2% ;
+                padding-bottom: 2% ;
                 text-transform: uppercase;
                 font-weight: bold;
                 border-top: 1px solid $grey;
                 @include breakpoint(laptop){
-                    font-size: 0.8rem
+                    font-size: 0.7rem
                 }
             }
         }
@@ -134,10 +135,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            padding: 10px;
             @include width(90%, 15px auto, $whiteTrasp);
             @include breakpoint(laptop){
-                @include width(85%, 15px auto, $whiteTrasp);
+                @include width(85%, 10px auto, $whiteTrasp);
             }
         }
         .chooseLaugage{
@@ -149,6 +150,9 @@
             i:hover{
                 color:$pink;
             }
+        }
+        .infoPlane{
+            flex-direction: row;
         }
         .infoLegend
             .legendInfoDetailed{

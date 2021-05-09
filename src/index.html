@@ -258,11 +258,14 @@
         <div class="popupsingInUp">
             <form action="/sign_up" method="post">
                 <h1> Zaloguj się </h1>
-                <input class="box" type="text" name="name" id="name" placeholder="Imię"  required /><br>
+                <input class="box" type="text" name="name" id="name" placeholder="Imię" required /><br>
+                <p class="nameinfo"></p>
                 <input class="box" type="text" surname="surname" id="surname" placeholder="Nazwisko"  required /><br>
+                <p class="surnameinfo"></p>
                 <input class="box" type="email" name="email" id="email" placeholder="E-Mail " required /><br>
+                <p class="emailinfo"></p>
                 <input class="box" type="password" name="password" id="password" placeholder="Hasło" required/><br>
-                <input class="box" type="text" name="phone" id="phone" placeholder="numer telefonu" required/><br>
+                <p class="passinfo">Minimum 8 znaków, małe i duże litery, znaki specjalne.</p>
                 <br>
                 </form>
             <button class="popupCloseSingInUp" type="submit" id="submitDetails"  
