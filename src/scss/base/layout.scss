@@ -1,4 +1,12 @@
 //chooseDirection
+.slide1, .slide3{
+    height: 95%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .chooseDirection{
     font-size: 0.8rem;
     @include width(95%, 5px auto, $whiteTrasp);
@@ -63,10 +71,11 @@
 }
 //slide2
 .slide2{
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
     margin: 10px;
     padding: 5px;
     line-height: 1.4;
@@ -121,6 +130,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         @include width(95%, 5px auto, $whiteTrasp);
         .color{
             height: 10px;
@@ -199,7 +209,7 @@
 };
 
 //summary page
-.mainSummary{
+.slide3{
     display: flex;
     flex-direction: column;
     justify-content: center;

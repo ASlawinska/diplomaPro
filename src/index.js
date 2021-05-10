@@ -17,6 +17,35 @@ const addActive = () => {
     }
 }
 burgerBtn.addEventListener('click', addActive)
+//Visible slide
+const slide1 = document.querySelector(".slide1");
+const slide2 = document.querySelector(".slide2");
+const slide3 = document.querySelector(".slide3");
+const nextSlide = document.querySelector(".nextSlide");
+const summaryButton =document.querySelector(".summaryButton")
+const logo = document.querySelector(".logo");
+//Opening slide1, hidding slide2&3
+const visibleSlide1 = () => {
+    slide1.style.display = 'flex';
+    slide2.style.display = 'none';
+    slide3.style.display = 'none';
+};
+//Opening slide2, hidding slide1&3
+const visibleSlide2 = () => {
+    slide1.style.display = 'none';
+    slide2.style.display = 'flex';
+    slide3.style.display = 'none';
+};
+//Opening slide3, hidding slide1&2
+const visibleSlide3 = () => {
+    slide1.style.display = 'none';
+    slide2.style.display = 'none';
+    slide3.style.display = 'flex';
+};
+//listening
+logo.addEventListener("click", visibleSlide1);
+nextSlide.addEventListener("click", visibleSlide2);
+summaryButton.addEventListener("click", visibleSlide3);
 
 // Date form 
 const thisDay = document.getElementById('today');
@@ -40,7 +69,7 @@ thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 
 //Seletet list form
-fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
+fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
     .then((data) => {
         data.forEach(function (element) {
@@ -56,6 +85,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
         
         // Funkcja ukazująca atrybuty
         let departureAtribute
+        let geoDeparture
         function showAtributeDeparture() {
             // Get the value from the input
             let valueDeparture = inputDeparture.value;
@@ -64,12 +94,17 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                 if (valueDeparture===inputDeparture.list.options[i].text) {
                     let continentDeparture = data[i].continent;
                     let countryDeparture = data[i].country;
-                    departureAtribute = [continentDeparture, countryDeparture];
-                    console.log(departureAtribute);
+                    let hour = data[i].hour;
+                    departureAtribute = [continentDeparture, countryDeparture, hour];
+                    let latitudeDepartre = data[i].lat;
+                    let longitudeDepartre = data[i].lon;
+                    geoDeparture = [latitudeDepartre, longitudeDepartre]
+                    console.log(geoDeparture);
                 }
             }
         };
         let arrivalAtribute;
+        let geoArrival;
         function showAtributeArrival() {
             // Get the value from the input
             let valueArrival = inputArrival.value;
@@ -81,7 +116,10 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                     let continentArrival = data[i].continent;
                     let countryArrival = data[i].country;
                     arrivalAtribute = [continentArrival, countryArrival];
-                    console.log(arrivalAtribute);//tutaj zwraca oczewikwane wartości
+                    let latitudeArrival = data[i].lat;
+                    let longitudeArrival = data[i].lon;
+                    geoArrival = [latitudeArrival, longitudeArrival]
+                    console.log(geoArrival);//tutaj zwraca oczewikwane wartości
                 }
             }
         };
@@ -126,7 +164,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                         document.getElementById("listOfSeats").innerHTML='';
                         data.forEach(function (element) {
                             document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
-                    })})//skąd
+                    })})
             } else {
                 planeUnknow.style.display = 'none';
                 planeCountry.style.display = 'none';
@@ -142,14 +180,39 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1")
                 })})
             };
     };
+// Calculte distance between departure and arrival place
+const degreesToRadians = degrees => degrees * (Math.PI / 180);
+const radiansToDegrees = radians => radians * (180 / Math.PI);
+const centralSubtendedAngle = (geoDeparture, geoArrival) => {
+    const geoDepartureLatRadians = degreesToRadians(geoDeparture[0])
+    const geoArrivalLatRadians = degreesToRadians(geoArrival[0])
+    return radiansToDegrees(
+        Math.acos(
+        Math.sin(geoDepartureLatRadians) * Math.sin(geoArrivalLatRadians) +
+          Math.cos(geoDepartureLatRadians) *
+            Math.cos(geoArrivalLatRadians) *
+            Math.cos(
+                degreesToRadians(
+                Math.abs(geoDeparture[1] - geoArrival[0])
+                )
+            )
+        )
+    )
+};
+const earthRadius = 6371//km
+const greatCircleDistance = angle => 2 * Math.PI * earthRadius * (angle / 360)
+const distanceBetweenLocations = (geoDeparture, geoArrival) =>
+greatCircleDistance(centralSubtendedAngle(geoDeparture, geoArrival));
+
     const checkIfBothIsFillAndShowPlane=()=>{
         if(inputDeparture.value && inputArrival.value){
             planePicture();
-            console.log('ok');
+            distanceBetweenLocations();
         } else {
             console.log('nie');
         }
     };
+    
 })
     .catch((err) => console.log(err));
 
@@ -243,34 +306,34 @@ let popupSingDesktop = document.querySelector('.popupSingBTNDesktop');
 let popupCloseRule = document.querySelector('.popupCloseRule');
 let popupClosePopularWay = document.querySelector('.popupClosePW');
 let popupCloseSingInUp= document.querySelector('.popupCloseSingInUp');
-let singInUpBut =document.querySelector('.singInUp')
-//Otwieranie popupa rules
+//Opening popup rules
 const openPopupRule = () => {
     popup.style.display = 'flex';
     rule.style.display = 'flex';
 };
-//Otwieranie popupa popularDiriction
+//Opening  popup popularDiriction
 const openPopupPopularWay = () => {
     popupPW.style.display = 'flex';
 };
-//Otwieranie popupa singUpIN
+//Opening  popup singUpIN
 const openPopupsingInUp = () => {
     singInUp.style.display = 'flex';
 };
-//Zamykanie popupa rule
+//Closing popupa rule
 const closePopupRule = () => {
     popup.style.display = 'none';
     rule.style.display = 'none';
 
 };
-//Zamykanie popupaPopularWay
+//Closing popupaPopularWay
 const closePopupPopularWay = () => {
     popupPW.style.display = 'none';
 };
-//Zamykanie popupa  singUpIN
+//Closing popupa  singUpIN
 const closePopupsingInUp = () => {
     singInUp.style.display = 'none';
-
+    // popupSing.value.innerHTML="Jesteś zalogowany";
+    // popupSingDesktop.value.innerHTML="Jesteś zalogowany";
 };
 popupRule.addEventListener('click', openPopupRule);
 popupRuleDesktop.addEventListener('click', openPopupRule);
@@ -281,7 +344,7 @@ popupSingDesktop.addEventListener('click', openPopupsingInUp);
 popupCloseRule.addEventListener('click', closePopupRule);
 popupClosePopularWay.addEventListener('click', closePopupPopularWay);
 popupCloseSingInUp.addEventListener('click', closePopupsingInUp);
-singInUpBut.addEventListener('click', openPopupsingInUp);
+
 
 // PopularWay Carousel
 let carousel = document.querySelector('.carouselPW');
@@ -355,7 +418,7 @@ function onOrientationChange() {
 
 // set initials
 onOrientationChange();
-//SingInUP
+//SingInUP validation
 const pass = document.querySelector('#password');
 const name = document.querySelector('#name');
 const surname = document.querySelector('#surname');
@@ -417,7 +480,41 @@ pass.addEventListener('keyup', function () {
         p.innerHTML = 'Nie podałes hasła...'
     };
 })
+//CostCalculate
+const currencyOne = document.querySelector('#currency-one');
+const amountOne = document.querySelector('.amount-one');
+const currencyTwo = document.querySelector('#currency-two');
+const amountTwo = document.querySelector('.amount-two');
+const swapBtn = document.querySelector('.swap');
+const rateInfo = document.querySelector('.rate-info');
 
+const calculate = () => {
+    fetch(`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+        .then(res=>res.json())
+        .then(data=>{
+            const currency1 = currencyOne.value;
+            const currency2 = currencyTwo.value;
+
+            //rateInfo
+            const rate = data.rates[currency2];
+            rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
+
+            //culculating
+            amountTwo.value = (amountOne.value * rate).toFixed(2);
+        })
+};
+//rechanging currency
+const swap = () => {
+    const oldCurrenncy = currencyOne.value;
+    currencyOne.value = currencyTwo.value;
+    currencyTwo.value = oldCurrenncy;
+}
+//addeventListener
+currencyOne.addEventListener('change', calculate);
+currencyTwo.addEventListener('change', calculate);
+amountOne.addEventListener('input', calculate);
+swapBtn.addEventListener('click', swap);
+calculate();
 // Year footer
 let footer = document.querySelector('.footer');
 footer.innerHTML = `Copyright &copy; ${year} <br>AFM diploma thesis Adrianna Sławińska`
