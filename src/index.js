@@ -193,7 +193,7 @@ const centralSubtendedAngle = (geoDeparture, geoArrival) => {
             Math.cos(geoArrivalLatRadians) *
             Math.cos(
                 degreesToRadians(
-                Math.abs(geoDeparture[1] - geoArrival[0])
+                Math.abs(geoDeparture[1] - geoArrival[1])
                 )
             )
         )
