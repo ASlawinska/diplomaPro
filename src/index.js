@@ -144,7 +144,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 planeCountry.style.display = 'flex';
                 planeInternational.style.display = 'none';
                 planeIntercontinental.style.display = 'none';
-                console.log("krajowy");
                 fetch('https://api.jsonbin.io/b/609140f9d64cd16802a9beb7')
                 .then((resp)=>resp.json())
                 .then((data)=>{
@@ -157,7 +156,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 planeCountry.style.display = 'none';
                 planeInternational.style.display = 'flex';
                 planeIntercontinental.style.display = 'none';
-                console.log("miedzynarodowy");
                 fetch('https://api.jsonbin.io/b/609132cd8a409667ca05b861')
                     .then((resp)=>resp.json())
                     .then((data)=>{
@@ -170,7 +168,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 planeCountry.style.display = 'none';
                 planeInternational.style.display = 'none';
                 planeIntercontinental.style.display = 'flex';
-                console.log('międzykontynetalny');
                 fetch('https://api.jsonbin.io/b/60913eb28a409667ca05cedc')
                 .then((resp)=>resp.json())
                 .then((data)=>{
@@ -180,34 +177,30 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 })})
             };
     };
-// Calculte distance between departure and arrival place
-const degreesToRadians = degrees => degrees * (Math.PI / 180);
-const radiansToDegrees = radians => radians * (180 / Math.PI);
-const centralSubtendedAngle = (geoDeparture, geoArrival) => {
-    const geoDepartureLatRadians = degreesToRadians(geoDeparture[0])
-    const geoArrivalLatRadians = degreesToRadians(geoArrival[0])
-    return radiansToDegrees(
-        Math.acos(
-        Math.sin(geoDepartureLatRadians) * Math.sin(geoArrivalLatRadians) +
-          Math.cos(geoDepartureLatRadians) *
-            Math.cos(geoArrivalLatRadians) *
-            Math.cos(
-                degreesToRadians(
-                Math.abs(geoDeparture[1] - geoArrival[1])
+    // Calculte distance between departure and arrival place
+    const degreesToRadians = degrees => degrees * (Math.PI / 180);
+    const radiansToDegrees = radians => radians * (180 / Math.PI);
+    const centralSubtendedAngle = (locationX, locationY) => {
+        const locationXLatRadians = degreesToRadians(locationX[0])
+        console.log(locationXLatRadians);
+        const locationYLatRadians = degreesToRadians(locationY[0])
+        return radiansToDegrees(
+            Math.acos(
+                Math.sin(locationXLatRadians) * Math.sin(locationYLatRadians) + Math.cos(locationXLatRadians) * Math.cos    (locationYLatRadians) * Math.cos(degreesToRadians(Math.abs(locationX[1] - locationY[1])
+                        )
+                    )
                 )
             )
-        )
-    )
-};
-const earthRadius = 6371//km
-const greatCircleDistance = angle => 2 * Math.PI * earthRadius * (angle / 360)
-const distanceBetweenLocations = (geoDeparture, geoArrival) =>
-greatCircleDistance(centralSubtendedAngle(geoDeparture, geoArrival));
-
+    }
+    const earthRadius = 6371//km
+    const greatCircleDistance = angle => 2 * Math.PI * earthRadius * (angle / 360)
+    const distanceBetweenLocations = (locationX, locationY) =>
+        greatCircleDistance(centralSubtendedAngle(locationX, locationY))
+//cheking if input have value
     const checkIfBothIsFillAndShowPlane=()=>{
         if(inputDeparture.value && inputArrival.value){
             planePicture();
-            distanceBetweenLocations();
+            distanceBetweenLocations(geoDeparture, geoArrival);
         } else {
             console.log('nie');
         }
@@ -297,7 +290,6 @@ let popupPW = document.querySelector('.popupPW');
 let rule = document.querySelector('.rule');
 let singInUp = document.querySelector('.popupsingInUp');
 let popupRule = document.querySelector('.popupRulesBTN');
-console.log(popupRule);
 let popupRuleDesktop = document.querySelector('.popupRulesBTNDesktop');
 let popupPopularDirection = document.querySelector('.popupPopularDirectionBTN');
 let popupPopularDirectionDesktop = document.querySelector('.popupPopularDirectionBTNDesktop');
