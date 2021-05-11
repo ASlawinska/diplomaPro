@@ -182,7 +182,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     const radiansToDegrees = radians => radians * (180 / Math.PI);
     const centralSubtendedAngle = (locationX, locationY) => {
         const locationXLatRadians = degreesToRadians(locationX[0])
-        console.log(locationXLatRadians);
         const locationYLatRadians = degreesToRadians(locationY[0])
         return radiansToDegrees(
             Math.acos(
@@ -196,11 +195,77 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     const greatCircleDistance = angle => 2 * Math.PI * earthRadius * (angle / 360)
     const distanceBetweenLocations = (locationX, locationY) =>
         greatCircleDistance(centralSubtendedAngle(locationX, locationY))
+    
+    //CostCalculate
+const currencyOne = document.querySelector('#currency-one');
+const amountOne = document.querySelector('.amount-one');
+const currencyTwo = document.querySelector('#currency-two');
+const amountTwo = document.querySelector('.amount-two');
+const swapBtn = document.querySelector('.swap');
+const rateInfo = document.querySelector('.rate-info');
+
+const calculate = () => {
+    fetch(`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+        .then(res=>res.json())
+        .then(data=>{
+            const currency1 = currencyOne.value;
+            const currency2 = currencyTwo.value;
+            // calculating the starting value of ticket based on different currency
+            switch (currencyOne.value) {
+                case 'PLN':
+                    amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                    break;
+                case 'USD':
+                    amountOne.value = (0.3 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                    break;
+                case 'RUB':
+                    amountOne.value = (18 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                    break;
+                case 'EUR':
+                    amountOne.value = (0.2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                    break;
+                case 'HKD':
+                    amountOne.value = (2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                    break;
+                case 'MXN':
+                    amountOne.value = (5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                    break;
+                case 'BRL':
+                    amountOne.value = (1.5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                    break;
+                case 'ZAR':
+                    amountOne.value = (3,5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                    break;
+                default:
+                    break;
+                
+            }
+
+            //rateInfo
+            const rate = data.rates[currency2];
+            rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
+
+            //culculating
+            amountTwo.value = (amountOne.value * rate).toFixed(2);
+        })
+};
+//rechanging currency
+const swap = () => {
+    const oldCurrenncy = currencyOne.value;
+    currencyOne.value = currencyTwo.value;
+    currencyTwo.value = oldCurrenncy;
+}
+//addeventListener
+currencyOne.addEventListener('change', calculate);
+currencyTwo.addEventListener('change', calculate);
+swapBtn.addEventListener('click', swap);
+
 //cheking if input have value
     const checkIfBothIsFillAndShowPlane=()=>{
         if(inputDeparture.value && inputArrival.value){
             planePicture();
             distanceBetweenLocations(geoDeparture, geoArrival);
+            calculate();
         } else {
             console.log('nie');
         }
@@ -281,7 +346,6 @@ const getWeather = (lat, lon) => {
         .catch(()=>{warning.textContent ='Nie mogę pobrać lokalizacji.'})
     };
 
-// pobieranie wartości input zdef. przez uzytkownika
 
 
 //POPUP
@@ -472,41 +536,7 @@ pass.addEventListener('keyup', function () {
         p.innerHTML = 'Nie podałes hasła...'
     };
 })
-//CostCalculate
-const currencyOne = document.querySelector('#currency-one');
-const amountOne = document.querySelector('.amount-one');
-const currencyTwo = document.querySelector('#currency-two');
-const amountTwo = document.querySelector('.amount-two');
-const swapBtn = document.querySelector('.swap');
-const rateInfo = document.querySelector('.rate-info');
 
-const calculate = () => {
-    fetch(`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
-        .then(res=>res.json())
-        .then(data=>{
-            const currency1 = currencyOne.value;
-            const currency2 = currencyTwo.value;
-
-            //rateInfo
-            const rate = data.rates[currency2];
-            rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
-
-            //culculating
-            amountTwo.value = (amountOne.value * rate).toFixed(2);
-        })
-};
-//rechanging currency
-const swap = () => {
-    const oldCurrenncy = currencyOne.value;
-    currencyOne.value = currencyTwo.value;
-    currencyTwo.value = oldCurrenncy;
-}
-//addeventListener
-currencyOne.addEventListener('change', calculate);
-currencyTwo.addEventListener('change', calculate);
-amountOne.addEventListener('input', calculate);
-swapBtn.addEventListener('click', swap);
-calculate();
 // Year footer
 let footer = document.querySelector('.footer');
 footer.innerHTML = `Copyright &copy; ${year} <br>AFM diploma thesis Adrianna Sławińska`
