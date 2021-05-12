@@ -63,11 +63,11 @@
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-xl-4">
                             <label for="departureDate">Wybierz datę wylotu</label>
-                            <input type="date" name="departureDate" id="today" min="" required>
+                            <input type="date" name="departureDate" id="today" class="dateDeparture" min="" required>
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-xl-4">
                             <label for="arrivalDate">Wybierz datę powrotu</label>
-                            <input type="date" name="arrivalDate" id="tommorow" min="" required>
+                            <input type="date" name="arrivalDate" id="tommorow" class="dateArrival" min="" required>
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-xl-4">
                             <label for="numbPas">Liczba pasażerów</label>
@@ -78,6 +78,54 @@
                         </div>
                     </form>
                 </section>
+                <div class="summary">
+                    <div class="upSectionSummary">
+                        <section class="detailedFlight">
+                            <p class="infoDeparture"></p>
+                            <p class="infoDepartureDate"></p>
+                            <p class="infoDepartureHour"></p>
+                            <p class="sit"></p>
+                            <p class="infoArrival"></p>
+                            <p class="infoArrivalDate"></p>
+                            <p class="infoArrivalHour"></p>
+                        </section>
+                        <section class="costsCalculate">
+                            <h1>Cena biletu</h1>
+                            <div class="app-body">
+                                <div class="section-left">
+                                    <input type="number" class="amount-one" value="1">
+                                    <select id="currency-one">
+                                        <option value="PLN" selected>PLN</option>
+                                        <option value="USD">USD</option>
+                                        <option value="RUB">RUB</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="HKD">HKD</option>
+                                        <option value="MXN">MXN</option>
+                                        <option value="BRL">BRL</option>
+                                        <option value="ZAR">ZAR</option>
+                                    </select>
+                                </div>
+                                <button class="swap">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <div class="section-right">
+                                    <input type="number" class="amount-two" disabled>
+                                    <select id="currency-two">
+                                        <option value="PLN">PLN</option>
+                                        <option value="USD" selected>USD</option>
+                                        <option value="RUB">RUB</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="HKD">HKD</option>
+                                        <option value="MXN">MXN</option>
+                                        <option value="BRL">BRL</option>
+                                        <option value="ZAR">ZAR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p class="rate-info"></p>
+                        </section>
+                    </div>
+                </div>
                     <section class="weather">
                             <div class="top">
                                 <h1>POGODA</h1>
@@ -158,72 +206,6 @@
                     </div>
                     <button class="summaryButton">Podsumowanie</button>
                 </secion>
-            </div>
-            <div class="summary slide3">
-                <div class="upSectionSummary">
-                    <section class="detailedFlight">
-                        Twoje miejsce
-                    </section>
-                    <section class="costsCalculate">
-                        <h1>Cena biletu</h1>
-                        <div class="app-body">
-                            <div class="section-left">
-                                <input type="number" class="amount-one" value="1">
-                                <select id="currency-one">
-                                    <option value="PLN" selected>PLN</option>
-                                    <option value="USD">USD</option>
-                                    <option value="RUB">RUB</option>
-                                    <option value="EUR">EUR</option>
-                                    <option value="HKD">HKD</option>
-                                    <option value="MXN">MXN</option>
-                                    <option value="BRL">BRL</option>
-                                    <option value="ZAR">ZAR</option>
-                                </select>
-                            </div>
-                            <button class="swap">
-                                <i class="fas fa-sync-alt"></i>
-                            </button>
-                            <div class="section-right">
-                                <input type="number" class="amount-two" disabled>
-                                <select id="currency-two">
-                                    <option value="PLN">PLN</option>
-                                    <option value="USD" selected>USD</option>
-                                    <option value="RUB">RUB</option>
-                                    <option value="EUR">EUR</option>
-                                    <option value="HKD">HKD</option>
-                                    <option value="MXN">MXN</option>
-                                    <option value="BRL">BRL</option>
-                                    <option value="ZAR">ZAR</option>
-                                </select>
-                            </div>
-                        </div>
-                        <p class="rate-info"></p>
-                    </section>
-                </div>    
-                <section class="weather">
-                    <div class="top">
-                        <h1>POGODA</h1>
-                        <div class="main-info">
-                            <div>
-                                <h3 src="" class="city-name"></h3>
-                                <p class="warning"></p>
-                            </div>
-                            <img class="photo" src="../src/assets/unknown.png" alt="Obrazek przedstawiający pogodę" />
-                        </div>
-                    </div>
-                    <div class="bottom">
-                        <div class="headings">
-                            <p>Ciśnienie:</p>
-                            <p>Temperatura:</p>
-                            <p>Wilgotność:</p>
-                        </div>
-                        <div class="weather-info">
-                            <p class="pressure"></p>
-                            <p class="temp"></p>
-                            <p class="humidity"></p>
-                        </div>
-                    </div>
-                </section>
             </div>
         </main>
         <div class="popup">

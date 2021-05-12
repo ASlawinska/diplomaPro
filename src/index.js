@@ -18,29 +18,38 @@ const addActive = () => {
 }
 burgerBtn.addEventListener('click', addActive)
 //Visible slide
+// const slide1 = document.querySelector(".slide1");
+const chooseDirection = document.querySelector(".chooseDirection");
+const weather = document.querySelector(".weather");
 const slide1 = document.querySelector(".slide1");
 const slide2 = document.querySelector(".slide2");
-const slide3 = document.querySelector(".slide3");
+const summary = document.querySelector(".summary");
 const nextSlide = document.querySelector(".nextSlide");
 const summaryButton =document.querySelector(".summaryButton")
 const logo = document.querySelector(".logo");
 //Opening slide1, hidding slide2&3
 const visibleSlide1 = () => {
+    chooseDirection.style.display = 'flex';
+    weather.style.display = 'flex';
     slide1.style.display = 'flex';
     slide2.style.display = 'none';
-    slide3.style.display = 'none';
+    summary.style.display = 'none';
 };
 //Opening slide2, hidding slide1&3
 const visibleSlide2 = () => {
+    chooseDirection.style.display = 'none';
+    weather.style.display = 'none';
     slide1.style.display = 'none';
     slide2.style.display = 'flex';
-    slide3.style.display = 'none';
+    summary.style.display = 'none';
 };
 //Opening slide3, hidding slide1&2
 const visibleSlide3 = () => {
-    slide1.style.display = 'none';
+    chooseDirection.style.display = 'none';
+    slide1.style.display = 'flex';
+    weather.style.display = 'flex';
     slide2.style.display = 'none';
-    slide3.style.display = 'flex';
+    summary.style.display = 'flex';
 };
 //listening
 logo.addEventListener("click", visibleSlide1);
@@ -115,7 +124,8 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 } else {
                     let continentArrival = data[i].continent;
                     let countryArrival = data[i].country;
-                    arrivalAtribute = [continentArrival, countryArrival];
+                    let hour = data[i].hour;
+                    arrivalAtribute = [continentArrival, countryArrival, hour];
                     let latitudeArrival = data[i].lat;
                     let longitudeArrival = data[i].lon;
                     geoArrival = [latitudeArrival, longitudeArrival]
@@ -260,12 +270,34 @@ currencyOne.addEventListener('change', calculate);
 currencyTwo.addEventListener('change', calculate);
 swapBtn.addEventListener('click', swap);
 
+// info about flight
+const infoDeparture =document.querySelector('.infoDeparture');
+const infoDepartureDate =document.querySelector('.infoDepartureDate');
+const infoDepartureHour =document.querySelector('.infoDepartureHour');
+const sit =document.querySelector('.sit');
+const infoArrival =document.querySelector('.infoArrival');
+const infoArrivalDate =document.querySelector('.infoArrivalDate');
+const infoArrivalHour =document.querySelector('.infoArrivalHour');
+const inputDateDeparture = document.querySelector('.dateDeparture');
+const inputDateArrival = document.querySelector('.dateArrival');
+const choosingSits = document.querySelector('#inputSeat')
+const infoFlight = () => {
+    infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
+    infoDepartureDate.innerHTML = `Data wylotu ${inputDateDeparture.value}`
+    infoDepartureHour.innerHTML = `Godzina wylotu ${departureAtribute[2]}`
+    sit.innerHTML = `Miejsce ${choosingSits.value}`
+    infoArrival.innerHTML = `Powrót ${inputArrival.value} do ${inputDeparture.value}`
+    infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
+    infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
+}
+
 //cheking if input have value
     const checkIfBothIsFillAndShowPlane=()=>{
         if(inputDeparture.value && inputArrival.value){
             planePicture();
             distanceBetweenLocations(geoDeparture, geoArrival);
             calculate();
+            infoFlight();
         } else {
             console.log('nie');
         }

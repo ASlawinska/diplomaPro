@@ -16,6 +16,62 @@
         padding: 15px ;
     }
 }
+//summary page
+.summary{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include width(95%, 5px auto, $whiteTrasp);
+    @include breakpoint(laptop){
+        max-height: 40vh;
+        @include width(85%, 10px auto, $whiteTrasp);
+        padding: 15px ;
+    }
+    .upSectionSummary{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        @include width(90%, 10px auto, $whiteTrasp);
+        @include breakpoint(tablet){
+            flex-direction: row;
+            @include width(85%, 30px auto, $whiteTrasp);
+        }
+    }
+    .detailedFlight, .costsCalculate{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 3%;
+    }
+    .costsCalculate{
+        h1{
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        };
+        .app-body{
+            input, select{
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+                text-align: center;
+                @include styleInput;
+            };
+            select{
+                cursor: pointer;
+            };
+            input:focus, select:focus{
+                color: $pink;
+                border: none;
+            }
+            option{
+                color: $grey;
+                background-color: $whiteTrasp;
+            };
+        }
+    }
+}
+
 // weather section
 .weather{
     max-height: 30vh;
@@ -208,56 +264,7 @@
     }
 };
 
-//summary page
-.slide3{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    @include width(95%, 5px auto, $whiteTrasp);
-    .upSectionSummary{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        @include width(90%, 10px auto, $whiteTrasp);
-        @include breakpoint(tablet){
-            flex-direction: row;
-            @include width(85%, 30px auto, $whiteTrasp);
-        }
-    }
-    .detailedFlight, .costsCalculate{
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        padding: 3%;
-    }
-    .costsCalculate{
-        h1{
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        };
-        .app-body{
-            input, select{
-                font-size: 1.2rem;
-                margin-bottom: 10px;
-                text-align: center;
-                @include styleInput;
-            };
-            select{
-                cursor: pointer;
-            };
-            input:focus, select:focus{
-                color: $pink;
-                border: none;
-            }
-            option{
-                color: $grey;
-                background-color: $whiteTrasp;
-            };
-        }
-    }
-}
+
 
 
 //popup common section for both html file
