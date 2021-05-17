@@ -4,11 +4,11 @@ import style from "./scss/index.scss";
 const burgerBtn = document.querySelector('.burger');
 const open = document.querySelector('.fa-bars');
 const close = document.querySelector('.fa-times');
-const nav = document.querySelector('.nav')
+const nav = document.querySelector('.navBur')
 
 const addActive = () => {
-    nav.classList.toggle('active');
-    if (nav.classList.contains('active')) {
+    nav.classList.toggle('activeBur');
+    if (nav.classList.contains('activeBur')) {
         open.classList.add('hide');
         close.classList.remove('hide');
     } else {

@@ -27,3 +27,9 @@
     border-right: 3px solid $pink;
     border-bottom-right-radius: 15px;
 }
+@mixin positioning ($display, $flex-direction, $justify-content){
+    display: $display;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: center;
+}
