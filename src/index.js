@@ -77,14 +77,14 @@ let tommorowMin = tommorow.setAttribute('min', dateFormat2);
 thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 
-//Seletet list form
+//Seletet list form and working with json database 
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
     .then((data) => {
         data.forEach(function (element) {
             document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;
-        })//skąd
-        // pobranie wartości wybranej
+        })//where
+        // give chossing value
         let inputDeparture = document.getElementById('cityNameInput');
 
         data.forEach(function (element) {
@@ -92,7 +92,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
         });
         let inputArrival = document.getElementById('cityNameInputArrival');
         
-        // Funkcja ukazująca atrybuty
+        // showing atributes
         let departureAtribute
         let geoDeparture
         function showAtributeDeparture() {
@@ -133,13 +133,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 }
             }
         };
-        //nasłuchiwanie
-        inputDeparture.addEventListener('input', ()=>{showAtributeDeparture();
-            getWeather();
-            checkIfBothIsFillAndShowPlane();});
-        inputArrival.addEventListener('input', ()=>{showAtributeArrival();checkIfBothIsFillAndShowPlane();});
-
-
     // Wyświetlanie Obrazka samolotu
         const planePicture = function() {
             // pobranie elementów 
@@ -207,102 +200,127 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
         greatCircleDistance(centralSubtendedAngle(locationX, locationY))
     
     //CostCalculate
-const currencyOne = document.querySelector('#currency-one');
-const amountOne = document.querySelector('.amount-one');
-const currencyTwo = document.querySelector('#currency-two');
-const amountTwo = document.querySelector('.amount-two');
-const swapBtn = document.querySelector('.swap');
-const rateInfo = document.querySelector('.rate-info');
+    const currencyOne = document.querySelector('#currency-one');
+    const amountOne = document.querySelector('.amount-one');
+    const currencyTwo = document.querySelector('#currency-two');
+    const amountTwo = document.querySelector('.amount-two');
+    const swapBtn = document.querySelector('.swap');
+    const rateInfo = document.querySelector('.rate-info');
 
-const calculate = () => {
-    fetch(`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
-        .then(res=>res.json())
-        .then(data=>{
-            const currency1 = currencyOne.value;
-            const currency2 = currencyTwo.value;
-            // calculating the starting value of ticket based on different currency
-            switch (currencyOne.value) {
-                case 'PLN':
-                    amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                    break;
-                case 'USD':
-                    amountOne.value = (0.3 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                    break;
-                case 'RUB':
-                    amountOne.value = (18 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                    break;
-                case 'EUR':
-                    amountOne.value = (0.2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                    break;
-                case 'HKD':
-                    amountOne.value = (2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                    break;
-                case 'MXN':
-                    amountOne.value = (5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                    break;
-                case 'BRL':
-                    amountOne.value = (1.5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                    break;
-                case 'ZAR':
-                    amountOne.value = (3,5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                    break;
-                default:
-                    break;
-                
-            }
+    const calculate = () => {
+        fetch(`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+            .then(res=>res.json())
+            .then(data=>{
+                const currency1 = currencyOne.value;
+                const currency2 = currencyTwo.value;
+                // calculating the starting value of ticket based on different currency
+                switch (currencyOne.value) {
+                    case 'PLN':
+                        amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'USD':
+                        amountOne.value = (0.3 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'RUB':
+                        amountOne.value = (18 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'EUR':
+                        amountOne.value = (0.2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'HKD':
+                        amountOne.value = (2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'MXN':
+                        amountOne.value = (5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'BRL':
+                        amountOne.value = (1.5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'ZAR':
+                        amountOne.value = (3,5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    default:
+                        break;
 
-            //rateInfo
-            const rate = data.rates[currency2];
-            rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
+                }
 
-            //culculating
-            amountTwo.value = (amountOne.value * rate).toFixed(2);
-        })
-};
-//rechanging currency
-const swap = () => {
-    const oldCurrenncy = currencyOne.value;
-    currencyOne.value = currencyTwo.value;
-    currencyTwo.value = oldCurrenncy;
-}
-//addeventListener
-currencyOne.addEventListener('change', calculate);
-currencyTwo.addEventListener('change', calculate);
-swapBtn.addEventListener('click', swap);
+                //rateInfo
+                const rate = data.rates[currency2];
+                rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
 
-// info about flight
-const infoDeparture =document.querySelector('.infoDeparture');
-const infoDepartureDate =document.querySelector('.infoDepartureDate');
-const infoDepartureHour =document.querySelector('.infoDepartureHour');
-const sit =document.querySelector('.sit');
-const infoArrival =document.querySelector('.infoArrival');
-const infoArrivalDate =document.querySelector('.infoArrivalDate');
-const infoArrivalHour =document.querySelector('.infoArrivalHour');
-const inputDateDeparture = document.querySelector('.dateDeparture');
-const inputDateArrival = document.querySelector('.dateArrival');
-const choosingSits = document.querySelector('#inputSeat')
-const infoFlight = () => {
-    infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
-    infoDepartureDate.innerHTML = `Data wylotu ${inputDateDeparture.value}`
-    infoDepartureHour.innerHTML = `Godzina wylotu ${departureAtribute[2]}`
-    sit.innerHTML = `Miejsce ${choosingSits.value}`
-    infoArrival.innerHTML = `Powrót ${inputArrival.value} do ${inputDeparture.value}`
-    infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
-    infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
-}
-
-//cheking if input have value
-    const checkIfBothIsFillAndShowPlane=()=>{
-        if(inputDeparture.value && inputArrival.value){
-            planePicture();
-            distanceBetweenLocations(geoDeparture, geoArrival);
-            calculate();
-            infoFlight();
-        } else {
-            console.log('nie');
-        }
+                //culculating
+                amountTwo.value = (amountOne.value * rate).toFixed(2);
+            })
     };
-    
+    //rechanging currency
+    const swap = () => {
+        const oldCurrenncy = currencyOne.value;
+        currencyOne.value = currencyTwo.value;
+        currencyTwo.value = oldCurrenncy;
+    }
+    //addeventListener
+    currencyOne.addEventListener('change', calculate);
+    currencyTwo.addEventListener('change', calculate);
+    swapBtn.addEventListener('click', swap);
+
+    // info about flight
+    const infoDeparture =document.querySelector('.infoDeparture');
+    const infoDepartureDate =document.querySelector('.infoDepartureDate');
+    const infoDepartureHour =document.querySelector('.infoDepartureHour');
+    const sit =document.querySelector('.sit');
+    const infoArrival =document.querySelector('.infoArrival');
+    const infoArrivalDate =document.querySelector('.infoArrivalDate');
+    const infoArrivalHour =document.querySelector('.infoArrivalHour');
+    const inputDateDeparture = document.querySelector('.dateDeparture');
+    const inputDateArrival = document.querySelector('.dateArrival');
+    const choosingSits = document.querySelector('#inputSeat');
+    const amountPassanger = document.querySelector('#numbPas')
+    const infoFlight = () => {
+
+        infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
+        infoDepartureDate.innerHTML = `Data wylotu ${inputDateDeparture.value}`
+        infoDepartureHour.innerHTML = `Godzina wylotu ${departureAtribute[2]}`
+        sit.innerHTML = `Miejsce ${choosingSits.value}`
+        infoArrival.innerHTML = `Powrót ${inputArrival.value} do ${inputDeparture.value}`
+        infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
+        infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
+    }
+
+    //cheking if input have value
+        const checkIfBothIsFillAndShowPlane=()=>{
+            if(inputDeparture.value && inputArrival.value){
+                planePicture();
+                distanceBetweenLocations(geoDeparture, geoArrival);
+                calculate();
+                
+            } else {
+                console.log('nie');
+            }
+        };
+        // activation button 
+        const submitDisabled = () => {
+            const nextSlide = document.querySelector('.nextSlide');
+            if(inputDeparture.value && inputArrival.value && inputDateDeparture.value && inputDateArrival.value && amountPassanger.value){
+                nextSlide.disabled = false;
+                infoFlight();
+            } else {
+                nextSlide.disabled = true;
+            }
+        };
+        //listening
+        inputDeparture.addEventListener('input', ()=>{
+            showAtributeDeparture();
+            getWeather();
+            checkIfBothIsFillAndShowPlane();
+            submitDisabled()});
+        inputArrival.addEventListener('input', ()=>{
+            showAtributeArrival();
+            checkIfBothIsFillAndShowPlane();
+            submitDisabled();})
+        infoDepartureDate.addEventListener('input', submitDisabled);
+        infoArrivalDate.addEventListener('input', submitDisabled);
+        amountPassanger.addEventListener('input', submitDisabled);
+        //document.addEventListener("DOMContentLoaded", submitDisabled);
 })
     .catch((err) => console.log(err));
 
@@ -437,8 +455,7 @@ popupCloseSingInUp.addEventListener('click', closePopupsingInUp);
 // PopularWay Carousel
 let carousel = document.querySelector('.carouselPW');
 let cells = carousel.querySelectorAll('.carousel__cell');
-let carouselOption = document.querySelector('.carousel-options')
-//let cellCount= 9; // cellCount set from cells-range input value
+let carouselOption = document.querySelector('.carousel-options');
 let selectedIndex = 0;
 let cellWidth = carousel.offsetWidth;
 let cellHeight = carousel.offsetHeight;
@@ -492,13 +509,15 @@ function onOrientationChange() {
     if (widthScreen < 500) {
         isHorizontal = false;
         popupPW.style.flexDirection = 'row'
-        carouselOption.style.flexDirection = 'column'
+        carouselOption.style.flexDirection = 'column';
+        prevButtonPW.style.transform = 'rotate(90deg)';
+        nextButtonPW.style.transform = 'rotate(90deg)';
         rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
         changeCarousel();
     } else {
         isHorizontal = true;
-        popupPW.style.flexDirection = 'column'
-        carouselOption.style.flexDirection = 'row'
+        popupPW.style.flexDirection = 'column';
+        carouselOption.style.flexDirection = 'row';
         rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
         changeCarousel();
     }

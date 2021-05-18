@@ -357,20 +357,20 @@
                     transform: rotateY(280deg) translateZ(288px); }
                 &:nth-child(9) {
                     transform: rotateY(320deg) translateZ(288px); }}
-            .carousel-options {
-                display: flex;
-                justify-content: center;
-                text-align: center;
-                position: relative;
-                z-index: 500;
-                background: hsla(0, 0%, 100%, 0.8);
-                
-                }
             }
         }
     @include breakpoint(laptop){
         @include width(80%, 20px auto, $whiteTrasp)
     }
+    .carousel-options {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        z-index: 500;
+        background: hsla(0, 0%, 100%, 0.8);
+        
+        }
 }
 .popupsingInUp {
     @include positioning(none, column, center);
