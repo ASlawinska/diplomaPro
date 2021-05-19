@@ -26,7 +26,7 @@ body{
 //header 
 header{
     @include width(96vw, 5px auto, $whiteTrasp);
-    @include positioning(flex, row, space-between )
+    @include positioning(flex, row, space-between );
     @include breakpoint(laptop) {
         align-items: center;
         @include width(90vw, 10px auto, $whiteTrasp);

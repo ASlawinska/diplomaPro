@@ -32,7 +32,7 @@
         }
     }
     .detailedFlight, .costsCalculate{
-        @include positioning(flex, column, center)
+        @include positioning(flex, column, center);
         text-align: center;
         padding: 3%;
         h1{
