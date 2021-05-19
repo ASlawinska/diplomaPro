@@ -33,3 +33,38 @@
     justify-content: $justify-content;
     align-items: center;
 }
+@mixin transition($arg...) {
+    -webkit-transition: $arg;
+    -moz-transition: $arg;
+    -ms-transition: $arg;
+    -o-transition: $arg;
+    transition: $arg;
+}
+@mixin translateX($x...) {
+    -webkit-transform: translateX($x);
+    -moz-transform: translateX($x);
+    -ms-transform: translateX($x);
+    -o-transform: translateX($x);
+    transform: translateX($x);
+}
+@mixin translateZ($z...) {
+    -webkit-transform: translateZ($z);
+    -moz-transform: translateZ($z);
+    -ms-transform: translateZ($z);
+    -o-transform: translateZ($z);
+    transform: translateZ($z);
+}
+@mixin transformZrotateY($y, $z) {
+    -webkit-transform: rotateY($y) translateZ($z);
+    -moz-transform: rotateY($y) translateZ($z);
+    -ms-transform: rotateY($y) translateZ($z);
+    -o-transform: rotateY($y) translateZ($z);
+    transform: rotateY($y) translateZ($z);
+}
+@mixin scaleTranslate($k, $a, $b) {
+    -webkit-transform: scale($k) translate($a, $b);
+    -moz-transform: scale($k) translate($a, $b);  
+    -ms-transform: scale($k) translate($a, $b);
+    -o-transform: scale($k) translate($a, $b);
+    transform: scale($k) translate($a, $b);
+}

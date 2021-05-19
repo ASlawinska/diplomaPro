@@ -32,20 +32,20 @@
         }
     }
     .detailedFlight, .costsCalculate{
-        display: flex;
-        flex-direction: column;
+        @include positioning(flex, column, center)
         text-align: center;
         padding: 3%;
+        h1{
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: bold;
+        };
     }
     .costsCalculate{
-        h1{
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        };
         .app-body{
             input, select{
-                font-size: 1.2rem;
-                margin-bottom: 10px;
+                font-size: 0.9rem;
+                margin-bottom: 8px;
                 text-align: center;
                 @include styleInput;
             };
@@ -60,6 +60,12 @@
                 color: $grey;
                 background-color: $whiteTrasp;
             };
+            .section-up, .section-down{
+                @include positioning(flex, row, center)
+            }
+        }
+        .rate-info{
+            font-size: 0.7rem;
         }
     }
 }
@@ -135,10 +141,10 @@
                 height: 65vh;
                 width: auto;
                 object-fit: scale-down;
-                transition: all 1s;
+                @include transition(all 1s);
             }
             object:hover{
-                transform: scale(4) translate(0, 40%);
+                @include scaleTranslate(4, 0, 40%);
                 width:100%;
             }
             .unknown{
@@ -183,7 +189,7 @@
             i{
                 color: $lpink;
                 margin: 0 5px;
-                transform: color 0.5s ease;
+                @include transition(color 0.5s ease);
             }
             i:hover{
                 color:$pink;
@@ -197,11 +203,11 @@
                 @include positioning(flex, row, space-around);
                 ul{
                     @include positioning(flex, column, space-around);
+                    align-items: flex-start;
                     text-align: left;
                     font-size: 0.8rem;
                     li{
-                        display: flex;
-                        flex-direction: row;
+                        @include positioning(flex, row, space-around);
                         padding: 2%;
                         margin: 3px 5px;
                         i{
@@ -244,7 +250,7 @@
     @include width(95%, 5px auto, $whiteTrasp);
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    @include translateX(-50%);
     @include breakpoint(laptop){
         @include width(100%, 5px auto, $whiteTrasp)
     }
@@ -303,7 +309,7 @@
     @include width(95%, 5px auto, $whiteTrasp);
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    @include translateX(-50%);
     .scene {
         border: 1px solid #CCC;
         margin: 40px 0;
@@ -316,9 +322,9 @@
             width: 100%;
             height: 100%;
             position: absolute;
-            transform: translateZ(-288px);
+            @include translateZ(288px);
             transform-style: preserve-3d;
-            transition: transform 1s;
+            @include transition(transform 1s);
             .carousel__cell {
                 position: absolute;
                 width: 190px;
@@ -327,7 +333,7 @@
                 top: 10px;
                 border: 2px solid black;
                 text-align: center;
-                transition: transform 1s, opacity 1s;
+                @include transition (transform 1s, opacity 1s);
                 background-color: rgba(255, 255, 255, 0.7);
                 img{
                     margin-top: 30px;
@@ -340,31 +346,32 @@
                 }
                 
                 &:nth-child(1) {
-                    transform: rotateY(  0deg) translateZ(288px); }
+                    @include transformZrotateY(0deg, 288px); }
                 &:nth-child(2) {
-                    transform: rotateY( 40deg) translateZ(288px); }
+                    @include transformZrotateY(40deg, 288px); }
                 &:nth-child(3) {
-                    transform: rotateY( 80deg) translateZ(288px); }
+                    @include transformZrotateY(80deg, 288px); }
                 &:nth-child(4) {
-                    transform: rotateY(120deg) translateZ(288px); }
+                    @include transformZrotateY(120deg, 288px); }
                 &:nth-child(5) {
-                    transform: rotateY(160deg) translateZ(288px); }
+                    @include transformZrotateY(160deg, 288px); }
                 &:nth-child(6) {
-                    transform: rotateY(200deg) translateZ(288px); }
+                    @include transformZrotateY(200deg, 288px); }
                 &:nth-child(7) {
-                    transform: rotateY(240deg) translateZ(288px); }
+                    @include transformZrotateY(240deg, 288px); }
                 &:nth-child(8) {
-                    transform: rotateY(280deg) translateZ(288px); }
+                    @include transformZrotateY(280deg, 288px); }
                 &:nth-child(9) {
-                    transform: rotateY(320deg) translateZ(288px); }}
+                    @include transformZrotateY(320deg, 288px); }}
             }
         }
     @include breakpoint(laptop){
         @include width(80%, 20px auto, $whiteTrasp)
     }
     .carousel-options {
-        display: flex;
-        justify-content: center;
+        @include positioning(flex, column, center);
+        // display: flex;
+        // justify-content: center;
         text-align: center;
         position: relative;
         z-index: 500;
@@ -380,7 +387,7 @@
     @include width(95%, 5px auto, $whiteTrasp);
     bottom: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    @include translateX(-50%);
     @include breakpoint(laptop){
         @include width(100%, 5px auto, $whiteTrasp)
     }

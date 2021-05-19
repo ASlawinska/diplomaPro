@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-xl-4">
                             <label for="numbPas">Liczba pasażerów</label>
-                            <input type="number" name="numbPas" id="numbPas" min="1" step="1" required>
+                            <input type="number" name="numbPas" id="numbPas" value="1" min="1" step="1" required>
                         </div>
                         <div class="col-sm-12 col-md-6 col-xl-4">
                             <button class="nextSlide" disabled> Dalej</button>
@@ -81,6 +81,7 @@
                 <div class="summary">
                     <div class="upSectionSummary">
                         <section class="detailedFlight">
+                            <h1>Szczegóły lotu</h1>
                             <p class="infoDeparture"></p>
                             <p class="infoDepartureDate"></p>
                             <p class="infoDepartureHour"></p>
@@ -92,7 +93,7 @@
                         <section class="costsCalculate">
                             <h1>Cena biletu</h1>
                             <div class="app-body">
-                                <div class="section-left">
+                                <div class="section-up">
                                     <input type="number" class="amount-one" value="1">
                                     <select id="currency-one">
                                         <option value="PLN" selected>PLN</option>
@@ -108,7 +109,7 @@
                                 <button class="swap">
                                     <i class="fas fa-sync-alt"></i>
                                 </button>
-                                <div class="section-right">
+                                <div class="section-down">
                                     <input type="number" class="amount-two" disabled>
                                     <select id="currency-two">
                                         <option value="PLN">PLN</option>
@@ -123,7 +124,7 @@
                                 </div>
                             </div>
                             <p class="rate-info"></p>
-                            <button class='buy'>zapłać</button>
+                            <button class="buy">zapłać</button>
                         </section>
                     </div>
                 </div>
@@ -226,7 +227,6 @@
                     <span>Lista użytkowników:</span>
                     <ul>
                         <li>pobranie użytkowników z gotowego pliku typu json</li>
-                        <li>możliwość rejestracji/logowania z użyciem node'a i mongoDB (lub innego backendu)</li>
                     </ul>
             </ol>
             </div>

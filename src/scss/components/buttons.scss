@@ -12,7 +12,7 @@ button{
     border-right: 3px solid $pink;
     border-bottom-right-radius: 15px;
     border-top-left-radius: 5px;
-    margin: 0 auto;
+    margin: 10px auto;
     box-shadow: 5px 5px 15px 5px $grey;
     a:hover{
         text-decoration: none;
@@ -24,9 +24,10 @@ button:hover{
 }
 header .mobile button{
     position: absolute;
-    top: 2vh;
+    top: -3vh;
     right: 5vw;
     height: 8vh;
+    margin: 0 auto;
     background-color: transparent;
     background-image: none;
     border: none;
@@ -37,6 +38,7 @@ header .mobile button{
     transition: transform .3s;
     z-index: 100;
 }
+
 .summaryButton{
     margin-bottom: 10px;
 }
