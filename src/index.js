@@ -76,6 +76,7 @@ let todayMin = thisDay.setAttribute('min', dateFormat);
 let tommorowMin = tommorow.setAttribute('min', dateFormat2);
 thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
+//
 
 //Seletet list form and working with json database 
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
@@ -208,11 +209,15 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     const rateInfo = document.querySelector('.rate-info');
 
     const calculate = () => {
-        fetch(`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+        // const urlAPI = '';
+        //const keyApi = `6f189aeb0ddb9bf2f3c7e94a23e758ed`;
+        fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=6f189aeb0ddb9bf2f3c7e94a23e758ed&base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+                // (`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
             .then(res=>res.json())
             .then(data=>{
                 const currency1 = currencyOne.value;
                 const currency2 = currencyTwo.value;
+                console.log(data);
                 // calculating the starting value of ticket based on different currency
                 switch (currencyOne.value) {
                     case 'PLN':
@@ -281,7 +286,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
         infoDepartureDate.innerHTML = `Data wylotu ${inputDateDeparture.value}`
         infoDepartureHour.innerHTML = `Godzina wylotu ${departureAtribute[2]}`
         sit.innerHTML = `Miejsce ${choosingSits.value}`
-        infoArrival.innerHTML = `Powrót ${inputArrival.value} do ${inputDeparture.value}`
+        infoArrival.innerHTML = `Powrót z ${inputArrival.value} do ${inputDeparture.value}`
         infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
         infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
     }
