@@ -44,7 +44,7 @@
             font-weight: bold;
             margin: 15px auto;
         }
-        .passinfo, .nameinfo, .surnameinfo, .emailinfo{
+        .passinfo, .nameinfo, .lastnameinfo, .emailinfo{
             @include positioning(flex, column, center);
             font-size: 0.8rem;
             width: 80%;

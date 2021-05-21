@@ -82,8 +82,10 @@ tommorow.setAttribute('value', dateFormat2);
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
     .then((data) => {
+        console.log(data);
         data.forEach(function (element) {
             document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;
+            console.log(element);
         })//where
         // give chossing value
         let inputDeparture = document.getElementById('cityNameInput');
@@ -208,65 +210,65 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     const swapBtn = document.querySelector('.swap');
     const rateInfo = document.querySelector('.rate-info');
 
-    const calculate = () => {
-        // const urlAPI = '';
-        //const keyApi = `6f189aeb0ddb9bf2f3c7e94a23e758ed`;
-        fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=6f189aeb0ddb9bf2f3c7e94a23e758ed&base=${currencyOne.value}&symbols=${currencyTwo.value}`)
-                // (`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
-            .then(res=>res.json())
-            .then(data=>{
-                const currency1 = currencyOne.value;
-                const currency2 = currencyTwo.value;
-                console.log(data);
-                // calculating the starting value of ticket based on different currency
-                switch (currencyOne.value) {
-                    case 'PLN':
-                        amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                        break;
-                    case 'USD':
-                        amountOne.value = (0.3 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                        break;
-                    case 'RUB':
-                        amountOne.value = (18 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                        break;
-                    case 'EUR':
-                        amountOne.value = (0.2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                        break;
-                    case 'HKD':
-                        amountOne.value = (2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                        break;
-                    case 'MXN':
-                        amountOne.value = (5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                        break;
-                    case 'BRL':
-                        amountOne.value = (1.5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                        break;
-                    case 'ZAR':
-                        amountOne.value = (3,5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-                        break;
-                    default:
-                        break;
+    // const calculate = () => {
+    //     // const urlAPI = '';
+    //     //const keyApi = `6f189aeb0ddb9bf2f3c7e94a23e758ed`;
+    //     fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=6f189aeb0ddb9bf2f3c7e94a23e758ed&base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+    //             // (`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+    //         .then(res=>res.json())
+    //         .then(data=>{
+    //             const currency1 = currencyOne.value;
+    //             const currency2 = currencyTwo.value;
+    //             console.log(data);
+    //             // calculating the starting value of ticket based on different currency
+    //             switch (currencyOne.value) {
+    //                 case 'PLN':
+    //                     amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+    //                     break;
+    //                 case 'USD':
+    //                     amountOne.value = (0.3 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+    //                     break;
+    //                 case 'RUB':
+    //                     amountOne.value = (18 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+    //                     break;
+    //                 case 'EUR':
+    //                     amountOne.value = (0.2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+    //                     break;
+    //                 case 'HKD':
+    //                     amountOne.value = (2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+    //                     break;
+    //                 case 'MXN':
+    //                     amountOne.value = (5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+    //                     break;
+    //                 case 'BRL':
+    //                     amountOne.value = (1.5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+    //                     break;
+    //                 case 'ZAR':
+    //                     amountOne.value = (3,5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+    //                     break;
+    //                 default:
+    //                     break;
 
-                }
+    //             }
 
-                //rateInfo
-                const rate = data.rates[currency2];
-                rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
+    //             //rateInfo
+    //             const rate = data.rates[currency2];
+    //             rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
 
-                //culculating
-                amountTwo.value = (amountOne.value * rate).toFixed(2);
-            })
-    };
-    //rechanging currency
-    const swap = () => {
-        const oldCurrenncy = currencyOne.value;
-        currencyOne.value = currencyTwo.value;
-        currencyTwo.value = oldCurrenncy;
-    }
-    //addeventListener
-    currencyOne.addEventListener('change', calculate);
-    currencyTwo.addEventListener('change', calculate);
-    swapBtn.addEventListener('click', swap);
+    //             //culculating
+    //             amountTwo.value = (amountOne.value * rate).toFixed(2);
+    //         })
+    // };
+    // //rechanging currency
+    // const swap = () => {
+    //     const oldCurrenncy = currencyOne.value;
+    //     currencyOne.value = currencyTwo.value;
+    //     currencyTwo.value = oldCurrenncy;
+    // }
+    // //addeventListener
+    // currencyOne.addEventListener('change', calculate);
+    // currencyTwo.addEventListener('change', calculate);
+    // swapBtn.addEventListener('click', swap);
 
     // info about flight
     const infoDeparture =document.querySelector('.infoDeparture');
@@ -279,7 +281,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     const inputDateDeparture = document.querySelector('.dateDeparture');
     const inputDateArrival = document.querySelector('.dateArrival');
     const choosingSits = document.querySelector('#inputSeat');
-    const amountPassanger = document.querySelector('#numbPas')
+    const amountPassanger = document.querySelector('#numbPas');
     const infoFlight = () => {
 
         infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
@@ -531,52 +533,74 @@ function onOrientationChange() {
 // set initials
 onOrientationChange();
 //SingInUP validation
+
 const pass = document.querySelector('#password');
 const name = document.querySelector('#name');
-const surname = document.querySelector('#surname');
+const lastname = document.querySelector('#lastname');
 const email = document.querySelector('#email');
 const p = document.querySelector('.passinfo');
 const nameinfo = document.querySelector('.nameinfo');
-const surnameinfo = document.querySelector('.surnameinfo');
+const lastnameinfo = document.querySelector('.lastnameinfo');
 const emailinfo = document.querySelector('.emailinfo');
-const letters = /[a-z]/i;
+const letters = /^[A-Za-z]/i;
 const numbers = /[0-9]/;
 const special = /[!@#$%^&*()]/;
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const minValue = 8;
 
+//Autocomplite the login section
+const autocomplite = () => {
+    fetch(`https://api.jsonbin.io/b/60a6668c12f79a07735f593e`)
+        .then (resp=>resp.json())
+        .then (data =>
+            console.log(data)
+            
+            )
+}
+autocomplite();
 const checkName = () => {
     if (name.value.match(letters)){
         //name.value.trim();
-        return true;
     } else {
-        nameinfo.innerHTML = 'Twoje imię jest niepoprawne.'
-        return false;
+        nameinfo.innerHTML = 'Wpisz poprawne imię.'
     }
 }
-const checkSurname = () => {
-    if (surname.value.match(letters)){
-        //surname.value.trim();
-        return true;
+const checklastname = () => {
+    if (lastname.value.match(letters)){
+        //lastname.value.trim;
     } else {
-        surnameinfo.innerHTML = 'Twoje nazwisko jest niepoprawne.'
-        return false;
+        lastnameinfo.innerHTML = 'Wpisz poprawne nazwisko'
     }
 }
 const checkEmail = () => {
     if (email.value.match(validRegex)){
-        return true;
     } else {
         emailinfo.innerHTML = 'Wpisz poprawny e-mail.'
-        return false;
     }
 }
-name.addEventListener('input', checkName);
-surname.addEventListener('input', checkSurname);
-email.addEventListener('input', checkEmail);
+name.addEventListener('keyup', function () {
+    if (name.value !== '') {
+        checkName();
+    } else {
+        nameinfo.innerHTML = 'Nie podałes imienia...'
+    };
+});
+lastname.addEventListener('keyup', function () {
+    if (lastname.value !== '') {
+        checklastname();
+    } else {
+        lastnameinfo.innerHTML = 'Nie podałes nazwiska...'
+    };
+});
+email.addEventListener('keyup', function () {
+    if (email.value !== '') {
+        checkEmail();
+    } else {
+        emailinfo.innerHTML = 'Nie podałes adresu e-mail...'
+    };
+});
 
 const checkPassword = () => {
-
     if (pass.value.length > minValue && pass.value.match(letters) && pass.value.match(numbers) && pass.value.match(special)) {
     p.innerHTML = 'Masz bardzo dobre hasło';
     } else if (pass.value.length > minValue && pass.value.match(letters) && pass.value.match(numbers)) {
