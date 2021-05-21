@@ -83,10 +83,26 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
     .then((data) => {
         console.log(data);
-        data.forEach(function (element) {
-            document.getElementById("listOfCities").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;
-            console.log(element);
-        })//where
+        if (document.getElementById('cityNameInput').value!=="") {
+            for (let i = 0; i < data.length; i++) {
+                if (document.getElementById('cityNameInput').value===data.city[i].text) {
+                    const dataNew = data.splice(pos, [i]);
+                    dataNew.forEach(function (element) {
+                        document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"</option>`;
+                        console.log(element);
+                    })//where
+                }
+            }
+        } else {
+            data.forEach(function (element) {
+                document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"</option>`;
+                console.log(element);
+            })
+        }
+        // data.forEach(function (element) {
+        //     document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"</option>`;
+        //     console.log(element);
+        // })//where
         // give chossing value
         let inputDeparture = document.getElementById('cityNameInput');
 
