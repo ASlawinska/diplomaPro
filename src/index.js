@@ -77,40 +77,93 @@ let tommorowMin = tommorow.setAttribute('min', dateFormat2);
 thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 //
+//
+let cities = [];
+const createOption = (element) => {
+    let option = document.createElement('option');
+    option.value = element.city;
+    option.setAttribute(`data-country`, element.country)
+    option.setAttribute(`data-continent`, element.continent)
+    option.innerText = element.city;
+    return option
+}
+const initialData = () => {
+    let data = [...cities];
+    let listOfCities = document.getElementById("listOfCities");
+    let listOfCitiesArrival = document.getElementById("listOfCitiesArrival");
+    const optionFunction =(list) => {
+        data.forEach(function (element) {
+            const option = createOption(element);
+            list.appendChild(option)
+            console.log(element);
+        })
+    }
+    optionFunction(listOfCities);
+    optionFunction(listOfCitiesArrival);
 
+}
+const clearInput = (input, city) => {
+    for (let i = 0; i < input.children.length; i++) {
+        if (input.children[i].innerText === city) {
+            input.children[i].remove();
+        }
+    }
+}
+const addingCity = (input, city) => {
+    let j = 0;
+    for (let i = 0; i < cities.length; i++, j++) {
+        if ( cities[i].city !== input.children[j].innerText) {
+            if (cities[i].city === city) {
+                j--;
+            } else {
+                const option = createOption(cities[i]);
+                if (j+1===input.children.length) {
+                    input.appendChild(option);
+                }else{
+                input.insertBefore(option, input.children[j+1]);
+                }
+            }
+        }
+        
+    }
+}
 //Seletet list form and working with json database 
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
     .then((data) => {
+        cities = data;
         console.log(data);
-        if (document.getElementById('cityNameInput').value!=="") {
-            for (let i = 0; i < data.length; i++) {
-                if (document.getElementById('cityNameInput').value===data.city[i].text) {
-                    const dataNew = data.splice(pos, [i]);
-                    dataNew.forEach(function (element) {
-                        document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"</option>`;
-                        console.log(element);
-                    })//where
-                }
+        initialData();
+        let inputArrival = document.getElementById('cityNameInputArrival'); 
+        let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
+        let inputDeparture = document.getElementById('cityNameInput');
+        let inputDeparturelist = document.getElementById('listOfCities');
+        let onChange = (event) => {
+            if(event.currentTarget=== inputArrival){
+                clearInput(inputDeparturelist, inputArrival.value)
+                addingCity(inputDeparturelist, inputArrival.value )
+                console.log('inputArrival');
+            } else {
+                clearInput(inputArrivallist, inputDeparture.value);
+                addingCity(inputArrivallist, inputDeparture.value);
+                
+                console.log('inputDeparture');
             }
-        } else {
-            data.forEach(function (element) {
-                document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"</option>`;
-                console.log(element);
-            })
+            console.log(event);
+            
         }
+        
         // data.forEach(function (element) {
-        //     document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"</option>`;
+        //     document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"  data-country="${element.country}" data-continent="${element.continent}"> ${element.city}</option>`;
         //     console.log(element);
         // })//where
-        // give chossing value
-        let inputDeparture = document.getElementById('cityNameInput');
-
-        data.forEach(function (element) {
-            document.getElementById("listOfCitiesArrival").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;//do
-        });
-        let inputArrival = document.getElementById('cityNameInputArrival');
         
+        // data.forEach(function (element) {
+        //         document.getElementById("listOfCitiesArrival").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;//where
+        // });
+        // give chossing value
+        inputArrival.addEventListener('change', onChange);
+        inputDeparture.addEventListener('change', onChange);
         // showing atributes
         let departureAtribute
         let geoDeparture
@@ -226,65 +279,65 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     const swapBtn = document.querySelector('.swap');
     const rateInfo = document.querySelector('.rate-info');
 
-    // const calculate = () => {
-    //     // const urlAPI = '';
-    //     //const keyApi = `6f189aeb0ddb9bf2f3c7e94a23e758ed`;
-    //     fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=6f189aeb0ddb9bf2f3c7e94a23e758ed&base=${currencyOne.value}&symbols=${currencyTwo.value}`)
-    //             // (`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
-    //         .then(res=>res.json())
-    //         .then(data=>{
-    //             const currency1 = currencyOne.value;
-    //             const currency2 = currencyTwo.value;
-    //             console.log(data);
-    //             // calculating the starting value of ticket based on different currency
-    //             switch (currencyOne.value) {
-    //                 case 'PLN':
-    //                     amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'USD':
-    //                     amountOne.value = (0.3 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'RUB':
-    //                     amountOne.value = (18 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'EUR':
-    //                     amountOne.value = (0.2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'HKD':
-    //                     amountOne.value = (2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'MXN':
-    //                     amountOne.value = (5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'BRL':
-    //                     amountOne.value = (1.5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'ZAR':
-    //                     amountOne.value = (3,5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 default:
-    //                     break;
+    const calculate = () => {
+        // const urlAPI = '';
+        //const keyApi = `6f189aeb0ddb9bf2f3c7e94a23e758ed`;
+        fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=6f189aeb0ddb9bf2f3c7e94a23e758ed&base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+                // (`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+            .then(res=>res.json())
+            .then(data=>{
+                const currency1 = currencyOne.value;
+                const currency2 = currencyTwo.value;
+                console.log(data);
+                // calculating the starting value of ticket based on different currency
+                switch (currencyOne.value) {
+                    case 'PLN':
+                        amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'USD':
+                        amountOne.value = (0.3 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'RUB':
+                        amountOne.value = (18 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'EUR':
+                        amountOne.value = (0.2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'HKD':
+                        amountOne.value = (2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'MXN':
+                        amountOne.value = (5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'BRL':
+                        amountOne.value = (1.5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    case 'ZAR':
+                        amountOne.value = (3,5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
+                        break;
+                    default:
+                        break;
 
-    //             }
+                }
 
-    //             //rateInfo
-    //             const rate = data.rates[currency2];
-    //             rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
+                //rateInfo
+                const rate = data.rates[currency2];
+                rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
 
-    //             //culculating
-    //             amountTwo.value = (amountOne.value * rate).toFixed(2);
-    //         })
-    // };
-    // //rechanging currency
-    // const swap = () => {
-    //     const oldCurrenncy = currencyOne.value;
-    //     currencyOne.value = currencyTwo.value;
-    //     currencyTwo.value = oldCurrenncy;
-    // }
-    // //addeventListener
-    // currencyOne.addEventListener('change', calculate);
-    // currencyTwo.addEventListener('change', calculate);
-    // swapBtn.addEventListener('click', swap);
+                //culculating
+                amountTwo.value = (amountOne.value * rate).toFixed(2);
+            })
+    };
+    //rechanging currency
+    const swap = () => {
+        const oldCurrenncy = currencyOne.value;
+        currencyOne.value = currencyTwo.value;
+        currencyTwo.value = oldCurrenncy;
+    }
+    //addeventListener
+    currencyOne.addEventListener('change', calculate);
+    currencyTwo.addEventListener('change', calculate);
+    swapBtn.addEventListener('click', swap);
 
     // info about flight
     const infoDeparture =document.querySelector('.infoDeparture');
@@ -314,7 +367,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
             if(inputDeparture.value && inputArrival.value){
                 planePicture();
                 distanceBetweenLocations(geoDeparture, geoArrival);
-                calculate();
+                //calculate();
                 
             } else {
                 console.log('nie');
