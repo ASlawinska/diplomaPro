@@ -392,3 +392,16 @@
         @include width(100%, 5px auto, $whiteTrasp)
     }
 }
+.pay{
+    @include positioning(none, column, center);
+    position: fixed;
+    height: 100vh;
+    z-index: 200;
+    @include width(95%, 5px auto, $white);
+    bottom: 20px;
+    left: 50%;
+    @include translateX(-50%);
+    @include breakpoint(laptop){
+        @include width(100%, 5px auto, $white)
+    }
+}

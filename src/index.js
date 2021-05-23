@@ -95,7 +95,6 @@ const initialData = () => {
         data.forEach(function (element) {
             const option = createOption(element);
             list.appendChild(option)
-            console.log(element);
         })
     }
     optionFunction(listOfCities);
@@ -132,7 +131,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
     .then((data) => {
         cities = data;
-        console.log(data);
         initialData();
         let inputArrival = document.getElementById('cityNameInputArrival'); 
         let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
@@ -142,25 +140,13 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
             if(event.currentTarget=== inputArrival){
                 clearInput(inputDeparturelist, inputArrival.value)
                 addingCity(inputDeparturelist, inputArrival.value )
-                console.log('inputArrival');
             } else {
                 clearInput(inputArrivallist, inputDeparture.value);
                 addingCity(inputArrivallist, inputDeparture.value);
-                
-                console.log('inputDeparture');
             }
             console.log(event);
             
         }
-        
-        // data.forEach(function (element) {
-        //     document.getElementById("listOfCities").innerHTML += `<option value="${element.city}"  data-country="${element.country}" data-continent="${element.continent}"> ${element.city}</option>`;
-        //     console.log(element);
-        // })//where
-        
-        // data.forEach(function (element) {
-        //         document.getElementById("listOfCitiesArrival").innerHTML += `<option value="${element.city}" data-country="${element.country}" data-continent="${element.continent}"> ${element.city} </option>`;//where
-        // });
         // give chossing value
         inputArrival.addEventListener('change', onChange);
         inputDeparture.addEventListener('change', onChange);
@@ -278,14 +264,14 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     const amountTwo = document.querySelector('.amount-two');
     const swapBtn = document.querySelector('.swap');
     const rateInfo = document.querySelector('.rate-info');
+    const costInfo = document.querySelector('.cost-info');
+    const amountPassanger = document.querySelector('#numbPas');
 
     const calculate = () => {
-        // const urlAPI = '';
-        //const keyApi = `6f189aeb0ddb9bf2f3c7e94a23e758ed`;
-        fetch(`http://api.exchangeratesapi.io/v1/latest?access_key=6f189aeb0ddb9bf2f3c7e94a23e758ed&base=${currencyOne.value}&symbols=${currencyTwo.value}`)
-                // (`https://api.ratesapi.io/api/2010-01-12?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
+        fetch(`https://api.exchangerate.host/latest?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
             .then(res=>res.json())
             .then(data=>{
+                console.log(data.base);
                 const currency1 = currencyOne.value;
                 const currency2 = currencyTwo.value;
                 console.log(data);
@@ -317,12 +303,11 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                         break;
                     default:
                         break;
-
                 }
-
                 //rateInfo
                 const rate = data.rates[currency2];
                 rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
+                costInfo.textContent = `Do zapłaty = ${amountPassanger}*${currency2}`;
 
                 //culculating
                 amountTwo.value = (amountOne.value * rate).toFixed(2);
@@ -350,7 +335,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     const inputDateDeparture = document.querySelector('.dateDeparture');
     const inputDateArrival = document.querySelector('.dateArrival');
     const choosingSits = document.querySelector('#inputSeat');
-    const amountPassanger = document.querySelector('#numbPas');
+    //const amountPassanger = document.querySelector('#numbPas');
     const infoFlight = () => {
 
         infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
@@ -367,7 +352,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
             if(inputDeparture.value && inputArrival.value){
                 planePicture();
                 distanceBetweenLocations(geoDeparture, geoArrival);
-                //calculate();
+                calculate();
                 
             } else {
                 console.log('nie');
@@ -685,6 +670,14 @@ pass.addEventListener('keyup', function () {
         p.innerHTML = 'Nie podałes hasła...'
     };
 })
+//buy tikets
+let buyButton = document.querySelector('.buy');
+let payPopup = document.querySelector('.pay');
+
+const visiblePayPopup = () => {
+    payPopup.style.display="flex";
+}
+buyButton.addEventListener('click', visiblePayPopup);
 
 // Year footer
 let footer = document.querySelector('.footer');
