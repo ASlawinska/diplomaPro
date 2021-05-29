@@ -77,7 +77,7 @@ let tommorowMin = tommorow.setAttribute('min', dateFormat2);
 thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
 //
-//
+//Adding removing option city 
 let cities = [];
 const createOption = (element) => {
     let option = document.createElement('option');
@@ -126,6 +126,88 @@ const addingCity = (input, city) => {
         
     }
 }
+// Adding removing sits 
+let sits = [];
+const createInputName = () => {
+    let inputName = document.createElement('input');
+    inputName.setAttribute(`placeholder`, 'Imię i nazwisko');
+    inputName.setAttribute(`required`, 'required');
+    return inputName
+}
+const createOptionSits = (element) => {
+    let option = document.createElement('option');
+    option.value = element.seat;
+    option.innerText = element.seat;
+    return option
+}
+const createLabelSits = () => {
+    let label = document.createElement('label');
+    label.setAttribute(`for`, 'seats');
+    label.innerText = `Miejsce: `;
+    return label
+}
+const createInputSits = () => {
+    let inputSits = document.createElement('input');
+    inputSits.setAttribute(`type`, 'text');
+    inputSits.setAttribute(`list`, 'listOfSeats');
+    inputSits.setAttribute(`name`, 'seats');
+    inputSits.setAttribute(`id`, 'inputSeat');
+    inputSits.setAttribute(`placeholder`, 'Wybierz miejsce');
+    inputSits.setAttribute(`required`, 'required');
+    return inputSits
+}
+const createDatalistSits = () => {
+    let datalist = document.createElement('datalist');
+    datalist.setAttribute(`id`, 'listOfSeats');
+    return datalist
+}
+const initialDataSits = () => {
+    let data = [...sits];
+    let listOfSeats = document.getElementById("listOfSeats");
+    const optionFunctionSits =(list) => {
+        data.forEach(function (element) {
+            const option = createOptionSits(element);
+            list.appendChild(option)
+        })
+    }
+    optionFunctionSits(listOfSeats);
+
+}
+const addFormSits = () => {
+    let numPassanger = document.querySelector('#numbPas');
+    for (let i = 1; i <= numPassanger.value; i++) {
+        let infoPlane = document.querySelector('.infoPlane');
+        infoPlane.appendChild(createInputName());
+        infoPlane.appendChild(createLabelSits());
+        infoPlane.appendChild(createInputSits());
+        infoPlane.appendChild(createDatalistSits());
+        
+}}
+const clearInputSits = (input, sit) => {
+    for (let i = 0; i < input.children.length; i++) {
+        if (input.children[i].innerText === sit) {
+            input.children[i].remove();
+        }
+    }
+}
+const addingSits = (input, sit) => {
+    let j = 0;
+    for (let i = 0; i < sits.length; i++, j++) {
+        if ( sits[i].city !== input.children[j].innerText) {
+            if (sits[i].sit === sit) {
+                j--;
+            } else {
+                const option = createOptionSits(sits[i]);
+                if (j+1===input.children.length) {
+                    input.appendChild(option);
+                }else{
+                input.insertBefore(option, input.children[j+1]);
+                }
+            }
+        }
+        
+    }
+}
 //Seletet list form and working with json database 
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
@@ -144,8 +226,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 clearInput(inputArrivallist, inputDeparture.value);
                 addingCity(inputArrivallist, inputDeparture.value);
             }
-            console.log(event);
-            
         }
         // give chossing value
         inputArrival.addEventListener('change', onChange);
@@ -208,10 +288,15 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 fetch('https://api.jsonbin.io/b/609140f9d64cd16802a9beb7')
                 .then((resp)=>resp.json())
                 .then((data)=>{
-                    document.getElementById("listOfSeats").innerHTML='';
-                    data.forEach(function (element) {
-                        document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
-                })})
+                    sits = data;
+                    addFormSits();
+                    initialDataSits();
+
+                    // document.getElementById("listOfSeats").innerHTML='';
+                    // data.forEach(function (element) {
+                    //     document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
+                    // })
+            })
             } else if (departureAtribute[0]===arrivalAtribute[0]) {
                 planeUnknow.style.display = 'none';
                 planeCountry.style.display = 'none';
@@ -341,7 +426,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
         infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
         infoDepartureDate.innerHTML = `Data wylotu ${inputDateDeparture.value}`
         infoDepartureHour.innerHTML = `Godzina wylotu ${departureAtribute[2]}`
-        sit.innerHTML = `Miejsce ${choosingSits.value}`
+        //sit.innerHTML = `Miejsce ${choosingSits.value}`
         infoArrival.innerHTML = `Powrót z ${inputArrival.value} do ${inputDeparture.value}`
         infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
         infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
