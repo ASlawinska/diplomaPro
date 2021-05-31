@@ -146,16 +146,83 @@ const createLabelSits = () => {
     label.innerText = `Miejsce: `;
     return label
 }
-const createInputSits = () => {
+const createInputSits = (i) => {
     let inputSits = document.createElement('input');
     inputSits.setAttribute(`type`, 'text');
     inputSits.setAttribute(`list`, 'listOfSeats');
     inputSits.setAttribute(`name`, 'seats');
-    inputSits.setAttribute(`id`, 'inputSeat');
+    inputSits.setAttribute(`class`, `class${i} inputSeat`);
     inputSits.setAttribute(`placeholder`, 'Wybierz miejsce');
-    inputSits.setAttribute(`required`, 'required');
     return inputSits
 }
+const breakeLine = () => {
+    let breakeLine = document.createElement('br');
+    return breakeLine
+}
+const createInputLuggage = () => {
+    let chooseLuggage = document.createElement('div');
+    chooseLuggage.setAttribute('class', 'chooseLuggage')
+    let inputLuggageHand = document.createElement('input');
+    inputLuggageHand.setAttribute(`type`, 'radio');
+    inputLuggageHand.setAttribute(`name`, 'radio');
+    inputLuggageHand.setAttribute(`value`, 'bagaż podręczny');
+    
+    let iHand = document.createElement('i');
+    iHand.setAttribute('class', 'fas fa-suitcase');
+    iHand.innerText = `Bagaż podręczny`;
+    inputLuggageHand.appendChild(iHand);
+
+    let inputLuggageLess10kg = document.createElement('input');
+    inputLuggageLess10kg.setAttribute(`type`, 'radio');
+    inputLuggageLess10kg.setAttribute(`name`, 'radio');
+    inputLuggageLess10kg.setAttribute(`value`, 'Bagaż do 10kg');
+    
+    let iLess10kg = document.createElement('i');
+    iLess10kg.setAttribute('class', 'fas fa-suitcase-rolling');
+    iLess10kg.innerText = `Bagaż do 10kg`;
+    inputLuggageLess10kg.appendChild(iLess10kg);
+
+    let inputLuggageLess25kg = document.createElement('input');
+    inputLuggageLess25kg.setAttribute(`type`, 'radio');
+    inputLuggageLess25kg.setAttribute(`name`, 'radio');
+    inputLuggageLess25kg.setAttribute(`value`, 'Bagaż do 25kg');
+    
+    let iLess25kg = document.createElement('i');
+    iLess25kg.setAttribute('class', 'fas fa-luggage-cart');
+    iLess25kg.innerText = `Duży bagaż do 25kg`;
+    inputLuggageLess25kg.appendChild(iLess25kg);
+
+    let inputLuggageOther = document.createElement('input');
+    inputLuggageOther.setAttribute(`type`, 'radio');
+    inputLuggageOther.setAttribute(`name`, 'radio');
+    inputLuggageOther.setAttribute(`value`, 'Bagaż niewymiarowy');
+    
+    let iOther = document.createElement('i');
+    iOther.setAttribute('class', 'fas fa-luggage-cart');
+    iOther.innerText = `Bagaż niewymiarowy`;
+    inputLuggageOther.appendChild(iOther);
+    
+
+    chooseLuggage.appendChild(inputLuggageHand);
+    chooseLuggage.appendChild(iHand);
+    chooseLuggage.appendChild(breakeLine());
+
+    chooseLuggage.appendChild(inputLuggageLess10kg);
+    chooseLuggage.appendChild(iLess10kg);
+    chooseLuggage.appendChild(breakeLine());
+
+    chooseLuggage.appendChild(inputLuggageLess25kg);
+    chooseLuggage.appendChild(iLess25kg);
+    chooseLuggage.appendChild(breakeLine());
+
+    chooseLuggage.appendChild(inputLuggageOther);
+    chooseLuggage.appendChild(iOther);
+    chooseLuggage.appendChild(breakeLine());
+
+    return chooseLuggage
+}
+
+
 const createDatalistSits = () => {
     let datalist = document.createElement('datalist');
     datalist.setAttribute(`id`, 'listOfSeats');
@@ -173,16 +240,28 @@ const initialDataSits = () => {
     optionFunctionSits(listOfSeats);
 
 }
+const hr = () =>{
+    let hr = document.createElement('hr');
+    return hr
+}
 const addFormSits = () => {
     let numPassanger = document.querySelector('#numbPas');
     for (let i = 1; i <= numPassanger.value; i++) {
         let infoPlane = document.querySelector('.infoPlane');
         infoPlane.appendChild(createInputName());
+        infoPlane.appendChild(breakeLine());
         infoPlane.appendChild(createLabelSits());
-        infoPlane.appendChild(createInputSits());
+        infoPlane.appendChild(createInputSits(i));
         infoPlane.appendChild(createDatalistSits());
-        
+        infoPlane.appendChild(createInputLuggage());
+        infoPlane.appendChild(hr());
 }}
+// const giveElementPassangerSit = () => {
+//     for (let i = 1; i < numPassanger.value; i++) {
+//         let passanger = document.querySelector(`.class${i}`);
+//         console.log(passanger);
+//     }
+// }
 const clearInputSits = (input, sit) => {
     for (let i = 0; i < input.children.length; i++) {
         if (input.children[i].innerText === sit) {
@@ -291,11 +370,19 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                     sits = data;
                     addFormSits();
                     initialDataSits();
+                    // let numPassanger = document.querySelector('#numbPas');
+                    // let passangerSit = [];
+                    // for (let i = 1; i <= numPassanger.value; i++){
+                    //     passangerSit.push(document.querySelector(`.class${i}`))
+                    // }
+                    // console.log(passangerSit);
+                    let inputSitButton = document.querySelectorAll('.inputSeat');
+                    console.log(inputSitButton);
+                    inputSitButton.forEach(el=>{
+                        el.addEventListener('change', console.log(inputSitButton))
+                    })
+                        
 
-                    // document.getElementById("listOfSeats").innerHTML='';
-                    // data.forEach(function (element) {
-                    //     document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
-                    // })
             })
             } else if (departureAtribute[0]===arrivalAtribute[0]) {
                 planeUnknow.style.display = 'none';

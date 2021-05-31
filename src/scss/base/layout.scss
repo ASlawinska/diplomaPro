@@ -177,7 +177,7 @@
         @include breakpoint(laptop){
             @include width(45%, 5px auto, $whiteTrasp);
         }
-        .chooseLaugage, .infoPlane, .infoLegend{
+        .infoPlane, .infoLegend{
             @include positioning(flex, column, center);
             padding: 10px;
             @include width(90%, 15px auto, $whiteTrasp);
@@ -185,19 +185,20 @@
                 @include width(85%, 10px auto, $whiteTrasp);
             }
         }
-        .chooseLaugage{
-            i{
-                color: $lpink;
-                margin: 0 5px;
-                @include transition(color 0.5s ease);
-            }
-            i:hover{
-                color:$pink;
-            }
-        }
+
         .infoPlane{
             flex-direction: row;
             display: block;
+            .chooseLuggage{
+                i{
+                    color: $lpink;
+                    margin: 0 5px;
+                    @include transition(color 0.5s ease);
+                }
+                i:hover{
+                    color:$pink;
+                }
+            }
         }
         .infoLegend
             .legendInfoDetailed{
