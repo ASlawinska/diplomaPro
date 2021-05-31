@@ -152,6 +152,7 @@ const createInputSits = (i) => {
     inputSits.setAttribute(`list`, 'listOfSeats');
     inputSits.setAttribute(`name`, 'seats');
     inputSits.setAttribute(`class`, `class${i} inputSeat`);
+    inputSits.setAttribute(`required`, 'required');
     inputSits.setAttribute(`placeholder`, 'Wybierz miejsce');
     return inputSits
 }
@@ -161,62 +162,76 @@ const breakeLine = () => {
 }
 const createInputLuggage = () => {
     let chooseLuggage = document.createElement('div');
-    chooseLuggage.setAttribute('class', 'chooseLuggage')
+    chooseLuggage.setAttribute('class', 'chooseLuggage');
+
+    let labelLuggageHand =document.createElement('label');
+
     let inputLuggageHand = document.createElement('input');
-    inputLuggageHand.setAttribute(`type`, 'radio');
-    inputLuggageHand.setAttribute(`name`, 'radio');
+    inputLuggageHand.setAttribute(`type`, 'checkbox');
+    inputLuggageHand.setAttribute(`name`, 'checkbox');
     inputLuggageHand.setAttribute(`value`, 'bagaż podręczny');
+
     
     let iHand = document.createElement('i');
     iHand.setAttribute('class', 'fas fa-suitcase');
     iHand.innerText = `Bagaż podręczny`;
-    inputLuggageHand.appendChild(iHand);
+
+    labelLuggageHand.appendChild(inputLuggageHand);
+    labelLuggageHand.appendChild(iHand);
+
+    let labelLuggageLess10kg =document.createElement('label');
 
     let inputLuggageLess10kg = document.createElement('input');
-    inputLuggageLess10kg.setAttribute(`type`, 'radio');
-    inputLuggageLess10kg.setAttribute(`name`, 'radio');
+    inputLuggageLess10kg.setAttribute(`type`, 'checkbox');
+    inputLuggageLess10kg.setAttribute(`name`, 'checkbox');
     inputLuggageLess10kg.setAttribute(`value`, 'Bagaż do 10kg');
     
     let iLess10kg = document.createElement('i');
     iLess10kg.setAttribute('class', 'fas fa-suitcase-rolling');
     iLess10kg.innerText = `Bagaż do 10kg`;
-    inputLuggageLess10kg.appendChild(iLess10kg);
 
+    labelLuggageLess10kg.appendChild(inputLuggageLess10kg);
+    labelLuggageLess10kg.appendChild(iLess10kg);
+
+    let labelLuggageLess25kg =document.createElement('label');
+    
     let inputLuggageLess25kg = document.createElement('input');
-    inputLuggageLess25kg.setAttribute(`type`, 'radio');
-    inputLuggageLess25kg.setAttribute(`name`, 'radio');
+    inputLuggageLess25kg.setAttribute(`type`, 'checkbox');
+    inputLuggageLess25kg.setAttribute(`name`, 'checkbox');
     inputLuggageLess25kg.setAttribute(`value`, 'Bagaż do 25kg');
     
     let iLess25kg = document.createElement('i');
     iLess25kg.setAttribute('class', 'fas fa-luggage-cart');
     iLess25kg.innerText = `Duży bagaż do 25kg`;
-    inputLuggageLess25kg.appendChild(iLess25kg);
+    
+    labelLuggageLess25kg.appendChild(inputLuggageLess25kg);
+    labelLuggageLess25kg.appendChild(iLess25kg);
+    
+    let labelLuggageOther =document.createElement('label');
 
     let inputLuggageOther = document.createElement('input');
-    inputLuggageOther.setAttribute(`type`, 'radio');
-    inputLuggageOther.setAttribute(`name`, 'radio');
+    inputLuggageOther.setAttribute(`type`, 'checkbox');
+    inputLuggageOther.setAttribute(`name`, 'checkbox');
     inputLuggageOther.setAttribute(`value`, 'Bagaż niewymiarowy');
     
     let iOther = document.createElement('i');
     iOther.setAttribute('class', 'fas fa-luggage-cart');
     iOther.innerText = `Bagaż niewymiarowy`;
-    inputLuggageOther.appendChild(iOther);
+
+    labelLuggageOther.appendChild(inputLuggageOther);
+    labelLuggageOther.appendChild(iOther);
     
 
-    chooseLuggage.appendChild(inputLuggageHand);
-    chooseLuggage.appendChild(iHand);
+    chooseLuggage.appendChild(labelLuggageHand);
     chooseLuggage.appendChild(breakeLine());
 
-    chooseLuggage.appendChild(inputLuggageLess10kg);
-    chooseLuggage.appendChild(iLess10kg);
+    chooseLuggage.appendChild(labelLuggageLess10kg);
     chooseLuggage.appendChild(breakeLine());
 
-    chooseLuggage.appendChild(inputLuggageLess25kg);
-    chooseLuggage.appendChild(iLess25kg);
+    chooseLuggage.appendChild(labelLuggageLess25kg);
     chooseLuggage.appendChild(breakeLine());
 
-    chooseLuggage.appendChild(inputLuggageOther);
-    chooseLuggage.appendChild(iOther);
+    chooseLuggage.appendChild(labelLuggageOther);
     chooseLuggage.appendChild(breakeLine());
 
     return chooseLuggage
@@ -392,10 +407,11 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 fetch('https://api.jsonbin.io/b/609132cd8a409667ca05b861')
                     .then((resp)=>resp.json())
                     .then((data)=>{
-                        document.getElementById("listOfSeats").innerHTML='';
-                        data.forEach(function (element) {
-                            document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
-                    })})
+                        sits = data;
+                        addFormSits();
+                        initialDataSits();
+
+                    })
             } else {
                 planeUnknow.style.display = 'none';
                 planeCountry.style.display = 'none';
@@ -404,10 +420,11 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 fetch('https://api.jsonbin.io/b/60913eb28a409667ca05cedc')
                 .then((resp)=>resp.json())
                 .then((data)=>{
-                    document.getElementById("listOfSeats").innerHTML='';
-                    data.forEach(function (element) {
-                        document.getElementById("listOfSeats").innerHTML += `<option value="${element.seat}"</option>`;
-                })})
+                    sits = data;
+                    addFormSits();
+                    initialDataSits();
+                    
+                })
             };
     };
     // Calculte distance between departure and arrival place
@@ -479,10 +496,11 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 //rateInfo
                 const rate = data.rates[currency2];
                 rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
-                costInfo.textContent = `Do zapłaty = ${amountPassanger}*${currency2}`;
+                //costInfo.textContent = `Do zapłaty = ${amountPassanger}*${currency2}`;
 
                 //culculating
                 amountTwo.value = (amountOne.value * rate).toFixed(2);
+                costInfo.textContent = `Cena wszytskich biletów: ${(amountOne.value * amountPassanger.value).toFixed(2)}${currency1}`;
             })
     };
     //rechanging currency
@@ -804,21 +822,21 @@ const checkEmail = () => {
         emailinfo.innerHTML = 'Wpisz poprawny e-mail.'
     }
 }
-name.addEventListener('keyup', function () {
+name.addEventListener('change', function () {
     if (name.value !== '') {
         checkName();
     } else {
         nameinfo.innerHTML = 'Nie podałes imienia...'
     };
 });
-lastname.addEventListener('keyup', function () {
+lastname.addEventListener('change', function () {
     if (lastname.value !== '') {
         checklastname();
     } else {
         lastnameinfo.innerHTML = 'Nie podałes nazwiska...'
     };
 });
-email.addEventListener('keyup', function () {
+email.addEventListener('change', function () {
     if (email.value !== '') {
         checkEmail();
     } else {
@@ -835,7 +853,7 @@ const checkPassword = () => {
         p.innerHTML = 'Masz słabe hasło';
     }
 };
-pass.addEventListener('keyup', function () {
+pass.addEventListener('change', function () {
     if (pass.value !== '') {
         checkPassword();
     } else {

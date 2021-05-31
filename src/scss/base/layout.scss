@@ -177,7 +177,7 @@
         @include breakpoint(laptop){
             @include width(45%, 5px auto, $whiteTrasp);
         }
-        .infoPlane, .infoLegend{
+        form, .infoLegend{
             @include positioning(flex, column, center);
             padding: 10px;
             @include width(90%, 15px auto, $whiteTrasp);
@@ -187,9 +187,7 @@
         }
 
         .infoPlane{
-            flex-direction: row;
-            display: block;
-            .chooseLuggage{
+            
                 i{
                     color: $lpink;
                     margin: 0 5px;
@@ -198,7 +196,6 @@
                 i:hover{
                     color:$pink;
                 }
-            }
         }
         .infoLegend
             .legendInfoDetailed{
@@ -207,11 +204,11 @@
                     @include positioning(flex, column, space-around);
                     align-items: flex-start;
                     text-align: left;
-                    font-size: 0.8rem;
+                    font-size: 0.7rem;
                     li{
                         @include positioning(flex, row, space-around);
                         padding: 2%;
-                        margin: 3px 5px;
+                        margin: 2px 4px;
                         i{
                             margin: 0 5px;
                             font-size: 1rem;
@@ -227,7 +224,6 @@
                         }
                         .key-std{
                             color: #fff;
-                            //border: 1px solid #BDBDBD;
                         }
                         .key-blk{
                             color:#BDBDBD;
@@ -239,9 +235,6 @@
                 }}
     }
 };
-
-
-
 
 //popup common section for both html file
 .popup {

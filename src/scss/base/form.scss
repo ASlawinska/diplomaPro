@@ -20,14 +20,23 @@
         }
     }
 }
-.chooseLuggage{
+.legend{
     form{
-        line-height: 1.2;
+        line-height: 1.5;
         font-size: 0.8rem;
+        .infoPlane{
+            :nth-child(n){
+            margin: 3px;
+        }}
+        @include breakpoint(desktop){
+            max-height: 35vh;
+            overflow: hidden;
+            .infoPlane{
+                overflow-y: auto;
+            }
+
+        }
     }
-}
-.infoPlane{
-    font-size: 0.8rem;
 }
 .popupsingInUp
     form {
