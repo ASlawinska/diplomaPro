@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BookingFly - zarezerwuj swój lot!</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!--Fonts-->
@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group col-sm-12 col-md-6 col-xl-4">
                             <label for="numbPas">Liczba pasażerów</label>
-                            <input type="number" name="numbPas" id="numbPas" value="1" min="1" step="1" required>
+                            <input type="number" name="numbPas" id="numbPas" value="" min="1" step="1" required>
                         </div>
                         <div class="col-sm-12 col-md-6 col-xl-4">
                             <button class="nextSlide" disabled> Dalej</button>
@@ -131,7 +131,7 @@
                 </div>
                     <section class="weather">
                             <div class="top">
-                                <h1>POGODA</h1>
+                                <h1>AKTUALNA POGODA</h1>
                                 <div class="main-info">
                                     <div>
                                         <h3 class="city-name"></h3>
@@ -282,7 +282,7 @@
         </div>
         <div class="popupsingInUp">
             <form action="/sign_up" method="post">
-                <h1> Zaloguj się </h1>
+                <h1 class="textSingUP"> Zaloguj się </h1>
                 <input class="box" type="text" name="name" id="name" placeholder="Imię" required /><br>
                 <p class="nameinfo"></p>
                 <input class="box" type="text" lastname="lastname" id="lastname" placeholder="Nazwisko"  required /><br>
@@ -293,9 +293,8 @@
                 <p class="passinfo">Minimum 8 znaków, małe i duże litery, znaki specjalne.</p>
                 <br>
                 </form>
-                <div class="passangers"></div>
             <button class="popupCloseSingInUp" type="submit" id="submitDetails"  
-            name="submitDetails" value="Submit">Potwierdź</button>
+            name="submitDetails" value="Submit" disabled>Potwierdź</button>
 
         </div>
         <div class="pay"><hr class="payHr">Nastąpi przekierowanie do banku.</div>

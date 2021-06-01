@@ -423,7 +423,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                     sits = data;
                     addFormSits();
                     initialDataSits();
-                    
+
                 })
             };
     };
@@ -548,7 +548,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
                 console.log('nie');
             }
         };
-        // activation button 
+        // activation button next
         const submitDisabled = () => {
             const nextSlide = document.querySelector('.nextSlide');
             if(inputDeparture.value && inputArrival.value && inputDateDeparture.value && inputDateArrival.value && amountPassanger.value){
@@ -571,7 +571,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
         infoDepartureDate.addEventListener('input', submitDisabled);
         infoArrivalDate.addEventListener('input', submitDisabled);
         amountPassanger.addEventListener('input', submitDisabled);
-        //document.addEventListener("DOMContentLoaded", submitDisabled);
 })
     .catch((err) => console.log(err));
 
@@ -786,7 +785,7 @@ const p = document.querySelector('.passinfo');
 const nameinfo = document.querySelector('.nameinfo');
 const lastnameinfo = document.querySelector('.lastnameinfo');
 const emailinfo = document.querySelector('.emailinfo');
-const letters = /^[A-Za-z]/i;
+const letters =  /^[a-zA-Z]{1,}$/i;
 const numbers = /[0-9]/;
 const special = /[!@#$%^&*()]/;
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -804,6 +803,7 @@ const autocomplite = () => {
 autocomplite();
 const checkName = () => {
     if (name.value.match(letters)){
+        nameinfo.innerHTML = ''
         //name.value.trim();
     } else {
         nameinfo.innerHTML = 'Wpisz poprawne imię.'
@@ -811,6 +811,7 @@ const checkName = () => {
 }
 const checklastname = () => {
     if (lastname.value.match(letters)){
+        lastnameinfo.innerHTML = ''
         //lastname.value.trim;
     } else {
         lastnameinfo.innerHTML = 'Wpisz poprawne nazwisko'
@@ -818,25 +819,26 @@ const checklastname = () => {
 }
 const checkEmail = () => {
     if (email.value.match(validRegex)){
+        emailinfo.innerHTML = ''
     } else {
         emailinfo.innerHTML = 'Wpisz poprawny e-mail.'
     }
 }
-name.addEventListener('change', function () {
+name.addEventListener('keyup', function () {
     if (name.value !== '') {
         checkName();
     } else {
         nameinfo.innerHTML = 'Nie podałes imienia...'
     };
 });
-lastname.addEventListener('change', function () {
+lastname.addEventListener('keyup', function () {
     if (lastname.value !== '') {
         checklastname();
     } else {
         lastnameinfo.innerHTML = 'Nie podałes nazwiska...'
     };
 });
-email.addEventListener('change', function () {
+email.addEventListener('keyup', function () {
     if (email.value !== '') {
         checkEmail();
     } else {
@@ -853,13 +855,37 @@ const checkPassword = () => {
         p.innerHTML = 'Masz słabe hasło';
     }
 };
-pass.addEventListener('change', function () {
+pass.addEventListener('keyup', function () {
     if (pass.value !== '') {
         checkPassword();
     } else {
         p.innerHTML = 'Nie podałes hasła...'
     };
 })
+//SINGUP confirm
+
+
+// activation button confirm
+const confirmDisabled = () => {
+    const confirm = document.querySelector('.popupCloseSingInUp');
+    const textSingUP = document.querySelector('.popupSingBTN');
+    const textSingUPDesktop = document.querySelector('.popupSingBTNDesktop');
+
+    if(name.value && lastname.value && email.value && pass.value){
+        confirm.disabled = false;
+        console.log('active');
+        textSingUP.innerText = `Witaj ${name.value}!`;
+        textSingUPDesktop.innerText = `Witaj ${name.value}!`;
+        //confirm.addEventListener('click', closePopupsingInUp);
+    } else {
+        confirm.disabled = true;
+    }
+};
+name.addEventListener('input', confirmDisabled);
+lastname.addEventListener('input', confirmDisabled);
+email.addEventListener('input', confirmDisabled);
+pass.addEventListener('input', confirmDisabled);
+
 //buy tikets
 let buyButton = document.querySelector('.buy');
 let payPopup = document.querySelector('.pay');
