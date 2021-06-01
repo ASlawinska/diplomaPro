@@ -53,8 +53,8 @@ const visibleSlide3 = () => {
 };
 //listening
 logo.addEventListener("click", visibleSlide1);
-nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), calculate()});
-summaryButton.addEventListener("click", visibleSlide3);
+nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival), calculate()});
+summaryButton.addEventListener("click", ()=>{visibleSlide3(), getWeatherArrival()});
 
 // Date form 
 const thisDay = document.getElementById('today');
@@ -79,7 +79,6 @@ tommorow.setAttribute('value', dateFormat2);
 
 const securDate = () => {
     let chooseDepartureDate = document.querySelector('#today').value;
-    console.log(chooseDepartureDate.typeOf);
     let tommorowDay = new Date(chooseDepartureDate);
     tommorowDay.setDate(tommorowDay.getDate()+1);
     let dayTommorow = (tommorowDay.getDate()) <10 ? `0${tommorowDay.getDate()}`: `${tommorowDay.getDate()}`;
@@ -92,6 +91,21 @@ const securDate = () => {
 }
 thisDay.addEventListener('change', securDate )
 //
+const getWeatherArrival = () => {
+    let chooseArrivalDate = document.querySelector('#tommorow').value;
+    let chooseyear = parseInt(chooseArrivalDate.substr(0, 4));
+    let choosemonth = parseInt(chooseArrivalDate.slice(5,7))-1;
+    let chooseday = parseInt(chooseArrivalDate.substr(8, 10));
+    let chooseArrivalDateFormat = new Date(chooseyear, choosemonth, chooseday);
+    let diff = chooseArrivalDateFormat.getTime() - today.getTime();
+    let diffday = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    if (diffday<=16) {
+        getWeather(inputArrival.value);
+    }else{
+        getWeather(inputDeparture.value);
+    }
+}
 //Adding removing option city 
 let cities = [];
 const createOption = (element) => {
@@ -337,7 +351,6 @@ function showAtributeDeparture() {
             let latitudeDepartre = cities[i].lat;
             let longitudeDepartre = cities[i].lon;
             geoDeparture = [latitudeDepartre, longitudeDepartre]
-            console.log(geoDeparture);
         }
     }
 };
@@ -358,7 +371,6 @@ function showAtributeArrival() {
             let latitudeArrival = cities[i].lat;
             let longitudeArrival = cities[i].lon;
             geoArrival = [latitudeArrival, longitudeArrival]
-            console.log(geoArrival);//tutaj zwraca oczewikwane wartości
         }
     }
 };
@@ -454,10 +466,8 @@ const calculate = () => {
     fetch(`https://api.exchangerate.host/latest?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
         .then(res=>res.json())
         .then(data=>{
-            console.log(data.base);
             const currency1 = currencyOne.value;
             const currency2 = currencyTwo.value;
-            console.log(data);
             // calculating the starting value of ticket based on different currency
             switch (currencyOne.value) {
                 case 'PLN':
@@ -528,18 +538,15 @@ swapBtn.addEventListener('click', swap);
         infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
     }
     //cheking if input have value
-    const checkIfBothIsFillAndShowPlane=()=>{
-        if(inputDeparture.value && inputArrival.value){
-            //planePicture();
-            showAtributeDeparture();
-            showAtributeArrival();
-            distanceBetweenLocations(geoDeparture, geoArrival);
-            calculate();
+    // const checkIfBothIsFillAndShowPlane=()=>{
+    //     if(inputDeparture.value && inputArrival.value){
+    //         distanceBetweenLocations(geoDeparture, geoArrival);
+    //         calculate();
             
-        } else {
-            console.log('nie');
-        }
-    };
+    //     } else {
+    //         console.log('nie');
+    //     }
+    // };
     // activation button next
     const submitDisabled = () => {
         const nextSlide = document.querySelector('.nextSlide');
@@ -552,13 +559,13 @@ swapBtn.addEventListener('click', swap);
     };
     //listening
     inputDeparture.addEventListener('input', ()=>{
-        //showAtributeDeparture();
-        getWeather();
-        checkIfBothIsFillAndShowPlane();
+        showAtributeDeparture();
+        getWeather(inputDeparture.value);
+        //checkIfBothIsFillAndShowPlane();
         submitDisabled()});
     inputArrival.addEventListener('input', ()=>{
-        //showAtributeArrival();
-        checkIfBothIsFillAndShowPlane();
+        showAtributeArrival();
+        //checkIfBothIsFillAndShowPlane();
         submitDisabled();})
     infoDepartureDate.addEventListener('input', submitDisabled);
     infoArrivalDate.addEventListener('input', submitDisabled);
@@ -605,7 +612,7 @@ const apiKey = '&appid=1063abb9b196175704486b6c818e5cc7';
 const units = '&units=metric';
 const lang = '&lang=pl'
 
-let city;
+let nameCity;
 let url;
 
 if('geolocation' in navigator){  
@@ -617,13 +624,13 @@ if('geolocation' in navigator){
 function setPosition(position){  
     let lat = position.coords.latitude;  
     let lon = position.coords.longitude;  
-    getWeather(lat, lon); 
+    getWeather('',lat, lon); 
 }  
 
-const getWeather = (lat, lon) => {
+const getWeather = (city, lat, lon) => {
     
-    city = (!inputDeparture.value) ? `lat=${lat}&lon=${lon}`: `q=${inputDeparture.value}`; 
-    url = apilink + city + apiKey + lang + units;
+    nameCity = (!city) ? `lat=${lat}&lon=${lon}`: `q=${city}`; 
+    url = apilink + nameCity + apiKey + lang + units;
 
     fetch(url)
         .then((res)=> res.json())
