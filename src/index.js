@@ -53,7 +53,7 @@ const visibleSlide3 = () => {
 };
 //listening
 logo.addEventListener("click", visibleSlide1);
-nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture()});
+nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), calculate()});
 summaryButton.addEventListener("click", visibleSlide3);
 
 // Date form 
@@ -76,6 +76,21 @@ let todayMin = thisDay.setAttribute('min', dateFormat);
 let tommorowMin = tommorow.setAttribute('min', dateFormat2);
 thisDay.setAttribute('value', dateFormat);
 tommorow.setAttribute('value', dateFormat2);
+
+const securDate = () => {
+    let chooseDepartureDate = document.querySelector('#today').value;
+    console.log(chooseDepartureDate.typeOf);
+    let tommorowDay = new Date(chooseDepartureDate);
+    tommorowDay.setDate(tommorowDay.getDate()+1);
+    let dayTommorow = (tommorowDay.getDate()) <10 ? `0${tommorowDay.getDate()}`: `${tommorowDay.getDate()}`;
+    let monthTommmorow = (tommorowDay.getMonth()+1) <10 ? `0${tommorowDay.getMonth()+1}`: `${(tommorowDay.getMonth()+1)}`;
+    let yearTommorow = tommorowDay.getFullYear();
+
+    let dateFormat2 = `${yearTommorow}-${monthTommmorow}-${dayTommorow}`;
+    let tommorowMin = tommorow.setAttribute('min', dateFormat2);
+    tommorow.setAttribute('value', dateFormat2);
+}
+thisDay.addEventListener('change', securDate )
 //
 //Adding removing option city 
 let cities = [];
@@ -572,255 +587,6 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
         // give chossing value
         inputArrival.addEventListener('change', onChange);
         inputDeparture.addEventListener('change', onChange);
-
-        //showAtributeDeparture(data);
-        //showAtributeArrival(data);
-
-        // showing atributes
-        // let departureAtribute
-        // let geoDeparture
-        // function showAtributeDeparture() {
-        //     // Get the value from the input
-        //     let valueDeparture = inputDeparture.value;
-        //     // looking for index of element correct with choosing value
-        //     for (let i = 0; i < inputDeparture.list.options.length; i++) {
-        //         if (valueDeparture===inputDeparture.list.options[i].text) {
-        //             let continentDeparture = data[i].continent;
-        //             let countryDeparture = data[i].country;
-        //             let hour = data[i].hour;
-        //             departureAtribute = [continentDeparture, countryDeparture, hour];
-        //             let latitudeDepartre = data[i].lat;
-        //             let longitudeDepartre = data[i].lon;
-        //             geoDeparture = [latitudeDepartre, longitudeDepartre]
-        //             console.log(geoDeparture);
-        //         }
-        //     }
-        // };
-        // let arrivalAtribute;
-        // let geoArrival;
-        // function showAtributeArrival() {
-        //     // Get the value from the input
-        //     let valueArrival = inputArrival.value;
-        //     // looking for index of element correct with choosing value
-        //     for (let i = 0; i < inputArrival.list.options.length; i++) {
-        //         if (valueArrival!=inputArrival.list.options[i].text) {
-                    
-        //         } else {
-        //             let continentArrival = data[i].continent;
-        //             let countryArrival = data[i].country;
-        //             let hour = data[i].hour;
-        //             arrivalAtribute = [continentArrival, countryArrival, hour];
-        //             let latitudeArrival = data[i].lat;
-        //             let longitudeArrival = data[i].lon;
-        //             geoArrival = [latitudeArrival, longitudeArrival]
-        //             console.log(geoArrival);//tutaj zwraca oczewikwane wartości
-        //         }
-        //     }
-        // };
-    // // Wyświetlanie Obrazka samolotu
-    //     const planePicture = function() {
-    //         // pobranie elementów 
-    //         let planeUnknow = document.querySelector('.unknown');
-    //         let planeCountry = document.querySelector('.country');
-    //         let planeInternational = document.querySelector('.international');
-    //         let planeIntercontinental = document.querySelector('.intercontinental');
-
-    //         //wywołanie właściwego obrazu
-    //         if (departureAtribute[1]===arrivalAtribute[1]) {
-    //             planeUnknow.style.display = 'none';
-    //             planeCountry.style.display = 'flex';
-    //             planeInternational.style.display = 'none';
-    //             planeIntercontinental.style.display = 'none';
-    //             fetch('https://api.jsonbin.io/b/609140f9d64cd16802a9beb7')
-    //             .then((resp)=>resp.json())
-    //             .then((data)=>{
-    //                 sits = data;
-    //                 addFormSits();
-    //                 initialDataSits();
-    //                 // let numPassanger = document.querySelector('#numbPas');
-    //                 // let passangerSit = [];
-    //                 // for (let i = 1; i <= numPassanger.value; i++){
-    //                 //     passangerSit.push(document.querySelector(`.class${i}`))
-    //                 // }
-    //                 // console.log(passangerSit);
-    //                 let inputSitButton = document.querySelectorAll('.inputSeat');
-    //                 console.log(inputSitButton);
-    //                 inputSitButton.forEach(el=>{
-    //                     el.addEventListener('change', console.log(inputSitButton))
-    //                 })
-                        
-
-    //         })
-    //         } else if (departureAtribute[0]===arrivalAtribute[0]) {
-    //             planeUnknow.style.display = 'none';
-    //             planeCountry.style.display = 'none';
-    //             planeInternational.style.display = 'flex';
-    //             planeIntercontinental.style.display = 'none';
-    //             fetch('https://api.jsonbin.io/b/609132cd8a409667ca05b861')
-    //                 .then((resp)=>resp.json())
-    //                 .then((data)=>{
-    //                     sits = data;
-    //                     addFormSits();
-    //                     initialDataSits();
-
-    //                 })
-    //         } else {
-    //             planeUnknow.style.display = 'none';
-    //             planeCountry.style.display = 'none';
-    //             planeInternational.style.display = 'none';
-    //             planeIntercontinental.style.display = 'flex';
-    //             fetch('https://api.jsonbin.io/b/60913eb28a409667ca05cedc')
-    //             .then((resp)=>resp.json())
-    //             .then((data)=>{
-    //                 sits = data;
-    //                 addFormSits();
-    //                 initialDataSits();
-
-    //             })
-    //         };
-    // };
-    // // Calculte distance between departure and arrival place
-    // const degreesToRadians = degrees => degrees * (Math.PI / 180);
-    // const radiansToDegrees = radians => radians * (180 / Math.PI);
-    // const centralSubtendedAngle = (locationX, locationY) => {
-    //     const locationXLatRadians = degreesToRadians(locationX[0])
-    //     const locationYLatRadians = degreesToRadians(locationY[0])
-    //     return radiansToDegrees(
-    //         Math.acos(
-    //             Math.sin(locationXLatRadians) * Math.sin(locationYLatRadians) + Math.cos(locationXLatRadians) * Math.cos    (locationYLatRadians) * Math.cos(degreesToRadians(Math.abs(locationX[1] - locationY[1])
-    //                     )
-    //                 )
-    //             )
-    //         )
-    // }
-    // const earthRadius = 6371//km
-    // const greatCircleDistance = angle => 2 * Math.PI * earthRadius * (angle / 360)
-    // const distanceBetweenLocations = (locationX, locationY) =>
-    //     greatCircleDistance(centralSubtendedAngle(locationX, locationY))
-    
-    // //CostCalculate
-    // const currencyOne = document.querySelector('#currency-one');
-    // const amountOne = document.querySelector('.amount-one');
-    // const currencyTwo = document.querySelector('#currency-two');
-    // const amountTwo = document.querySelector('.amount-two');
-    // const swapBtn = document.querySelector('.swap');
-    // const rateInfo = document.querySelector('.rate-info');
-    // const costInfo = document.querySelector('.cost-info');
-    // const amountPassanger = document.querySelector('#numbPas');
-
-    // const calculate = () => {
-    //     fetch(`https://api.exchangerate.host/latest?base=${currencyOne.value}&symbols=${currencyTwo.value}`)
-    //         .then(res=>res.json())
-    //         .then(data=>{
-    //             console.log(data.base);
-    //             const currency1 = currencyOne.value;
-    //             const currency2 = currencyTwo.value;
-    //             console.log(data);
-    //             // calculating the starting value of ticket based on different currency
-    //             switch (currencyOne.value) {
-    //                 case 'PLN':
-    //                     amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'USD':
-    //                     amountOne.value = (0.3 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'RUB':
-    //                     amountOne.value = (18 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'EUR':
-    //                     amountOne.value = (0.2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'HKD':
-    //                     amountOne.value = (2 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'MXN':
-    //                     amountOne.value = (5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'BRL':
-    //                     amountOne.value = (1.5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 case 'ZAR':
-    //                     amountOne.value = (3,5 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
-    //                     break;
-    //                 default:
-    //                     break;
-    //             }
-    //             //rateInfo
-    //             const rate = data.rates[currency2];
-    //             rateInfo.textContent = `1 ${currency1} = ${rate.toFixed(3)}${currency2}`;
-    //             //culculating
-    //             amountTwo.value = (amountOne.value * rate).toFixed(2);
-    //             costInfo.textContent = `Cena wszytskich biletów: ${(amountOne.value * amountPassanger.value).toFixed(2)}${currency1}`;
-    //         })
-    // };
-    // //rechanging currency
-    // const swap = () => {
-    //     const oldCurrenncy = currencyOne.value;
-    //     currencyOne.value = currencyTwo.value;
-    //     currencyTwo.value = oldCurrenncy;
-    // }
-    // //addeventListener
-    // currencyOne.addEventListener('change', calculate);
-    // currencyTwo.addEventListener('change', calculate);
-    // swapBtn.addEventListener('click', swap);
-
-    // // info about flight
-    // const infoDeparture =document.querySelector('.infoDeparture');
-    // const infoDepartureDate =document.querySelector('.infoDepartureDate');
-    // const infoDepartureHour =document.querySelector('.infoDepartureHour');
-    // const sit =document.querySelector('.sit');
-    // const infoArrival =document.querySelector('.infoArrival');
-    // const infoArrivalDate =document.querySelector('.infoArrivalDate');
-    // const infoArrivalHour =document.querySelector('.infoArrivalHour');
-    // const inputDateDeparture = document.querySelector('.dateDeparture');
-    // const inputDateArrival = document.querySelector('.dateArrival');
-    // const choosingSits = document.querySelector('#inputSeat');
-    // //const amountPassanger = document.querySelector('#numbPas');
-    // const infoFlight = () => {
-
-    //     infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
-    //     infoDepartureDate.innerHTML = `Data wylotu ${inputDateDeparture.value}`
-    //     infoDepartureHour.innerHTML = `Godzina wylotu ${departureAtribute[2]}`
-    //     //sit.innerHTML = `Miejsce ${choosingSits.value}`
-    //     infoArrival.innerHTML = `Powrót z ${inputArrival.value} do ${inputDeparture.value}`
-    //     infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
-    //     infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
-    // }
-
-    // //cheking if input have value
-    //     const checkIfBothIsFillAndShowPlane=()=>{
-    //         if(inputDeparture.value && inputArrival.value){
-    //             //planePicture();
-    //             distanceBetweenLocations(geoDeparture, geoArrival);
-    //             calculate();
-                
-    //         } else {
-    //             console.log('nie');
-    //         }
-    //     };
-    //     // activation button next
-    //     const submitDisabled = () => {
-    //         const nextSlide = document.querySelector('.nextSlide');
-    //         if(inputDeparture.value && inputArrival.value && inputDateDeparture.value && inputDateArrival.value && amountPassanger.value){
-    //             nextSlide.disabled = false;
-    //             infoFlight();
-    //         } else {
-    //             nextSlide.disabled = true;
-    //         }
-    //     };
-    //     //listening
-    //     inputDeparture.addEventListener('input', ()=>{
-    //         showAtributeDeparture();
-    //         getWeather();
-    //         checkIfBothIsFillAndShowPlane();
-    //         submitDisabled()});
-    //     inputArrival.addEventListener('input', ()=>{
-    //         showAtributeArrival();
-    //         checkIfBothIsFillAndShowPlane();
-    //         submitDisabled();})
-    //     infoDepartureDate.addEventListener('input', submitDisabled);
-    //     infoArrivalDate.addEventListener('input', submitDisabled);
-    //     amountPassanger.addEventListener('input', submitDisabled);
 })
     .catch((err) => console.log(err));
 
