@@ -192,7 +192,6 @@ const breakeLine = () => {
 const createInputLuggage = () => {
     let chooseLuggage = document.createElement('div');
     chooseLuggage.setAttribute('class', 'chooseLuggage');
-
     let labelLuggageHand = document.createElement('label');
 
     let inputLuggageHand = document.createElement('input');
@@ -333,9 +332,10 @@ const addingSits = (input, sit) => {
 }
 //
 let inputArrival = document.getElementById('cityNameInputArrival'); 
-let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
+console.log(inputArrival);
+//let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
 let inputDeparture = document.getElementById('cityNameInput');
-let inputDeparturelist = document.getElementById('listOfCities');
+//let inputDeparturelist = document.getElementById('listOfCities');
 let departureAtribute
 let geoDeparture
 function showAtributeDeparture() {
@@ -374,6 +374,15 @@ function showAtributeArrival() {
         }
     }
 };
+let passangerSit = []
+
+// //function giving nodelist.value
+const funcaddEventListenerSits = () => {
+
+   //
+}
+
+
 
 // Wyświetlanie Obrazka samolotu
 const planePicture = function() {
@@ -394,17 +403,33 @@ const planePicture = function() {
             sits = data;
             addFormSits();
             initialDataSits();
-            // let numPassanger = document.querySelector('#numbPas');
-            // let passangerSit = [];
-            // for (let i = 1; i <= numPassanger.value; i++){
-            //     passangerSit.push(document.querySelector(`.class${i}`))
+            funcaddEventListenerSits();
+            let listSit = document.querySelector('#listOfSeat');
+            // console.log(listSit);
+
+            // let onChange = (i, event) => {
+            //     if(event.currentTarget=== passangerSit[i].value){
+            //         clearInputSits(listSit, passangerSit[i].value)
+            //         //addingSits(listSit, passangerSit[i].value )
+            //     } else {
+
+            //         // tablica pozostałe prócz i 
+            //         clearInputSits(listSit, passangerSit.splice(i,1).value);
+            //         //addingSits(listSit, inputDeparture.value);
+            //     }
             // }
-            // console.log(passangerSit);
-            let inputSitButton = document.querySelectorAll('.inputSeat');
-            console.log(inputSitButton);
-            inputSitButton.forEach(el=>{
-                el.addEventListener('change', console.log(inputSitButton))
-            })
+
+
+            let inputSitItem = document.querySelectorAll('.inputSeat');
+            passangerSit = Array.from(inputSitItem);
+            for (let element of passangerSit) {
+                element.addEventListener("change", function() {
+                console.log(element.value)
+            })};
+
+            // // give chossing value
+            // inputArrival.addEventListener('change', onChange);
+            // inputDeparture.addEventListener('change', onChange);
                 
     })
     } else if (departureAtribute[0]===arrivalAtribute[0]) {
@@ -537,16 +562,6 @@ swapBtn.addEventListener('click', swap);
         infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
         infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
     }
-    //cheking if input have value
-    // const checkIfBothIsFillAndShowPlane=()=>{
-    //     if(inputDeparture.value && inputArrival.value){
-    //         distanceBetweenLocations(geoDeparture, geoArrival);
-    //         calculate();
-            
-    //     } else {
-    //         console.log('nie');
-    //     }
-    // };
     // activation button next
     const submitDisabled = () => {
         const nextSlide = document.querySelector('.nextSlide');
@@ -561,11 +576,9 @@ swapBtn.addEventListener('click', swap);
     inputDeparture.addEventListener('input', ()=>{
         showAtributeDeparture();
         getWeather(inputDeparture.value);
-        //checkIfBothIsFillAndShowPlane();
         submitDisabled()});
     inputArrival.addEventListener('input', ()=>{
         showAtributeArrival();
-        //checkIfBothIsFillAndShowPlane();
         submitDisabled();})
     infoDepartureDate.addEventListener('input', submitDisabled);
     infoArrivalDate.addEventListener('input', submitDisabled);
@@ -578,9 +591,9 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((data) => {
         cities = data;
         initialData();
-        let inputArrival = document.getElementById('cityNameInputArrival'); 
+        //let inputArrival = document.getElementById('cityNameInputArrival'); 
         let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
-        let inputDeparture = document.getElementById('cityNameInput');
+        //let inputDeparture = document.getElementById('cityNameInput');
         let inputDeparturelist = document.getElementById('listOfCities');
         let onChange = (event) => {
             if(event.currentTarget=== inputArrival){
