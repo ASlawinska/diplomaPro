@@ -178,7 +178,7 @@ const createLabelSits = () => {
 const createInputSits = (i) => {
     let inputSits = document.createElement('input');
     inputSits.setAttribute(`type`, 'text');
-    inputSits.setAttribute(`list`, 'listOfSeats');
+    inputSits.setAttribute(`list`, `listOfSeats${i}`);
     inputSits.setAttribute(`name`, 'seats');
     inputSits.setAttribute(`class`, `class${i} inputSeat`);
     inputSits.setAttribute(`required`, 'required');
@@ -197,6 +197,7 @@ const createInputLuggage = () => {
     let inputLuggageHand = document.createElement('input');
     inputLuggageHand.setAttribute(`type`, 'checkbox');
     inputLuggageHand.setAttribute(`name`, 'checkbox');
+    inputLuggageHand.setAttribute(`checked`, 'checked');
     inputLuggageHand.setAttribute(`value`, 'bagaż podręczny');
 
     
@@ -266,22 +267,22 @@ const createInputLuggage = () => {
 }
 
 
-const createDatalistSits = () => {
+const createDatalistSits = (i) => {
     let datalist = document.createElement('datalist');
-    datalist.setAttribute(`id`, 'listOfSeats');
+    datalist.setAttribute(`id`, `listOfSeats${i}`);
+    datalist.setAttribute(`class`, `listOfSeats`);
     return datalist
 }
-const initialDataSits = () => {
+const initialDataSits = (i) => {
     let data = [...sits];
-    let listOfSeats = document.getElementById("listOfSeats");
+
     const optionFunctionSits =(list) => {
         data.forEach(function (element) {
             const option = createOptionSits(element);
             list.appendChild(option)
         })
     }
-    optionFunctionSits(listOfSeats);
-
+    optionFunctionSits(document.getElementById(`listOfSeats${i}`));
 }
 const hr = () =>{
     let hr = document.createElement('hr');
@@ -289,23 +290,18 @@ const hr = () =>{
 }
 const addFormSits = () => {
     let numPassanger = document.querySelector('#numbPas');
-    //numPassanger.value === event.currentTarget
     for (let i = 1; i <= numPassanger.value; i++) {
         let infoPlane = document.querySelector('.infoPlane');
         infoPlane.appendChild(createInputName());
         infoPlane.appendChild(breakeLine());
         infoPlane.appendChild(createLabelSits());
         infoPlane.appendChild(createInputSits(i));
-        infoPlane.appendChild(createDatalistSits());
+        infoPlane.appendChild(createDatalistSits(i));
         infoPlane.appendChild(createInputLuggage());
         infoPlane.appendChild(hr());
+        initialDataSits(i);
 }}
-// const giveElementPassangerSit = () => {
-//     for (let i = 1; i < numPassanger.value; i++) {
-//         let passanger = document.querySelector(`.class${i}`);
-//         console.log(passanger);
-//     }
-// }
+
 const clearInputSits = (input, sit) => {
     for (let i = 0; i < input.children.length; i++) {
         if (input.children[i].innerText === sit) {
@@ -332,10 +328,7 @@ const addingSits = (input, sit) => {
 }
 //
 let inputArrival = document.getElementById('cityNameInputArrival'); 
-console.log(inputArrival);
-//let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
 let inputDeparture = document.getElementById('cityNameInput');
-//let inputDeparturelist = document.getElementById('listOfCities');
 let departureAtribute
 let geoDeparture
 function showAtributeDeparture() {
@@ -375,15 +368,7 @@ function showAtributeArrival() {
     }
 };
 let passangerSit = []
-
-// //function giving nodelist.value
-const funcaddEventListenerSits = () => {
-
-   //
-}
-
-
-
+let listSit = []
 // Wyświetlanie Obrazka samolotu
 const planePicture = function() {
     // pobranie elementów 
@@ -402,36 +387,28 @@ const planePicture = function() {
         .then((data)=>{
             sits = data;
             addFormSits();
-            initialDataSits();
-            funcaddEventListenerSits();
-            let listSit = document.querySelector('#listOfSeat');
-            // console.log(listSit);
-
-            // let onChange = (i, event) => {
-            //     if(event.currentTarget=== passangerSit[i].value){
-            //         clearInputSits(listSit, passangerSit[i].value)
-            //         //addingSits(listSit, passangerSit[i].value )
-            //     } else {
-
-            //         // tablica pozostałe prócz i 
-            //         clearInputSits(listSit, passangerSit.splice(i,1).value);
-            //         //addingSits(listSit, inputDeparture.value);
-            //     }
-            // }
 
 
+            let listItem = document.querySelectorAll('.listOfSeats');
+            console.log(listItem);
+            listSit = Array.from(listItem);
             let inputSitItem = document.querySelectorAll('.inputSeat');
             passangerSit = Array.from(inputSitItem);
             for (let element of passangerSit) {
-                element.addEventListener("change", function() {
-                console.log(element.value)
-            })};
-
-            // // give chossing value
-            // inputArrival.addEventListener('change', onChange);
-            // inputDeparture.addEventListener('change', onChange);
-                
-    })
+                element.addEventListener("change", function(event) {
+                console.log(element.value);
+                for (let el of listSit) {
+                    console.log(el);
+                    if(event.currentTarget=== element.value){
+                        clearInputSits(el, element.value)
+                        addingSits(el, element.value )
+                    }else {
+                        // tablica pozostałe prócz i 
+                        clearInputSits(listSit.splice(el,1), passangerSit.splice(element,1).value);
+                        addingSits(listSit.splice(el,1), passangerSit.splice(element,1).value);
+                };
+            }});
+        }})
     } else if (departureAtribute[0]===arrivalAtribute[0]) {
         planeUnknow.style.display = 'none';
         planeCountry.style.display = 'none';
@@ -442,7 +419,7 @@ const planePicture = function() {
             .then((data)=>{
                 sits = data;
                 addFormSits();
-                initialDataSits();
+                //initialDataSits();
             })
     } else {
         planeUnknow.style.display = 'none';
@@ -454,7 +431,7 @@ const planePicture = function() {
         .then((data)=>{
             sits = data;
             addFormSits();
-            initialDataSits();
+            //initialDataSits();
         })
     };
 };
@@ -550,14 +527,14 @@ swapBtn.addEventListener('click', swap);
     const infoArrivalHour =document.querySelector('.infoArrivalHour');
     const inputDateDeparture = document.querySelector('.dateDeparture');
     const inputDateArrival = document.querySelector('.dateArrival');
-    //const choosingSits = document.querySelector('#inputSeat');
+    const choosingSits = document.querySelectorAll('.inputSeat');
     //const amountPassanger = document.querySelector('#numbPas');
     const infoFlight = () => {
 
         infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
         infoDepartureDate.innerHTML = `Data wylotu ${inputDateDeparture.value}`
         infoDepartureHour.innerHTML = `Godzina wylotu ${departureAtribute[2]}`
-        //sit.innerHTML = `Miejsce ${choosingSits.value}`
+        sit.innerHTML = `Miejsce ${choosingSits.value}`
         infoArrival.innerHTML = `Powrót z ${inputArrival.value} do ${inputDeparture.value}`
         infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
         infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
@@ -591,9 +568,7 @@ fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((data) => {
         cities = data;
         initialData();
-        //let inputArrival = document.getElementById('cityNameInputArrival'); 
         let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
-        //let inputDeparture = document.getElementById('cityNameInput');
         let inputDeparturelist = document.getElementById('listOfCities');
         let onChange = (event) => {
             if(event.currentTarget=== inputArrival){
@@ -836,7 +811,7 @@ const autocomplite = () => {
             
             )
 }
-autocomplite();
+//autocomplite();
 const checkName = () => {
     if (name.value.match(letters)){
         nameinfo.innerHTML = ''
