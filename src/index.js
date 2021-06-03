@@ -400,12 +400,12 @@ const planePicture = function() {
                 for (let el of listSit) {
                     console.log(el);
                     if(event.currentTarget=== element.value){
-                        clearInputSits(el, element.value)
-                        addingSits(el, element.value )
+                        clearInputSits(listSit.splice(el,1), element.value);
+                        console.log(listSit.splice(el,1));
+                        addingSits(listSit.splice(el,1), element.value )
                     }else {
-                        // tablica pozostałe prócz i 
-                        clearInputSits(listSit.splice(el,1), passangerSit.splice(element,1).value);
-                        addingSits(listSit.splice(el,1), passangerSit.splice(element,1).value);
+                        clearInputSits(el, passangerSit.splice(element,1).value);
+                        addingSits(el, passangerSit.splice(element,1).value);
                 };
             }});
         }})
@@ -560,7 +560,21 @@ swapBtn.addEventListener('click', swap);
     infoDepartureDate.addEventListener('input', submitDisabled);
     infoArrivalDate.addEventListener('input', submitDisabled);
     amountPassanger.addEventListener('input', submitDisabled);
-
+// activation button summarry
+const summaryButtonDisabled = () => {
+    const summaryButton = document.querySelector('.summaryButton');
+    for(element of passangerSit){
+        // jeżeli każdy z passangerSit.Array ma value!=="" return true && jeżeli każdy name field !== "" true 
+        if(element.value){
+            summaryButton.disabled = false;
+            infoFlight();
+            calculate();
+        } else {
+            summaryButton.disabled = true;
+        }
+    }
+    
+};
 
 //Seletet list form and working with json database 
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
