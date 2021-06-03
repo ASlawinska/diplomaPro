@@ -53,8 +53,8 @@ const visibleSlide3 = () => {
 };
 //listening
 logo.addEventListener("click", visibleSlide1);
-nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival), calculate()});
-summaryButton.addEventListener("click", ()=>{visibleSlide3(), getWeatherArrival()});
+nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
+summaryButton.addEventListener("click", ()=>{visibleSlide3(), getWeatherArrival(), infoFlight(), calculate()});
 
 // Date form 
 const thisDay = document.getElementById('today');
@@ -160,6 +160,7 @@ let sits = [];
 const createInputName = () => {
     let inputName = document.createElement('input');
     inputName.setAttribute(`placeholder`, 'Imię i nazwisko');
+    inputName.setAttribute(`class`, 'passangerName');
     inputName.setAttribute(`required`, 'required');
     return inputName
 }
@@ -367,8 +368,15 @@ function showAtributeArrival() {
         }
     }
 };
-let passangerSit = []
-let listSit = []
+let passangerSit = [];
+let listSit = [];
+let passangerName = [];
+let passangerNameItem = document.querySelectorAll('.passangerName');
+passangerName = Array.from(passangerNameItem);
+    for (let element of passangerName) {
+        element.addEventListener("change", function(event) {
+        console.log(element.value);
+        summaryButtonDisabled();})}
 // Wyświetlanie Obrazka samolotu
 const planePicture = function() {
     // pobranie elementów 
@@ -390,24 +398,25 @@ const planePicture = function() {
 
 
             let listItem = document.querySelectorAll('.listOfSeats');
-            console.log(listItem);
             listSit = Array.from(listItem);
             let inputSitItem = document.querySelectorAll('.inputSeat');
             passangerSit = Array.from(inputSitItem);
             for (let element of passangerSit) {
                 element.addEventListener("change", function(event) {
                 console.log(element.value);
-                for (let el of listSit) {
-                    console.log(el);
-                    if(event.currentTarget=== element.value){
-                        clearInputSits(listSit.splice(el,1), element.value);
-                        console.log(listSit.splice(el,1));
-                        addingSits(listSit.splice(el,1), element.value )
-                    }else {
-                        clearInputSits(el, passangerSit.splice(element,1).value);
-                        addingSits(el, passangerSit.splice(element,1).value);
-                };
-            }});
+                summaryButtonDisabled();
+            //     for (let el of listSit) {
+            //         console.log(el);
+            //         if(event.currentTarget=== element.value){
+            //             clearInputSits(listSit.splice(el,1), element.value);
+            //             console.log(listSit.splice(el,1));
+            //             addingSits(listSit.splice(el,1), element.value )
+            //         }else {
+            //             clearInputSits(el, passangerSit.splice(element,1).value);
+            //             addingSits(el, passangerSit.splice(element,1).value);
+            //     };
+            // }
+        });
         }})
     } else if (departureAtribute[0]===arrivalAtribute[0]) {
         planeUnknow.style.display = 'none';
@@ -419,7 +428,7 @@ const planePicture = function() {
             .then((data)=>{
                 sits = data;
                 addFormSits();
-                //initialDataSits();
+
             })
     } else {
         planeUnknow.style.display = 'none';
@@ -431,7 +440,7 @@ const planePicture = function() {
         .then((data)=>{
             sits = data;
             addFormSits();
-            //initialDataSits();
+
         })
     };
 };
@@ -521,20 +530,28 @@ swapBtn.addEventListener('click', swap);
     const infoDeparture =document.querySelector('.infoDeparture');
     const infoDepartureDate =document.querySelector('.infoDepartureDate');
     const infoDepartureHour =document.querySelector('.infoDepartureHour');
-    const sit =document.querySelector('.sit');
+    const sit = document.querySelector('.sit');
     const infoArrival =document.querySelector('.infoArrival');
     const infoArrivalDate =document.querySelector('.infoArrivalDate');
     const infoArrivalHour =document.querySelector('.infoArrivalHour');
     const inputDateDeparture = document.querySelector('.dateDeparture');
     const inputDateArrival = document.querySelector('.dateArrival');
-    const choosingSits = document.querySelectorAll('.inputSeat');
-    //const amountPassanger = document.querySelector('#numbPas');
-    const infoFlight = () => {
+    let sitArr = [];
 
+const downloadValueSit = () => {
+    for (let element of passangerSit){
+        console.log(element.value);
+        sitArr.push(`${element.value}`);
+        console.log(sitArr);
+    }
+}
+
+const infoFlight = () => {
+    downloadValueSit();
         infoDeparture.innerHTML = `Wylot z ${inputDeparture.value} do ${inputArrival.value}`
         infoDepartureDate.innerHTML = `Data wylotu ${inputDateDeparture.value}`
         infoDepartureHour.innerHTML = `Godzina wylotu ${departureAtribute[2]}`
-        sit.innerHTML = `Miejsce ${choosingSits.value}`
+        sit.innerHTML = `Miejsce ${sitArr}`
         infoArrival.innerHTML = `Powrót z ${inputArrival.value} do ${inputDeparture.value}`
         infoArrivalDate.innerHTML = `Data powrotu ${inputDateArrival.value}`
         infoArrivalHour.innerHTML = `Godzina powrotu ${arrivalAtribute[2]}`
@@ -544,7 +561,7 @@ swapBtn.addEventListener('click', swap);
         const nextSlide = document.querySelector('.nextSlide');
         if(inputDeparture.value && inputArrival.value && inputDateDeparture.value && inputDateArrival.value && amountPassanger.value){
             nextSlide.disabled = false;
-            infoFlight();
+            
         } else {
             nextSlide.disabled = true;
         }
@@ -563,18 +580,19 @@ swapBtn.addEventListener('click', swap);
 // activation button summarry
 const summaryButtonDisabled = () => {
     const summaryButton = document.querySelector('.summaryButton');
-    for(element of passangerSit){
-        // jeżeli każdy z passangerSit.Array ma value!=="" return true && jeżeli każdy name field !== "" true 
-        if(element.value){
+    function hasValue(element, array){
+        console.log(' has value');
+        return element.value
+    };
+    let checkingValuePassangerName = passangerName.every(hasValue);
+    let checkingValuePassangerSit = passangerSit.every(hasValue);
+
+        if(checkingValuePassangerName===true && checkingValuePassangerSit===true){
             summaryButton.disabled = false;
-            infoFlight();
-            calculate();
         } else {
             summaryButton.disabled = true;
         }
     }
-    
-};
 
 //Seletet list form and working with json database 
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
