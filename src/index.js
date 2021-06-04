@@ -54,7 +54,7 @@ const visibleSlide3 = () => {
 //listening
 logo.addEventListener("click", visibleSlide1);
 nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
-summaryButton.addEventListener("click", ()=>{visibleSlide3(), getWeatherArrival(), infoFlight(), calculate()});
+summaryButton.addEventListener("click", ()=>{visibleSlide3(), getWeatherArrival(), infoFlight(),distanceBetweenLocations(geoDeparture, geoArrival), calculate()});
 
 // Date form 
 const thisDay = document.getElementById('today');
@@ -332,6 +332,7 @@ let inputArrival = document.getElementById('cityNameInputArrival');
 let inputDeparture = document.getElementById('cityNameInput');
 let departureAtribute
 let geoDeparture
+console.log(geoDeparture);
 function showAtributeDeparture() {
     // Get the value from the input
     let valueDeparture = inputDeparture.value;
@@ -403,7 +404,6 @@ const planePicture = function() {
             passangerSit = Array.from(inputSitItem);
             for (let element of passangerSit) {
                 element.addEventListener("change", function(event) {
-                console.log(element.value);
                 summaryButtonDisabled();
             //     for (let el of listSit) {
             //         console.log(el);
@@ -480,6 +480,8 @@ const calculate = () => {
             const currency1 = currencyOne.value;
             const currency2 = currencyTwo.value;
             // calculating the starting value of ticket based on different currency
+            console.log(distanceBetweenLocations(geoDeparture, geoArrival));
+            console.log(amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2));
             switch (currencyOne.value) {
                 case 'PLN':
                     amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
@@ -560,6 +562,13 @@ const infoFlight = () => {
     const submitDisabled = () => {
         const nextSlide = document.querySelector('.nextSlide');
         if(inputDeparture.value && inputArrival.value && inputDateDeparture.value && inputDateArrival.value && amountPassanger.value){
+            // const textSingUP = document.querySelector('.popupSingBTN');
+            // const textSingUPDesktop = document.querySelector('.popupSingBTNDesktop');
+            // if (textSingUP.includes('Witaj')||textSingUPDesktop.includes('Witaj')) {
+            //     nextSlide.disabled = false;
+            // } else {
+            //     openPopupsingInUp();
+            // }
             nextSlide.disabled = false;
             
         } else {
