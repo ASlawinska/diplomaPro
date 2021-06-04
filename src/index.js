@@ -569,14 +569,16 @@ const infoFlight = () => {
     const submitDisabled = () => {
         const nextSlide = document.querySelector('.nextSlide');
         if(inputDeparture.value && inputArrival.value && inputDateDeparture.value && inputDateArrival.value && amountPassanger.value){
-            // const textSingUP = document.querySelector('.popupSingBTN');
-            // const textSingUPDesktop = document.querySelector('.popupSingBTNDesktop');
-            // if (textSingUP.includes('Witaj')||textSingUPDesktop.includes('Witaj')) {
-            //     nextSlide.disabled = false;
-            // } else {
-            //     openPopupsingInUp();
-            // }
-            nextSlide.disabled = false;
+            const textSingUP = document.querySelector('.popupSingBTN');
+            console.log(textSingUP.innerText);
+            const textSingUPDesktop = document.querySelector('.popupSingBTNDesktop');
+            if (textSingUP.innerText.includes('Witaj')||textSingUPDesktop.innerText.includes('Witaj')) {
+                nextSlide.disabled = false;
+            } else {
+                nextSlide.disabled = false;
+                nextSlide.addEventListener('click',openPopupsingInUp);
+            }
+            //nextSlide.disabled = false;
             
         } else {
             nextSlide.disabled = true;
