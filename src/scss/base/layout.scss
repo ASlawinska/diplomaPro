@@ -18,7 +18,7 @@
     @include positioning(none, column, center);
     @include width(95%, 5px auto, $whiteTrasp);
     @include breakpoint(laptop){
-        max-height: 35vh;
+        max-height: 38vh;
         @include width(85%, 10px auto, $whiteTrasp);
         padding: 15px ;
     }
@@ -27,8 +27,8 @@
         @include width(90%, 10px auto, $whiteTrasp);
         @include breakpoint(tablet){
             flex-direction: row;
-            max-height: 30vh;
-            @include width(85%, 30px auto, $whiteTrasp);
+            max-height: 34vh;
+            @include width(90%, 0px auto, $whiteTrasp);
         }
     }
     .detailedFlight, .costsCalculate{
