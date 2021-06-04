@@ -24,7 +24,6 @@ const weather = document.querySelector(".weather");
 const slide1 = document.querySelector(".slide1");
 const slide2 = document.querySelector(".slide2");
 const summary = document.querySelector(".summary");
-const nextSlide = document.querySelector(".nextSlide");
 const summaryButton =document.querySelector(".summaryButton")
 const logo = document.querySelector(".logo");
 //Opening slide1, hidding slide2&3
@@ -53,7 +52,6 @@ const visibleSlide3 = () => {
 };
 //listening
 logo.addEventListener("click", visibleSlide1);
-nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
 summaryButton.addEventListener("click", ()=>{visibleSlide3(), getWeatherArrival(), infoFlight(),distanceBetweenLocations(geoDeparture, geoArrival), calculate()});
 
 // Date form 
@@ -574,12 +572,11 @@ const infoFlight = () => {
             const textSingUPDesktop = document.querySelector('.popupSingBTNDesktop');
             if (textSingUP.innerText.includes('Witaj')||textSingUPDesktop.innerText.includes('Witaj')) {
                 nextSlide.disabled = false;
+                nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
             } else {
                 nextSlide.disabled = false;
-                nextSlide.addEventListener('click',openPopupsingInUp);
+                nextSlide.addEventListener("click", ()=>{openPopupsingInUp(), visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
             }
-            //nextSlide.disabled = false;
-            
         } else {
             nextSlide.disabled = true;
         }
@@ -606,8 +603,6 @@ const summaryButtonDisabled = () => {
 
         if(checkingValuePassangerName===true && checkingValuePassangerSit===true){
             summaryButton.disabled = false;
-
-
         } else {
             summaryButton.disabled = true;
         }
@@ -749,8 +744,6 @@ const closePopupPopularWay = () => {
 //Closing popupa  singUpIN
 const closePopupsingInUp = () => {
     singInUp.style.display = 'none';
-    // popupSing.value.innerHTML="Jesteś zalogowany";
-    // popupSingDesktop.value.innerHTML="Jesteś zalogowany";
 };
 popupRule.addEventListener('click', openPopupRule);
 popupRuleDesktop.addEventListener('click', openPopupRule);
@@ -865,7 +858,6 @@ const autocomplite = () => {
 const checkName = () => {
     if (name.value.match(letters)){
         nameinfo.innerHTML = ''
-        //name.value.trim();
     } else {
         nameinfo.innerHTML = 'Wpisz poprawne imię.'
     }
@@ -873,7 +865,6 @@ const checkName = () => {
 const checklastname = () => {
     if (lastname.value.match(letters)){
         lastnameinfo.innerHTML = ''
-        //lastname.value.trim;
     } else {
         lastnameinfo.innerHTML = 'Wpisz poprawne nazwisko'
     }
@@ -934,10 +925,8 @@ const confirmDisabled = () => {
 
     if(name.value && lastname.value && email.value && pass.value){
         confirm.disabled = false;
-        console.log('active');
         textSingUP.innerText = `Witaj ${name.value}!`;
         textSingUPDesktop.innerText = `Witaj ${name.value}!`;
-        //confirm.addEventListener('click', closePopupsingInUp);
     } else {
         confirm.disabled = true;
     }
