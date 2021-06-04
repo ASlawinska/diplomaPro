@@ -330,6 +330,8 @@ const addingSits = (input, sit) => {
 //
 let inputArrival = document.getElementById('cityNameInputArrival'); 
 let inputDeparture = document.getElementById('cityNameInput');
+let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
+let inputDeparturelist = document.getElementById('listOfCities');
 let departureAtribute
 let geoDeparture
 console.log(geoDeparture);
@@ -337,8 +339,8 @@ function showAtributeDeparture() {
     // Get the value from the input
     let valueDeparture = inputDeparture.value;
     // looking for index of element correct with choosing value
-    for (let i = 0; i < inputDeparture.list.options.length; i++) {
-        if (valueDeparture===inputDeparture.list.options[i].text) {
+    for (let i = 0; i < cities.length; i++) {
+        if (valueDeparture===cities[i].city) {
             let continentDeparture = cities[i].continent;
             let countryDeparture = cities[i].country;
             let hour = cities[i].hour;
@@ -346,6 +348,9 @@ function showAtributeDeparture() {
             let latitudeDepartre = cities[i].lat;
             let longitudeDepartre = cities[i].lon;
             geoDeparture = [latitudeDepartre, longitudeDepartre]
+            console.log(geoDeparture);
+        } else {
+
         }
     }
 };
@@ -354,18 +359,20 @@ let geoArrival;
 function showAtributeArrival() {
     // Get the value from the input
     let valueArrival = inputArrival.value;
+
     // looking for index of element correct with choosing value
-    for (let i = 0; i < inputArrival.list.options.length; i++) {
-        if (valueArrival!=inputArrival.list.options[i].text) {
-            
-        } else {
+    for (let i = 0; i < cities.length; i++) {
+        if (valueArrival===cities[i].city) {
             let continentArrival = cities[i].continent;
             let countryArrival = cities[i].country;
             let hour = cities[i].hour;
             arrivalAtribute = [continentArrival, countryArrival, hour];
             let latitudeArrival = cities[i].lat;
             let longitudeArrival = cities[i].lon;
-            geoArrival = [latitudeArrival, longitudeArrival]
+            geoArrival = [latitudeArrival, longitudeArrival];
+            console.log(geoArrival);
+        } else {
+
         }
     }
 };
@@ -590,7 +597,6 @@ const infoFlight = () => {
 const summaryButtonDisabled = () => {
     const summaryButton = document.querySelector('.summaryButton');
     function hasValue(element, array){
-        console.log(' has value');
         return element.value
     };
     let checkingValuePassangerName = passangerName.every(hasValue);
@@ -598,6 +604,8 @@ const summaryButtonDisabled = () => {
 
         if(checkingValuePassangerName===true && checkingValuePassangerSit===true){
             summaryButton.disabled = false;
+
+
         } else {
             summaryButton.disabled = true;
         }
@@ -607,10 +615,9 @@ const summaryButtonDisabled = () => {
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
     .then((data) => {
+        console.log(data);
         cities = data;
         initialData();
-        let inputArrivallist = document.getElementById('listOfCitiesArrival'); 
-        let inputDeparturelist = document.getElementById('listOfCities');
         let onChange = (event) => {
             if(event.currentTarget=== inputArrival){
                 clearInput(inputDeparturelist, inputArrival.value)
