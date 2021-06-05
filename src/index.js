@@ -311,7 +311,7 @@ const clearInputSits = (input, sit) => {
 const addingSits = (input, sit) => {
     let j = 0;
     for (let i = 0; i < sits.length; i++, j++) {
-        if ( sits[i].city !== input.children[j].innerText) {
+        if ( sits[i].seat !== input.children[j].innerText) {
             if (sits[i].sit === sit) {
                 j--;
             } else {
@@ -332,7 +332,6 @@ let inputArrivallist = document.getElementById('listOfCitiesArrival');
 let inputDeparturelist = document.getElementById('listOfCities');
 let departureAtribute
 let geoDeparture
-console.log(geoDeparture);
 function showAtributeDeparture() {
     // Get the value from the input
     let valueDeparture = inputDeparture.value;
@@ -346,7 +345,6 @@ function showAtributeDeparture() {
             let latitudeDepartre = cities[i].lat;
             let longitudeDepartre = cities[i].lon;
             geoDeparture = [latitudeDepartre, longitudeDepartre]
-            console.log(geoDeparture);
         } else {
 
         }
@@ -368,7 +366,6 @@ function showAtributeArrival() {
             let latitudeArrival = cities[i].lat;
             let longitudeArrival = cities[i].lon;
             geoArrival = [latitudeArrival, longitudeArrival];
-            console.log(geoArrival);
         } else {
 
         }
@@ -381,7 +378,6 @@ let passangerNameItem = document.querySelectorAll('.passangerName');
 passangerName = Array.from(passangerNameItem);
     for (let element of passangerName) {
         element.addEventListener("change", function(event) {
-        console.log(element.value);
         summaryButtonDisabled();})}
 // Wyświetlanie Obrazka samolotu
 const planePicture = function() {
@@ -401,28 +397,22 @@ const planePicture = function() {
         .then((data)=>{
             sits = data;
             addFormSits();
-
-
             let listItem = document.querySelectorAll('.listOfSeats');
             listSit = Array.from(listItem);
             let inputSitItem = document.querySelectorAll('.inputSeat');
             passangerSit = Array.from(inputSitItem);
             for (let element of passangerSit) {
                 element.addEventListener("change", function(event) {
-                summaryButtonDisabled();
-            //     for (let el of listSit) {
-            //         console.log(el);
-            //         if(event.currentTarget=== element.value){
-            //             clearInputSits(listSit.splice(el,1), element.value);
-            //             console.log(listSit.splice(el,1));
-            //             addingSits(listSit.splice(el,1), element.value )
-            //         }else {
-            //             clearInputSits(el, passangerSit.splice(element,1).value);
-            //             addingSits(el, passangerSit.splice(element,1).value);
-            //     };
-            // }
-        });
-        }})
+                    summaryButtonDisabled();
+                        if(event.currentTarget.value=== element.value){
+                            for (let j = 0; j < listSit.length; j++) {
+                                clearInputSits(listSit[j], element.value);
+                            }
+                        }
+                    }
+                )
+            }
+        })
     } else if (departureAtribute[0]===arrivalAtribute[0]) {
         planeUnknow.style.display = 'none';
         planeCountry.style.display = 'none';
@@ -485,8 +475,6 @@ const calculate = () => {
             const currency1 = currencyOne.value;
             const currency2 = currencyTwo.value;
             // calculating the starting value of ticket based on different currency
-            console.log(distanceBetweenLocations(geoDeparture, geoArrival));
-            console.log(amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2));
             switch (currencyOne.value) {
                 case 'PLN':
                     amountOne.value = (0.8 * distanceBetweenLocations(geoDeparture, geoArrival)).toFixed(2);
@@ -547,9 +535,7 @@ swapBtn.addEventListener('click', swap);
 
 const downloadValueSit = () => {
     for (let element of passangerSit){
-        console.log(element.value);
         sitArr.push(`${element.value}`);
-        console.log(sitArr);
     }
 }
 
@@ -568,14 +554,16 @@ const infoFlight = () => {
         const nextSlide = document.querySelector('.nextSlide');
         if(inputDeparture.value && inputArrival.value && inputDateDeparture.value && inputDateArrival.value && amountPassanger.value){
             const textSingUP = document.querySelector('.popupSingBTN');
-            console.log(textSingUP.innerText);
             const textSingUPDesktop = document.querySelector('.popupSingBTNDesktop');
             if (textSingUP.innerText.includes('Witaj')||textSingUPDesktop.innerText.includes('Witaj')) {
                 nextSlide.disabled = false;
+                nextSlide.removeEventListener("click", openPopupsingInUp);
                 nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
             } else {
+                //openPopupsingInUp();
                 nextSlide.disabled = false;
-                nextSlide.addEventListener("click", ()=>{openPopupsingInUp(), visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
+                nextSlide.addEventListener("click", openPopupsingInUp);
+                // nextSlide.addEventListener("click", ()=>{openPopupsingInUp(), visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
             }
         } else {
             nextSlide.disabled = true;
@@ -612,7 +600,6 @@ const summaryButtonDisabled = () => {
 fetch("https://api.jsonbin.io/b/606f4872ceba857326712ed1/2")
     .then((resp) => resp.json()) 
     .then((data) => {
-        console.log(data);
         cities = data;
         initialData();
         let onChange = (event) => {
@@ -927,6 +914,7 @@ const confirmDisabled = () => {
         confirm.disabled = false;
         textSingUP.innerText = `Witaj ${name.value}!`;
         textSingUPDesktop.innerText = `Witaj ${name.value}!`;
+        submitDisabled();
     } else {
         confirm.disabled = true;
     }
