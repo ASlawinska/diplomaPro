@@ -41,6 +41,8 @@ const visibleSlide2 = () => {
     slide1.style.display = 'none';
     slide2.style.display = 'flex';
     summary.style.display = 'none';
+    planePicture();
+    distanceBetweenLocations(geoDeparture, geoArrival)
 };
 //Opening slide3, hidding slide1&2
 const visibleSlide3 = () => {
@@ -299,6 +301,7 @@ const addFormSits = () => {
         infoPlane.appendChild(createInputLuggage());
         infoPlane.appendChild(hr());
         initialDataSits(i);
+        console.log(`addform${i}`);
 }}
 
 const clearInputSits = (input, sit) => {
@@ -407,6 +410,7 @@ const planePicture = function() {
                         if(event.currentTarget.value=== element.value){
                             for (let j = 0; j < listSit.length; j++) {
                                 clearInputSits(listSit[j], element.value);
+                                //addingSits(listSit[j], element.value);
                             }
                         }
                     }
@@ -423,7 +427,22 @@ const planePicture = function() {
             .then((data)=>{
                 sits = data;
                 addFormSits();
-
+                let listItem = document.querySelectorAll('.listOfSeats');
+                listSit = Array.from(listItem);
+                let inputSitItem = document.querySelectorAll('.inputSeat');
+                passangerSit = Array.from(inputSitItem);
+                for (let element of passangerSit) {
+                    element.addEventListener("change", function(event) {
+                        summaryButtonDisabled();
+                            if(event.currentTarget.value=== element.value){
+                                for (let j = 0; j < listSit.length; j++) {
+                                    clearInputSits(listSit[j], element.value);
+                                    //addingSits(listSit[j], element.value);
+                                }
+                            }
+                        }
+                    )
+                }
             })
     } else {
         planeUnknow.style.display = 'none';
@@ -435,7 +454,22 @@ const planePicture = function() {
         .then((data)=>{
             sits = data;
             addFormSits();
-
+            let listItem = document.querySelectorAll('.listOfSeats');
+            listSit = Array.from(listItem);
+            let inputSitItem = document.querySelectorAll('.inputSeat');
+            passangerSit = Array.from(inputSitItem);
+            for (let element of passangerSit) {
+                element.addEventListener("change", function(event) {
+                    summaryButtonDisabled();
+                        if(event.currentTarget.value=== element.value){
+                            for (let j = 0; j < listSit.length; j++) {
+                                clearInputSits(listSit[j], element.value);
+                                //addingSits(listSit[j], element.value);
+                            }
+                        }
+                    }
+                )
+            }
         })
     };
 };
@@ -558,12 +592,11 @@ const infoFlight = () => {
             if (textSingUP.innerText.includes('Witaj')||textSingUPDesktop.innerText.includes('Witaj')) {
                 nextSlide.disabled = false;
                 nextSlide.removeEventListener("click", openPopupsingInUp);
-                nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
+                nextSlide.addEventListener("click", visibleSlide2);
+                // nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
             } else {
-                //openPopupsingInUp();
                 nextSlide.disabled = false;
                 nextSlide.addEventListener("click", openPopupsingInUp);
-                // nextSlide.addEventListener("click", ()=>{openPopupsingInUp(), visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
             }
         } else {
             nextSlide.disabled = true;
