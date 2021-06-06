@@ -14,7 +14,8 @@ module.exports = {
     },
     output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[contenthash].bundle.js"
+    filename: "[contenthash].bundle.js",
+    publicPath: "/diplomaPro/"
     },
 devServer:{
     contentBase: path.join(__dirname,"dist"),

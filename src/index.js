@@ -404,6 +404,7 @@ const planePicture = function() {
             listSit = Array.from(listItem);
             let inputSitItem = document.querySelectorAll('.inputSeat');
             passangerSit = Array.from(inputSitItem);
+            console.log(passangerSit);
             for (let element of passangerSit) {
                 element.addEventListener("change", function(event) {
                     summaryButtonDisabled();
@@ -458,13 +459,14 @@ const planePicture = function() {
             listSit = Array.from(listItem);
             let inputSitItem = document.querySelectorAll('.inputSeat');
             passangerSit = Array.from(inputSitItem);
+            console.log(passangerSit);
             for (let element of passangerSit) {
                 element.addEventListener("change", function(event) {
                     summaryButtonDisabled();
+
                         if(event.currentTarget.value=== element.value){
                             for (let j = 0; j < listSit.length; j++) {
                                 clearInputSits(listSit[j], element.value);
-                                //addingSits(listSit[j], element.value);
                             }
                         }
                     }
@@ -902,7 +904,7 @@ const initialDataSingIn = () => {
 
 }
 const autocomplite = () => {
-    fetch(`https://api.jsonbin.io/b/60a6668c12f79a07735f593e/2`)
+    fetch(`https://api.jsonbin.io/b/60a6668c12f79a07735f593e/3`)
         .then (resp=>resp.json())
         .then (data => {
             console.log(data);

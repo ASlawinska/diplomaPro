@@ -24,4 +24,7 @@ Repository contains example booking flight ticket webpage which is diploma thesi
 5. Open the localhost: http://localhost:3100/
 
 ## Status:
-IN PROGRESS
+Finished
+
+## Demo 
+https://aslawinska.github.io/diplomaPro/
