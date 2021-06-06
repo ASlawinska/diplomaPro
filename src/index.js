@@ -593,7 +593,6 @@ const infoFlight = () => {
                 nextSlide.disabled = false;
                 nextSlide.removeEventListener("click", openPopupsingInUp);
                 nextSlide.addEventListener("click", visibleSlide2);
-                // nextSlide.addEventListener("click", ()=>{visibleSlide2(), planePicture(), distanceBetweenLocations(geoDeparture, geoArrival)});
             } else {
                 nextSlide.disabled = false;
                 nextSlide.addEventListener("click", openPopupsingInUp);
@@ -859,7 +858,7 @@ const p = document.querySelector('.passinfo');
 const nameinfo = document.querySelector('.nameinfo');
 const lastnameinfo = document.querySelector('.lastnameinfo');
 const emailinfo = document.querySelector('.emailinfo');
-const letters =  /^[a-zA-Z]{1,}$/i;
+const letters =  /^[a-zA-ZżźćńółęąśŻŹĆĄŚĘŁÓŃ]{1,}$/i;
 const numbers = /[0-9]/;
 const special = /[!@#$%^&*()]/;
 const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;

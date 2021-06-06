@@ -28,7 +28,7 @@
             :nth-child(n){
             margin: 3px;
         }}
-        @include breakpoint(tablet){
+        @include breakpoint(laptop){
             max-height: 35vh;
             overflow: hidden;
             .infoPlane{

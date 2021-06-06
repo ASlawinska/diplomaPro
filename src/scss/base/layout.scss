@@ -168,6 +168,7 @@
     };
     .legend{
         @include positioning(flex, column, center);
+        height: 100%;
         @include width(95%, 5px auto, $whiteTrasp);
         .color{
             height: 10px;
