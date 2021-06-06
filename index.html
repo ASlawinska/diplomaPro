@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookingFly - zarezerwuj swój lot!</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <!--Fonts Awesome-->
+    <script src="https://kit.fontawesome.com/ea96569da2.js" crossorigin="anonymous"></script>
+<link href="/diplomaPro/index.6d6e50ba69d1d27ee947.css" rel="stylesheet"></head>
+<body>
+    <div class="containerPage">
+        <header>
+            <div class="logo">
+                <img src="/diplomaPro/LOGO.svg" alt="LOGO-Samolot">
+            </div>
+            <!--MENU MOBILE-->
+            <div class="mobile">
+                <button class="burger">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times hide"></i>
+                </button>
+                <nav class="navBur">
+                    <ul>
+                        <li class="popupRulesBTN"><i class="fas fa-info"></i>Regulamin</li>
+                        <li class="popupPopularDirectionBTN"><i class="far fa-compass"></i>Popularne kierunki</li>
+                        <li class="popupSingBTN"><i class="fas fa-sign-out-alt"></i>Zaloguj się</li>
+                    </ul>
+                </nav>
+            </div>
+            <!--MENU DESTOP-->
+            <div class="desktop">
+                <nav>
+                    <ul>
+                        <li class="popupRulesBTNDesktop"><i class="fas fa-info"></i>Regulamin</li>
+                        <li class="popupPopularDirectionBTNDesktop"><i class="far fa-compass"></i>Popularne kierunki</li>
+                        <li  class="popupSingBTNDesktop"><i class="fas fa-sign-out-alt"></i>Zaloguj się</li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="slide1">
+                <section class="chooseDirection">
+                    <form class="row" action="" method="" onSubmit="return false">
+                        <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                            <label for="departure">Miejsce wylotu(z):</label>
+                            <input type="text" list="listOfCities" name="departure" id="cityNameInput"  placeholder="Miejsce wyloty" required>
+                            <datalist id="listOfCities">
+                            </datalist>
+                        </div>
+                        <br>
+                        <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                            <label for="arrival">Miejsce przylotu(do):</label>
+                            <input type="text" list="listOfCitiesArrival" name="arrival" id="cityNameInputArrival" placeholder="Miejsce przylotu" required >
+                            <datalist id="listOfCitiesArrival">
+                            </datalist>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                            <label for="departureDate">Wybierz datę wylotu</label>
+                            <input type="date" name="departureDate" id="today" class="dateDeparture" min="" required>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                            <label for="arrivalDate">Wybierz datę powrotu</label>
+                            <input type="date" name="arrivalDate" id="tommorow" class="dateArrival" min="" required>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6 col-xl-4">
+                            <label for="numbPas">Liczba pasażerów</label>
+                            <input type="number" name="numbPas" id="numbPas" min="1" step="1" required>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-xl-4">
+                            <button class="nextSlide" disabled> Dalej</button>
+                        </div>
+                    </form>
+                </section>
+                <div class="summary">
+                    <div class="upSectionSummary">
+                        <section class="detailedFlight">
+                            <h1>Szczegóły lotu</h1>
+                            <p class="infoDeparture"></p>
+                            <p class="infoDepartureDate"></p>
+                            <p class="infoDepartureHour"></p>
+                            <p class="sit"></p>
+                            <p class="infoArrival"></p>
+                            <p class="infoArrivalDate"></p>
+                            <p class="infoArrivalHour"></p>
+                        </section>
+                        <section class="costsCalculate">
+                            <h1>Cena biletu</h1>
+                            <div class="app-body">
+                                <div class="section-up">
+                                    <input type="number" class="amount-one" value="1">
+                                    <select id="currency-one">
+                                        <option value="PLN" selected>PLN</option>
+                                        <option value="USD">USD</option>
+                                        <option value="RUB">RUB</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="HKD">HKD</option>
+                                        <option value="MXN">MXN</option>
+                                        <option value="BRL">BRL</option>
+                                        <option value="ZAR">ZAR</option>
+                                    </select>
+                                </div>
+                                <button class="swap">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <div class="section-down">
+                                    <input type="number" class="amount-two" disabled>
+                                    <select id="currency-two">
+                                        <option value="PLN">PLN</option>
+                                        <option value="USD" selected>USD</option>
+                                        <option value="RUB">RUB</option>
+                                        <option value="EUR">EUR</option>
+                                        <option value="HKD">HKD</option>
+                                        <option value="MXN">MXN</option>
+                                        <option value="BRL">BRL</option>
+                                        <option value="ZAR">ZAR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p class="rate-info"></p>
+                            <p class="cost-info"></p>
+                            <button class="buy">zapłać</button>
+                        </section>
+                    </div>
+                </div>
+                    <section class="weather">
+                            <div class="top">
+                                <h1>AKTUALNA POGODA</h1>
+                                <div class="main-info">
+                                    <div>
+                                        <h3 class="city-name"></h3>
+                                        <p class="warning"></p>
+                                    </div>
+                                    <img class="photo" src="/diplomaPro/unknown.png" alt="Obrazek przedstawiający pogodę" />
+                                </div>
+                            </div>
+                            <div class="bottom">
+                                <div class="headings">
+                                    <p>Ciśnienie:</p>
+                                    <p>Temperatura:</p>
+                                    <p>Wilgotność:</p>
+                                </div>
+                                <div class="weather-info">
+                                    <p class="pressure"></p>
+                                    <p class="temp"></p>
+                                    <p class="humidity"></p>
+                                </div>
+                            </div>
+                    </section>
+            </div>
+            <div class="slide2">
+                <section class="chooseSit">
+                    <div class="plane">
+                        <div class="unknown">
+                            <p>Wybierz lot</p>
+                        </div>
+                        <div class="country">
+                            <object type="image/svg+xml" data="Embarer.svg">
+                                <img src="/diplomaPro/Embarer.svg" alt="">
+                            </object>
+                        </div>
+                        <div class="international">
+                            <object type="image/svg+xml" data="737.svg">
+                                <img src="/diplomaPro/737.svg" alt="">
+                            </object>
+                        </div>
+                        <div class="intercontinental">
+                            <object type="image/svg+xml" data="878.svg">
+                                <img src="/diplomaPro/878.svg" alt="">
+                            </object>
+                        </div>
+                    </div>
+                </section>
+                <section class="legend">
+                    <form action="">
+                        <div class="infoPlane">
+                        </div>
+                    </form>
+                    <div class="infoLegend">
+                        <p class="legend-title"id="seatMapKeyLegend"><strong>Legenda:</strong></p>
+                        <div class="legendInfoDetailed">
+                            <ul class="legend-key">
+                                <li id="key_gut"><i class="fas fa-play key-gut"></i>Bardzo dobre</li>
+                                <li id="key_bwr"><i class="fas fa-play key-bwr"></i>Ostrożnie</li>
+                                <li id="key_bad"><i class="fas fa-play key-bad"></i>Niebezpieczne</li>
+                            </ul>
+                            <ul class="legend-key">
+                                <li id="key_std"><i class="fas fa-play key-std"></i>Standard</li>
+                                <li id="key_blk"><i class="fas fa-play key-blk"></i>Niedostępne</li>
+                                <li id="key_pre"><i class="fas fa-play key-pre"></i>WC/Coffee</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="summaryButton" disabled>Podsumowanie</button>
+                </secion>
+            </div>
+        </main>
+        <div class="popup">
+            <div class="rule">
+            <h1>Założenia projektu:</h1>
+            <ol>
+                <li>Ramowy opis projektu</li>
+                <p>Celem projektu jest napisanie aplikacji polegającej na zarezerwowaniu biletu lotniczego.</p>
+                <li>Szczegółowy opis projektu</li>
+                <p>Na stronie głównej użytkownik powinien mieć następujące widoki/możliwości:</p>
+                    <ul>
+                        <li>aktualną datę, godzinę i pogodę (dla miejsca odlotu lub też poprzez pobranie lokalizacji użytkownika)</li>
+                        <li>miejsce wylotu (przynajmniej jedno miasto)</li>
+                        <li>miejsce docelowe (przynajmniej 3 różne miasta na dwóch kontynentach, np. loty</li>
+                        <li>po wybraniu lotu, daty, liczby pasażerów i kliknięciu przycisku potwierdzajacego wybrane opcje powinno pojawić się okno logowania (np. jako popup)</li>
+                    </ul>
+                    <span>Lista użytkowników:</span>
+                    <ul>
+                        <li>pobranie użytkowników z gotowego pliku typu json</li>
+                    </ul>
+            </ol>
+            </div>
+            <button class="popupCloseRule">Zamknij</button>
+        </div>
+        <div class="popupPW">
+            <div class="scene">
+                <div class="carouselPW">
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2017/12/15/19/13/rome-3021586_960_720.jpg" alt="Rzym-panorama">
+                        <h2>Rzym</h2>
+                        <h3>już od 357zł</h3>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2018/04/25/09/26/eiffel-tower-3349075_960_720.jpg" alt="Wieża Eilffla">
+                        <h2>Paryż</h2>
+                        <h3>już od 459zł</h3>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2017/10/27/10/14/krakow-2893783_960_720.jpg" alt="Kraków- Wawel">
+                        <h2>Kraków</h2>
+                        <h3>już od 99zł</h3>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2014/12/14/17/03/day-of-the-dead-568012_960_720.jpg" alt="Meksyk-ludzie obchądzący dzień śmierci">
+                        <h2>Meksyk</h2>
+                        <h3>już od 1356zł</h3>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2020/05/01/15/18/brand-front-of-the-brandenburg-gate-5117579_960_720.jpg" alt="Berlin- Brama Brandendurska">
+                        <h2>Berlin</h2>
+                        <h3>juz od 499zł</h3>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2017/04/13/21/54/denver-2228783_960_720.jpg" alt="Denver panorama na miasto">
+                        <h2>Denver</h2>
+                        <h3>już od 2689zł</h3>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2018/01/21/12/49/poland-3096512_960_720.jpg" alt="Wrocław - katedra św. Jana">
+                        <h2>Wrocław</h2>
+                        <h3>już od 154zł</h3>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2019/07/07/10/56/johannesburg-4322256_960_720.jpg" alt="Johannesburg - panorama">
+                        <h2>Johannesburg</h2>
+                        <h3>już od 1899zł</h3>
+                    </div>
+                    <div class="carousel__cell">
+                        <img src="https://cdn.pixabay.com/photo/2020/04/06/18/48/madrid-5010803_960_720.jpg" alt="Madryt-panorama">
+                        <h2>Madryt</h2>
+                        <h3>już od 649zł</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-options">
+                <button class="previous-button-PW"><i class="fas fa-chevron-left"></i></button>
+                <button class="popupClosePW"><i class="fas fa-times"></i></button>
+                <button class="next-button-PW"><i class="fas fa-chevron-right"></i></button>
+
+            </div>
+        </div>
+        <div class="popupsingInUp">
+            <form action="/sign_up" method="post">
+                <h1 class="textSingUP"> Zaloguj się </h1>
+                <input class="box" type="text" name="name" list="SingInName" id="name" placeholder="Imię" required />
+                <datalist id="SingInName"></datalist>
+                <br>
+                <p class="nameinfo"></p>
+                <input class="box" type="text" lastname="lastname" list="SingInLastName" id="lastname" placeholder="Nazwisko"  required />
+                <datalist id="SingInLastName"></datalist>
+                <br>
+                <p class="lastnameinfo"></p>
+                <input class="box" type="email" name="email" list="SingInEmail" id="email" placeholder="E-Mail " required />
+                <datalist id="SingInEmail"></datalist>
+                <br>
+                <p class="emailinfo"></p>
+                <input class="box" type="password" name="password" id="password" placeholder="Hasło" required/><br>
+                <p class="passinfo">Minimum 8 znaków, małe i duże litery, znaki specjalne.</p>
+                <br>
+                </form>
+            <button class="popupCloseSingInUp" type="submit" id="submitDetails"  
+            name="submitDetails" value="Submit" disabled>Potwierdź</button>
+
+        </div>
+        <div class="pay"><hr class="payHr">Nastąpi przekierowanie do banku.</div>
+        <footer>
+            <div class="footer"></div>
+        </footer>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/diplomaPro/5f70f358f91649419575.bundle.js"></script></body>
+</html>
