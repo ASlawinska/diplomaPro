@@ -283,11 +283,17 @@
         <div class="popupsingInUp">
             <form action="/sign_up" method="post">
                 <h1 class="textSingUP"> Zaloguj się </h1>
-                <input class="box" type="text" name="name" id="name" placeholder="Imię" required /><br>
+                <input class="box" type="text" name="name" list="SingInName" id="name" placeholder="Imię" required />
+                <datalist id="SingInName"></datalist>
+                <br>
                 <p class="nameinfo"></p>
-                <input class="box" type="text" lastname="lastname" id="lastname" placeholder="Nazwisko"  required /><br>
+                <input class="box" type="text" lastname="lastname" list="SingInLastName" id="lastname" placeholder="Nazwisko"  required />
+                <datalist id="SingInLastName"></datalist>
+                <br>
                 <p class="lastnameinfo"></p>
-                <input class="box" type="email" name="email" id="email" placeholder="E-Mail " required /><br>
+                <input class="box" type="email" name="email" list="SingInEmail" id="email" placeholder="E-Mail " required />
+                <datalist id="SingInEmail"></datalist>
+                <br>
                 <p class="emailinfo"></p>
                 <input class="box" type="password" name="password" id="password" placeholder="Hasło" required/><br>
                 <p class="passinfo">Minimum 8 znaków, małe i duże litery, znaki specjalne.</p>

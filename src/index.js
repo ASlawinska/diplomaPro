@@ -865,15 +865,57 @@ const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0
 const minValue = 8;
 
 //Autocomplite the login section
-const autocomplite = () => {
-    fetch(`https://api.jsonbin.io/b/60a6668c12f79a07735f593e`)
-        .then (resp=>resp.json())
-        .then (data =>
-            console.log(data)
-            
-            )
+
+let singIn = [];
+const createOptionSingInFirst = (element) => {
+    let option = document.createElement('option');
+    option.value = element.firstName;
+    option.innerText = element.firstName;
+    return option
 }
-//autocomplite();
+const createOptionSingInLast = (element) => {
+    let option = document.createElement('option');
+    option.value = element.lastName;
+    option.innerText = element.lastName;
+    return option
+}
+const createOptionSingInEmail = (element) => {
+    let option = document.createElement('option');
+    option.value = element.email;
+    option.innerText = element.email;
+    return option
+}
+const initialDataSingIn = () => {
+    let data = [...singIn];
+    let SingInName = document.querySelector('#SingInName');
+    let SingInLastName = document.querySelector('#SingInLastName');
+    let SingInEmail = document.querySelector('#SingInEmail');
+    const optionFunction =(list, funct) => {
+        data.forEach(function (element) {
+            const option = funct(element);
+            list.appendChild(option)
+        })
+    }
+    optionFunction(SingInName, createOptionSingInFirst);
+    optionFunction(SingInLastName, createOptionSingInLast);
+    optionFunction(SingInEmail, createOptionSingInEmail);
+
+}
+const autocomplite = () => {
+    fetch(`https://api.jsonbin.io/b/60a6668c12f79a07735f593e/2`)
+        .then (resp=>resp.json())
+        .then (data => {
+            console.log(data);
+            singIn = data;
+            initialDataSingIn();
+        }
+        )
+        .catch((err) => console.log(err));
+    }
+
+
+
+autocomplite();
 const checkName = () => {
     if (name.value.match(letters)){
         nameinfo.innerHTML = ''
@@ -882,6 +924,7 @@ const checkName = () => {
     }
 }
 const checklastname = () => {
+    
     if (lastname.value.match(letters)){
         lastnameinfo.innerHTML = ''
     } else {
